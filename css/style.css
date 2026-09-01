@@ -191,13 +191,35 @@ tbody tr:hover{background:var(--line2)}
 .legend-overlay .sw{width:14px;height:14px;border-radius:3px;border:1px solid rgba(0,0,0,0.12);flex-shrink:0}
 .map-toggle{position:absolute;right:14px;top:14px;z-index:625;background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:8px 14px;font-size:var(--fs-sm);font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,0.12);cursor:pointer}
 
-/* ===== FOOTER ===== */
-footer{background:var(--ink);color:#fff;padding:44px 0 0;position:relative;z-index:2}
-footer .grid{grid-template-columns:1.5fr 1fr 1fr;gap:24px}
-footer h3{color:var(--gold);font-size:var(--fs-sm);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px}
-footer p,footer li{color:rgba(255,255,255,0.75);font-size:var(--fs-sm);line-height:1.7}
+/* ===== FOOTER — institutional, planning-logic visible ===== */
+footer{background:var(--ink);color:#fff;position:relative;z-index:2;overflow:hidden}
+footer::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--moss),var(--gold) 55%,var(--moss2));opacity:0.95}
+.footer-top{border-bottom:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.03)}
+.footer-top .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 24px;font-size:0.76rem;color:rgba(255,255,255,0.78);line-height:1.5}
+.footer-top b{color:var(--gold);font-weight:800;letter-spacing:.02em}
+.footer-top a{color:rgba(255,255,255,0.9);text-decoration:underline;text-underline-offset:3px}
+.footer-main{padding:42px 0 0}
+footer .grid{grid-template-columns:1.65fr 1fr 1fr 1fr;gap:28px}
+footer h3{color:var(--gold);font-size:0.78rem;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:12px;font-weight:800}
+footer h4{color:rgba(255,255,255,0.92);font-size:0.84rem;font-weight:700;margin:14px 0 6px;letter-spacing:-0.01em}
+.footer-brand .foot-logo{width:52px;height:52px;object-fit:contain;border-radius:50%;background:#fff;padding:4px;margin-bottom:12px;display:block;box-shadow:0 4px 16px rgba(0,0,0,0.3)}
+.footer-brand .foot-title{font-family:var(--font-head);font-weight:800;font-size:1.05rem;letter-spacing:-0.02em;line-height:1.15;color:#fff;margin-bottom:6px}
+.footer-brand .foot-title span{color:var(--gold);font-weight:800}
+.footer-brand .foot-desc{color:rgba(255,255,255,0.72);font-size:0.84rem;line-height:1.65;max-width:38ch}
+.footer-brand .foot-meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.footer-brand .foot-meta span{font-size:0.72rem;color:rgba(255,255,255,0.62);background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:4px 8px;border-radius:100px}
+footer p,footer li{color:rgba(255,255,255,0.75);font-size:0.84rem;line-height:1.7}
 footer ul{list-style:none}
-footer .foot-bottom{margin-top:26px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:var(--fs-xs);color:rgba(255,255,255,0.6)}
+footer ul li{margin:4px 0}
+footer ul a{color:rgba(255,255,255,0.78);transition:color .15s;position:relative}
+footer ul a:hover{color:#fff}
+footer ul a:hover::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:rgba(242,169,0,0.5)}
+.footer-links-compact{font-size:0.78rem;opacity:0.7;margin-top:6px}
+.footer-links-compact a{color:rgba(255,255,255,0.65);text-decoration:underline;text-underline-offset:2px}
+footer .foot-bottom{margin-top:28px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.12);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:0.72rem;color:rgba(255,255,255,0.55);line-height:1.6}
+footer .foot-bottom b{color:rgba(255,255,255,0.72);font-weight:700}
+footer .foot-bottom a{color:rgba(255,255,255,0.72);text-decoration:underline;text-underline-offset:2px}
+footer .foot-bottom code{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75)}
 
 /* ===== REVEAL ANIMATION ===== */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
