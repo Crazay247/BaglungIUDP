@@ -1,0 +1,20 @@
+{
+  "_provenance": "Financial_Development_Plan_MSIP_IUDP_Format.docx Ch6 (6.1–6.7) numeric authority; For addition.docx Ch6 secondary. v3 Ch6.1 fallback. No synthesis — record conflicts.",
+  "_conflict_log": [],
+  "total_investment": {
+    "value": "Data not available in current IUDP documentation.",
+    "unit": "NPR",
+    "provenance": "Financial doc Ch6.1 — pending extraction (brief cites 1,039.4cr but verify from tables)",
+    "note": "Brief §7 cites 1,039.4cr 15-year; do not display until verified from source tables"
+  },
+  "by_sector": [],
+  "by_phase": [
+    {"phase": "Phase I", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3 Phasing logic"},
+    {"phase": "Phase II", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3"},
+    {"phase": "Phase III", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3"}
+  ],
+  "by_ward": [],
+  "funding_sources": [],
+  "year_one_actions": [],
+  "note": "Filters (sector/phase/ward/priority/funding) only where fields exist per §28. Do not create filters for missing fields."
+}

@@ -1,0 +1,39 @@
+{
+  "_provenance": "v3 Ch4.6 Development concept (p32+) + For addition.docx overlay where present. No invented geometry.",
+  "concept": "Protect the core, grow the corridor, hold the hills",
+  "zones": [
+    {
+      "id": "core",
+      "label": "Urban Core",
+      "wards": [1, 2, 3, 4],
+      "description": "Dense settlement, commercial and administrative centre. Highest population (notably Ward 3: 9,829). Infrastructure pressure concentrated here.",
+      "why": "Consolidate existing services, manage density, protect heritage, upgrade infrastructure.",
+      "pressure": "Infrastructure pressure, built-up expansion, flood/landslide interface at river bench.",
+      "proposal": "Protect and consolidate — infill, heritage protection, drainage, road blacktopping.",
+      "sector_links": ["physical", "social", "drr", "institutional"],
+      "project_ids": []
+    },
+    {
+      "id": "corridor",
+      "label": "Growth Corridor",
+      "wards": [13, 14],
+      "description": "Designated expansion area for managed growth.",
+      "why": "Flatter terraces near primary road score highest in suitability surface (Ch4.4).",
+      "pressure": "Development demand spillover from core.",
+      "proposal": "Planned growth — new settlement, transit circuit, land pooling.",
+      "sector_links": ["physical", "economic", "environment", "financial"],
+      "project_ids": []
+    },
+    {
+      "id": "hills",
+      "label": "Agricultural / Forest Belt",
+      "wards": [5, 6, 7, 8, 9, 10, 11, 12],
+      "description": "Agricultural and forest belt — ~68% tree cover (ESA WorldCover, Ch3). Includes tourism assets and homestay ward 10.",
+      "why": "Ecological asset, hazard-prone steep slopes, food security.",
+      "pressure": "Out-migration, slope risk, service access.",
+      "proposal": "Hold — agriculture, forest, eco-tourism, homestay cluster Ward 10.",
+      "sector_links": ["environment", "tourism", "economic", "drr"],
+      "project_ids": ["homestay-ward10"]
+    }
+  ]
+}
