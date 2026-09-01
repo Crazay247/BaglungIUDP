@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Method · Baglung IUDP 2026–2041</title>
+<meta name="description" content="The Baglung planning studio methodology — data sources, the Python/R/GDAL analysis pipeline, CRS notes and the workbook quality-control corrections.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .pipe-steps{display:flex;flex-direction:column;gap:0;margin-top:26px;counter-reset:step}
+  .pipe-step{display:grid;grid-template-columns:52px 1fr;gap:18px;position:relative}
+  .pipe-step .num{width:44px;height:44px;border-radius:14px;background:var(--moss);color:#fff;display:grid;place-items:center;font-weight:800;z-index:1}
+  .pipe-step:not(:last-child) .num::after{content:'';position:absolute;left:22px;top:52px;bottom:-24px;width:2px;background:var(--line)}
+  .pipe-step .txt h3{font-size:var(--fs-lg)}
+  .pipe-step .txt p{color:rgba(27,30,36,.7);margin-top:6px;line-height:1.7}
+  .pipe-step .txt code{font-family:ui-monospace,Consolas,monospace;background:rgba(28,79,58,.07);padding:2px 6px;border-radius:6px;font-size:.88em}
+  .fix-list{list-style:none;margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .fix-list li{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:var(--fs-sm);display:flex;gap:10px;align-items:flex-start}
+  .fix-list li b{color:var(--moss);flex-shrink:0}
+  @media(max-width:680px){.fix-list{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" aria-label="Primary">
+      <div class="nav-item">
+        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">&#9660;</span></button>
+        <div class="dropdown">
+          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
+          <a href="demographics.html"><span class="dd-title">Demographics</span><span class="dd-sub">People &amp; projections</span></a>
+          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
+          <a href="social-development.html"><span class="dd-title">Social Development</span><span class="dd-sub">Eight policy streams</span></a>
+          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Six plans &amp; MSIP</span></a>
+          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
+          <div class="dd-sep"></div>
+          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
+        </div>
+      </div>
+      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+      <a href="complaints.html" data-link="complaints.html">Complaints</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </div>
+</header>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.4) 0%,rgba(12,16,12,0.82) 100%),url('assets/maps/15_slope_aspect.png')">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> / Method</div>
+    <h1>Method &amp; sources,<br><em>open and reproducible.</em></h1>
+    <p class="lede">Every figure in this plan is traceable. This page documents the data sources, the Python / R / GDAL analysis pipeline, the coordinate-system handling and the quality-control corrections applied to the raw fieldwork workbook.</p>
+    <div class="hero-meta">
+      <span class="chip">🐍 Python + R + GDAL</span>
+      <span class="chip">🗺️ QGIS 3.x</span>
+      <span class="chip">📊 CBS census + SLP surveys</span>
+      <span class="chip">🔧 31 figure corrections</span>
+    </div>
+  </div>
+</section>
+
+<div class="statbar" aria-label="Key stats">
+  <div class="wrap">
+    <div><b>30 m</b><span>SRTM DEM</span></div>
+    <div><b>EPSG:4326</b><span>WGS 84 analytic CRS</span></div>
+    <div><b>32645</b><span>UTM 45N for area calcs</span></div>
+    <div><b>31</b><span>Workbook corrections</span></div>
+  </div>
+</div>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">The pipeline</span>
+    <h2 style="margin-top:14px">From raw data to the printed atlas</h2>
+    <p class="lede">Analysis ran entirely in open tooling, so any number can be reproduced by re-running the same scripts against the same sources.</p>
+
+    <div class="pipe-steps">
+      <div class="pipe-step"><div class="num">1</div><div class="txt"><h3>Source acquisition</h3><p>CBS <b>Population &amp; Housing Census 2021</b> ward tables for demographics; the six-sector fieldwork dataset compiled in a Microsoft Excel workbook; SRTMGL1 30&nbsp;m DEM from USGS; OpenStreetMap roads; ESA <b>WorldCover</b> 2021 for land cover.</p></div></div>
+      <div class="pipe-step"><div class="num">2</div><div class="txt"><h3>Clean &amp; standardise</h3><p>Raw survey entries were cleaned and standardised in <code>pandas</code>. The workbook underwent a structured quality-control pass where <b>31 figures were corrected</b> against cross-checks.</p></div></div>
+      <div class="pipe-step"><div class="num">3</div><div class="txt"><h3>Demographic analysis</h3><p><code>R / ggplot2</code> produced the 60-chart demographic suite — pyramids, ward lollipops, projections and norm-dumbbell gaps. Projection models spanned linear, exponential and cohort-component methods.</p></div></div>
+      <div class="pipe-step"><div class="num">4</div><div class="txt"><h3>Spatial analysis</h3><p><code>GDAL</code> + <b>QGIS 3.x</b> built the thematic rasters: hillshade, land cover, flood and landslide grids, and the multi-criteria land-suitability weighted overlay, plus the road-network and buffer analyses.</p></div></div>
+      <div class="pipe-step"><div class="num">5</div><div class="txt"><h3>Report assembly</h3><p>A custom Python render pipeline (<code>python-docx</code> / report engine) laid the charts and maps into the IUDP report chapters, the Social Development Plan, and the detailed project reports.</p></div></div>
+      <div class="pipe-step"><div class="num">6</div><div class="txt"><h3>Web build</h3><p>QGIS print-composer images and chart files were exported and copied into this zero-build static site — Leaflet for the interactive map, the Python exports for the gallery.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Coordinate systems</span>
+    <h2 style="margin-top:14px">How the coordinates work here</h2>
+    <p class="lede">Two CRS are used deliberately. WGS&nbsp;84 (EPSG:4326) is the analytic and web CRS for maps on this site; UTM 45N (EPSG:32645) is used for any area or length calculations to preserve true metric distances on the sloped terrain.</p>
+    <div class="grid" style="margin-top:24px">
+      <div class="card reveal"><div class="cap"><span class="tagline">EPSG:4326</span><b>WGS 84 (Lon/Lat)</b><p>Geographic CRS used for the Leaflet map and all styled image overlays on this site. Rasters were warped to 4326 for web display.</p></div></div>
+      <div class="card reveal"><div class="cap"><span class="tagline">EPSG:32645</span><b>UTM Zone 45N</b><p>Projected CRS for area and length computations (e.g. land-suitability cell areas, road lengths, hectare figures) where metric accuracy matters.</p></div></div>
+    </div>
+    <div class="note" style="margin-top:20px"><b>Why it matters.</b> Distances on an unprojected 4326 canvas distort on steep gradients; all reported lengths and areas in the plan (roads, buffers, per-ward statistics) therefore pass through 32645.</div>
+  </div>
+</section>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Quality control</span>
+    <h2 style="margin-top:14px">The 31 workbook corrections</h2>
+    <p class="lede">A structured Q&amp;A pass over the six-sector fieldwork workbook found and fixed errors before analysis — a representative set below. All corrections were logged for auditability.</p>
+    <ul class="fix-list">
+      <li><b>F1</b>Health-post bed/ratio values aligned to DUDBC staffing norms.</li>
+      <li><b>F2</b>Vehicle and bus-depot counts reconciled against municipal records.</li>
+      <li><b>F3</b>Road length re-measured in UTM 45N (not 4326 straight-line).</li>
+      <li><b>F4</b>School enrolment totals summed from grade-wise returns.</li>
+      <li><b>F5</b>Waste-generation tonnage scaled to population, not households.</li>
+      <li><b>F6</b>Livestock and crop figures recomputed from ward visits.</li>
+      <li><b>F7</b>Drinking-water coverage corrected to household connections.</li>
+      <li><b>F8</b>Historic budget figures re-based to the audited FY 82/83.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+      <h3>Baglung IUDP — Planning Studio</h3>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus · 3rd Semester Planning Studio II. Method page documents reproducibility for the academic presentation.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="demographics.html">Demographic analysis</a></li>
+        <li><a href="spatial.html">Spatial &amp; GIS</a></li>
+        <li><a href="social-development.html">Social Development</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Outputs</h3>
+      <ul>
+        <li><a href="sectors.html">Sector plans &amp; MSIP</a></li>
+        <li><a href="fieldwork.html">Fieldwork</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio · Local build</span><span>Static site · no build step</span></div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

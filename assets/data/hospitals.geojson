@@ -1,0 +1,28 @@
+{
+"type": "FeatureCollection",
+"name": "Baglung_Hospitals",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"xy_coordinate_resolution": 1e-06,
+"features": [
+{ "type": "Feature", "properties": { "name": "dental clinic", "operator": null, "healthcare": "clinic" }, "geometry": { "type": "Point", "coordinates": [ 83.599447, 28.265815 ] } },
+{ "type": "Feature", "properties": { "name": "Narayansthan Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.665926, 28.215977 ] } },
+{ "type": "Feature", "properties": { "name": "Paiyunpata Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.647917, 28.221456 ] } },
+{ "type": "Feature", "properties": { "name": "Amalachaur Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.637756, 28.200004 ] } },
+{ "type": "Feature", "properties": { "name": "Rayadadha Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.578183, 28.218571 ] } },
+{ "type": "Feature", "properties": { "name": "Bhakunde Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.598699, 28.243756 ] } },
+{ "type": "Feature", "properties": { "name": "Tityang Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.575819, 28.251752 ] } },
+{ "type": "Feature", "properties": { "name": "Sigana Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.556813, 28.250315 ] } },
+{ "type": "Feature", "properties": { "name": "Mulpani Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.570928, 28.283399 ] } },
+{ "type": "Feature", "properties": { "name": "Laharepipal Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.584894, 28.282963 ] } },
+{ "type": "Feature", "properties": { "name": "Malika Health Post", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.572402, 28.303795 ] } },
+{ "type": "Feature", "properties": { "name": "Basic Health Service Center", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.596075, 28.288022 ] } },
+{ "type": "Feature", "properties": { "name": "Muktinath Hospital", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.598462, 28.267739 ] } },
+{ "type": "Feature", "properties": { "name": "Basic Health Care Center", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.562788, 28.265834 ] } },
+{ "type": "Feature", "properties": { "name": "Nilgiri Hospital", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.597269, 28.264436 ] } },
+{ "type": "Feature", "properties": { "name": "Saphal Polyclinic Private Limited", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.598201, 28.268651 ] } },
+{ "type": "Feature", "properties": { "name": "Dhaulagiri Hospital", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.600932, 28.268712 ] } },
+{ "type": "Feature", "properties": { "name": "Dhaulagiri Ayurveda Aausadaliya", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.600971, 28.262968 ] } },
+{ "type": "Feature", "properties": { "name": "Basic Health Service Center", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.606817, 28.264783 ] } },
+{ "type": "Feature", "properties": { "name": "Dhawalagiri Eye Hospital", "operator": null, "healthcare": null }, "geometry": { "type": "Point", "coordinates": [ 83.600775, 28.278652 ] } }
+]
+}

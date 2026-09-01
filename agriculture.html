@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kisan Guide · Baglung IUDP 2026–2041</title>
+<meta name="description" content="A practical farmer's guide for Baglung, read one step at a time — the farming year, a 12-crop planting calendar, 8 priority crops, soil & water, organic pest control, livestock and seed saving. Built from the IUDP agriculture sector work.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/kisan.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" aria-label="Primary">
+      <div class="nav-item">
+        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+        <div class="dropdown">
+          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
+          <a href="demographics.html"><span class="dd-title">Demographics</span><span class="dd-sub">People &amp; projections</span></a>
+          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
+          <a href="social-development.html"><span class="dd-title">Social Development</span><span class="dd-sub">Eight policy streams</span></a>
+          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Six plans &amp; MSIP</span></a>
+          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
+          <div class="dd-sep"></div>
+          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
+        </div>
+      </div>
+      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+      <a href="complaints.html" data-link="complaints.html">Complaints</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </div>
+</header>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<noscript>
+  <div class="kisan-noscript">
+    <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
+    <p>The Kisan Guide is a step-by-step reader that needs JavaScript — please enable it and refresh. It covers: the four farming seasons, a 12-crop planting calendar, 8 priority crops, soil &amp; water targets, 4-step organic pest control, and livestock &amp; seed-saving. The <a href="sectors.html">Sector Plans</a> page has the same information in a plain report form.</p>
+  </div>
+</noscript>
+
+<!-- React renders the hero, stat bar, 6-step reader and map CTA here -->
+<div id="kisan-root"></div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+      <h3>Baglung IUDP — Planning Studio</h3>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus, Tribhuvan University · 3rd Semester Planning Studio II. Kisan Guide drawn from the agriculture sector plan and ward fieldwork.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="municipality.html">Municipality profile</a></li>
+        <li><a href="sectors.html">Sector plans &amp; MSIP</a></li>
+        <li><a href="demographics.html">Demographic analysis</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Outputs</h3>
+      <ul>
+        <li><a href="gallery.html">Charts &amp; maps gallery</a></li>
+        <li><a href="spatial.html">Spatial &amp; GIS</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio · Local build</span><span>Static site · no build step</span></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+<script src="js/kisan.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>

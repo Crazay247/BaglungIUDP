@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complaints · Baglung IUDP 2026–2041</title>
+<meta name="description" content="Tell the ward what's broken in one line. Track it live. Official filing via your ward office or baglungmun.gov.np. Part of the M.Sc. Urban Planning Studio II IUDP web atlas.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/complaints.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" aria-label="Primary">
+      <div class="nav-item">
+        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+        <div class="dropdown">
+          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
+          <a href="demographics.html"><span class="dd-title">Demographics</span><span class="dd-sub">People &amp; projections</span></a>
+          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
+          <a href="social-development.html"><span class="dd-title">Social Development</span><span class="dd-sub">Eight policy streams</span></a>
+          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Six plans &amp; MSIP</span></a>
+          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
+          <div class="dd-sep"></div>
+          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
+        </div>
+      </div>
+      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+      <a href="complaints.html" data-link="complaints.html">Complaints</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </div>
+</header>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<noscript>
+  <div class="giant">
+    <div class="giant-inner landscape" style="background:var(--paper);color:var(--ink);border-radius:20px;padding:26px">
+      <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
+      <p>The quick-complaint form and live wall need JavaScript. To file a real complaint, contact your <a href="#official">ward office</a> or <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a>.</p>
+    </div>
+  </div>
+</noscript>
+
+<!-- React renders: the GIANT form first, then the live wall -->
+<div id="cp-root"></div>
+
+<section class="cp-steps" aria-labelledby="whn-title">
+  <div class="wrap">
+    <div class="steps-head">
+      <span class="kicker">What happens next · अब के हुन्छ?</span>
+      <h2 id="whn-title">Your complaint, tracked end-to-end</h2>
+      <p class="steps-lead">Transparent and time-bound under <b>LGO 2073</b> — no black box. Save your tracking ID and follow it on the wall.</p>
+    </div>
+    <div class="steps" role="list" aria-label="Three steps from submission to resolution">
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-body">
+          <h3>Registered <span class="step-np" lang="ne">दर्ता</span> <span class="step-time">Instant · तत्काल</span></h3>
+          <p>You get a <b>tracking ID</b> at once — it appears on the live wall instantly.</p>
+        </div>
+        <span class="step-arrow" aria-hidden="true">→</span>
+      </div>
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-body">
+          <h3>Reviewed <span class="step-np" lang="ne">समीक्षा</span> <span class="step-time">≤ 15 days</span></h3>
+          <p>Your ward verifies the issue on site within <b>15 working days</b> (LGO 2073).</p>
+        </div>
+        <span class="step-arrow" aria-hidden="true">→</span>
+      </div>
+      <div class="step" role="listitem">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-body">
+          <h3>Fixed <span class="step-np" lang="ne">समाधान</span> <span class="step-time">Trackable</span></h3>
+          <p>Status moves to <b>Resolved</b> — follow every update with your tracking ID.</p>
+        </div>
+        <span class="step-check" aria-hidden="true">✓</span>
+      </div>
+    </div>
+    <p class="steps-footnote">Tip: screenshot your <b>tracking ID</b> (e.g. BGL-2026-XXXX). For urgent cases, visit your ward (1–14) or <a href="https://baglungmun.gov.np" target="_blank" rel="noopener">baglungmun.gov.np</a>.</p>
+  </div>
+</section>
+
+<section class="photo-band" aria-hidden="true">
+  <img src="assets/photos/baglung_bazaar.jpg" alt="">
+  <div class="photo-cap">Baglung bazaar · बागलुङ बजार</div>
+</section>
+
+<section class="cp-official" id="official">
+  <div class="wrap">
+    <div class="ch-strip">
+      <b>Official filing · आधिकारिक:</b>
+      <span>Your ward office (1–14) keeps a complaint register</span>
+      <span class="pip">·</span>
+      <span>or online at <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a></span>
+      <span class="pip">·</span>
+      <span class="np" lang="ne">LGO 2073 — 15 working days</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+      <h3>Baglung IUDP — Planning Studio</h3>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus, Tribhuvan University · 3rd Semester Planning Studio II. Quick-complaint platform developed as a citizen-service demonstration for the urban governance chapter.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="municipality.html">Municipality profile</a></li>
+        <li><a href="sectors.html">Sector plans &amp; MSIP</a></li>
+        <li><a href="demographics.html">Demographic analysis</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Citizen services</h3>
+      <ul>
+        <li><a href="agriculture.html">Kisan Guide</a></li>
+        <li><a href="complaints.html">Complaints &amp; feedback</a></li>
+        <li><a href="gallery.html">Charts &amp; maps gallery</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio · Local build</span><span>Static site · no build step</span></div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="js/complaints.js"></script>
+<script src="js/nav.js"></script>
+</body>
+</html>

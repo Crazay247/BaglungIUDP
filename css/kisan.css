@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Kisan Guide — one-concept-at-a-time reader (agriculture.html only)
+   Design tokens come from css/style.css :root — moss / gold / terracotta /
+   cream / ink, Poppins headings + Inter body. This file only extends.
+   ========================================================================== */
+
+/* Devanagari helper (Noto Sans Devanagari is loaded in agriculture.html) */
+.np{font-family:'Noto Sans Devanagari','Nirmala UI','Mangal',system-ui,sans-serif}
+
+/* Anchor offset on this page: topbar (64px) + sticky chapter nav (~57px).
+   scroll-behavior:auto overrides the site-wide smooth so the scrollspy and
+   native #hash jumps land exactly; chip clicks still animate via
+   scrollIntoView({behavior:'smooth'}) in kisan.js. */
+html{scroll-padding-top:130px;scroll-behavior:auto}
+
+/* ----- Root states: loading / no-JS / CDN failure ----------------------- */
+#kisan-root:empty{min-height:70vh;display:flex;align-items:center;justify-content:center}
+#kisan-root:empty::after{content:'लोड हुँदैछ… Loading the Kisan Guide…';display:block;padding:14px 26px;border-radius:100px;background:var(--paper);border:1px solid var(--line);color:rgba(27,30,36,0.72);font-weight:600;font-size:var(--fs-sm);animation:kisanPulse 1.2s ease-in-out infinite}
+@keyframes kisanPulse{0%,100%{opacity:.55}50%{opacity:1}}
+.kisan-fallback{max-width:560px;margin:64px auto;padding:24px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--terracotta);border-radius:0 14px 14px 0;font-size:var(--fs-base);line-height:1.6}
+.kisan-fallback b{display:block;font-family:var(--font-head);margin-bottom:6px}
+.kisan-fallback span{color:rgba(27,30,36,0.72)}
+.kisan-noscript{max-width:720px;margin:32px auto;padding:22px 26px;background:rgba(242,169,0,0.1);border:1px solid rgba(242,169,0,0.35);border-radius:14px;font-size:var(--fs-base);line-height:1.65}
+.kisan-noscript b{font-family:var(--font-head);display:block;margin-bottom:6px}
+
+/* ----- Hero: copy + 3D terrace viz card ---------------------------------- */
+.kh-grid{display:grid;gap:32px}
+@media(min-width:1024px){.kh-grid{grid-template-columns:1.15fr .85fr;align-items:center}}
+.kh-actions{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.kh-actions .btn{padding:14px 26px;font-size:var(--fs-base)}
+.kh-viz{display:none}
+@media(min-width:1024px){.kh-viz{display:block}}
+.kh-viz--off{display:none!important}
+.kh-viz-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,0.28);box-shadow:0 24px 60px rgba(0,0,0,0.38);background:rgba(12,16,12,0.4)}
+.kh-viz-card canvas{display:block;width:100%;height:280px}
+.kh-viz-cap{position:absolute;left:16px;bottom:12px;z-index:2;color:#fff;font-size:var(--fs-xs);font-weight:700;letter-spacing:.09em;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,0.6)}
+.kh-viz-cap .np{text-transform:none;letter-spacing:0;margin-left:8px;opacity:.9}
+
+/* ----- Reader shell ------------------------------------------------------ */
+.kr{padding:56px 0 72px}
+.kr-topbar{position:sticky;top:64px;z-index:800;background:rgba(255,248,239,0.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0 10px;margin:0 -8px 8px}
+@media(max-width:768px){.kr-topbar{top:58px}}
+
+/* chapter jump menu */
+.kr-chapters{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;scrollbar-width:none}
+.kr-chapters::-webkit-scrollbar{display:none}
+.kr-chap{flex:0 0 auto;scroll-snap-align:start;min-height:44px;padding:10px 16px;border-radius:100px;border:1.5px solid var(--line);background:var(--paper);font:inherit;font-weight:600;font-size:var(--fs-sm);cursor:pointer;display:inline-flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none;transition:border-color .15s,color .15s,background .15s}
+.kr-chap:hover{border-color:var(--moss);color:var(--moss)}
+.kr-chap.on{background:var(--moss);color:#fff;border-color:var(--moss)}
+.kr-chap .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:rgba(28,79,58,0.1);color:var(--moss);font-family:var(--font-head);font-weight:700;font-size:0.72rem}
+.kr-chap.on .n{background:rgba(255,255,255,0.22);color:#fff}
+.kr-chap:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* stacked chapters */
+.kr-section{animation:krIn .45s cubic-bezier(.22,1,.36,1) both}
+.kr-section + .kr-section{padding-top:40px;margin-top:48px;border-top:1px solid var(--line)}
+@keyframes krIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.kr-kicker{background:rgba(28,79,58,0.1);border-color:rgba(28,79,58,0.2);color:var(--moss)}
+.kr-section h2{font-size:clamp(1.5rem,3.4vw,2.15rem);margin-top:14px}
+.kr-np{color:var(--moss);font-size:0.72em;font-weight:600}
+.kr-section .lede{font-size:1.08rem;margin-top:10px}
+.kr-note{margin-top:24px;font-size:0.98rem}
+
+/* ----- Chapter 1 · seasons ------------------------------------------------- */
+.season-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:24px}
+@media(min-width:720px){.season-grid{grid-template-columns:repeat(2,1fr)}}
+.season-card{border-radius:18px;padding:26px 24px 20px;color:#fff;min-height:330px;display:flex;flex-direction:column;gap:7px;box-shadow:0 14px 30px rgba(27,30,36,0.2);border:1px solid rgba(255,255,255,0.18);position:relative;overflow:hidden;text-shadow:0 1px 3px rgba(0,0,0,0.4)}
+.season-card b{font-family:var(--font-head);font-size:1.55rem;line-height:1.2;margin-top:auto}
+.season-card .npn{font-size:1.1rem;opacity:.97;font-weight:700}
+.season-card .mon{font-size:0.82rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;opacity:.95}
+.season-card .desc{font-size:1.02rem;line-height:1.65;opacity:.97;max-width:46ch}
+.season-card .photo-credit{position:absolute;top:10px;right:12px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.88;background:rgba(0,0,0,0.28);padding:3px 8px;border-radius:100px;text-shadow:none}
+.season-card.dark{color:#fff}
+
+/* ----- Chapter 2 · cropping calendar -------------------------------------- */
+.cal-legend{display:flex;gap:20px;flex-wrap:wrap;margin:16px 0 6px;font-size:0.95rem;font-weight:600}
+.cal-legend .np{color:var(--moss);font-weight:700}
+.cal-legend .sw{display:inline-block;width:15px;height:15px;border-radius:4px;vertical-align:-2px;margin-right:7px}
+.cal-legend .sw-h{opacity:.5}
+.cal-note{margin-top:16px;font-size:0.95rem;color:rgba(27,30,36,0.78);line-height:1.65}
+
+/* desktop gantt (≥720px) */
+.cal-d{display:none;margin-top:14px;border:1px solid rgba(27,30,36,0.14);border-radius:16px;background:#fff;padding:18px 18px 10px;box-shadow:0 10px 28px rgba(27,30,36,0.07);overflow:hidden}
+@media(min-width:720px){.cal-d{display:block}}
+.cal-d .cal-head{display:grid;grid-template-columns:230px 1fr;gap:12px;margin-bottom:8px}
+.cal-d .cal-head .lab{font-size:0.85rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:rgba(27,30,36,0.72)}
+.cal-d .cal-head .m{display:grid;grid-template-columns:repeat(12,1fr);border-bottom:2px solid rgba(27,30,36,0.18);margin-bottom:4px}
+.cal-d .cal-head .m span{font-size:0.82rem;font-weight:800;text-align:center;color:rgba(27,30,36,0.74);padding-bottom:7px}
+.cal-row{display:grid;grid-template-columns:230px 1fr;gap:12px;align-items:center;padding:14px 10px;border-bottom:1px solid rgba(27,30,36,0.1)}
+.cal-row:last-child{border-bottom:0}
+.cal-row:nth-child(even){background:rgba(28,79,58,0.045);border-radius:12px}
+.cal-lab{font-weight:800;font-size:1.05rem;line-height:1.3}
+.cal-lab .npn{display:block;font-weight:600;color:rgba(27,30,36,0.7);font-size:0.9rem}
+.cal-lab .rng{display:block;font-size:0.84rem;color:rgba(27,30,36,0.7);font-weight:600;margin-top:3px}
+.cal-track{position:relative;height:46px;background:rgba(27,30,36,0.04);border:1px solid rgba(27,30,36,0.08);border-radius:11px}
+.cal-track .grid12{position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr)}
+.cal-track .grid12 i{border-right:1px solid rgba(27,30,36,0.15)}
+.cal-track .grid12 i:last-child{border-right:0}
+.cal-track .band{position:absolute;border-radius:6px}
+.cal-track .band.plant{top:5px;height:17px;border:1px solid rgba(255,255,255,0.3)}
+.cal-track .band.harv{bottom:5px;height:17px;opacity:.5;border:1px solid rgba(255,255,255,0.3)}
+
+/* mobile chip list (<720px) */
+.cal-m{display:grid;gap:10px;margin-top:16px}
+@media(min-width:720px){.cal-m{display:none}}
+.cal-mrow{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:15px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:9px 10px}
+.cal-mrow .nm{font-weight:800;font-size:1.1rem;flex-basis:100%;line-height:1.35}
+.cal-mrow .nm .npn{font-weight:600;color:rgba(27,30,36,0.7);font-size:0.95rem;margin-left:4px}
+.cal-mrow .chip2{display:inline-flex;align-items:center;gap:8px;background:var(--line2);padding:9px 14px;border-radius:100px;font-size:0.98rem;font-weight:700}
+.cal-mrow .chip2 b{font-family:var(--font-head)}
+.cal-mrow .dot{width:13px;height:13px;border-radius:4px;flex-shrink:0}
+.cal-mrow .dot-h{opacity:.5}
+
+/* ----- Chapter 3 · priority crops, all visible ----------------------------- */
+.crop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+@media(max-width:900px){.crop-grid{grid-template-columns:1fr}}
+.crop-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.crop-img{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,var(--moss) 0%,var(--moss2) 100%)}
+.crop-img img{width:100%;height:100%;object-fit:cover;display:block}
+.crop-img .emj-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff}
+.crop-img .emj-fallback .e{font-size:3.2rem;line-height:1}
+.crop-img .emj-fallback .t{font-weight:600;font-size:var(--fs-sm);opacity:.9;padding:0 20px;text-align:center}
+.crop-body{padding:20px 22px 18px;display:flex;flex-direction:column;flex:1}
+.crop-body h3{font-size:1.35rem;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;line-height:1.25}
+.crop-body h3 .emj{font-size:1.15rem}
+.crop-body .npn{color:var(--moss);font-weight:600;font-size:1rem}
+.crop-body .role{margin-top:4px;color:rgba(27,30,36,0.72);font-weight:500}
+.crop-kv{margin-top:14px}
+.crop-kv .kv{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:0.96rem}
+.crop-kv .kv:last-child{border-bottom:0}
+.crop-kv .kv span{color:rgba(27,30,36,0.62);font-weight:600;flex-shrink:0}
+.crop-kv .kv span .np{color:var(--moss);font-weight:600}
+.crop-kv .kv b{font-family:var(--font-head);text-align:right;line-height:1.4}
+.crop-tip{margin-top:14px;font-size:0.96rem;background:rgba(28,79,58,0.07);border-left:4px solid var(--moss);padding:12px 15px;border-radius:0 10px 10px 0;line-height:1.6;color:rgba(27,30,36,0.85)}
+.crop-credit{margin-top:12px;font-size:0.75rem;color:rgba(27,30,36,0.62)}
+
+/* ----- Chapter 4 · soil & water tiles ------------------------------------- */
+.soil-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
+@media(min-width:900px){.soil-grid{grid-template-columns:repeat(4,1fr)}}
+.soil-tile{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 16px;text-align:center;transition:transform .2s,box-shadow .2s}
+.soil-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.soil-tile .num{font-family:var(--font-head);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.3rem);color:var(--moss);line-height:1.05}
+.soil-tile .unit{font-size:0.76rem;color:var(--terracotta);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:5px}
+.soil-tile .lab{font-weight:700;margin-top:12px;font-size:1rem}
+.soil-tile .des{font-size:0.88rem;color:rgba(27,30,36,0.72);margin-top:6px;line-height:1.55}
+
+/* ----- Chapter 5 · IPM stepper --------------------------------------------- */
+.ipm{display:grid;gap:0;margin-top:22px}
+.ipm-step{display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:start;position:relative;padding-bottom:28px}
+.ipm-step:last-child{padding-bottom:0}
+.ipm-step:not(:last-child)::before{content:'';position:absolute;left:31px;top:70px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--gold),rgba(242,169,0,0.2))}
+.ipm-dot{width:64px;height:64px;border-radius:50%;background:var(--moss);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-weight:800;font-family:var(--font-head);box-shadow:0 8px 20px rgba(28,79,58,0.3);position:relative;z-index:1}
+.ipm-dot .e{font-size:1.3rem;line-height:1}
+.ipm-dot .n{font-size:0.62rem;letter-spacing:.08em}
+.ipm-txt b{font-family:var(--font-head);font-size:1.18rem;display:block;line-height:1.3}
+.ipm-txt .npn{color:var(--moss);font-weight:600;font-size:0.92rem}
+.ipm-txt p{font-size:1.02rem;line-height:1.65;color:rgba(27,30,36,0.8);margin-top:7px;max-width:58ch}
+
+/* ----- Chapter 6 · livestock & seed, both visible --------------------------- */
+.ls-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px;align-items:stretch}
+@media(max-width:900px){.ls-grid{grid-template-columns:1fr}}
+.ls-panel{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.ls-img{aspect-ratio:16/8;background:linear-gradient(135deg,var(--moss),var(--moss2));position:relative}
+.ls-img img{width:100%;height:100%;object-fit:cover;display:block}
+.ls-img .emj-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:3rem}
+.ls-body{padding:20px 22px;flex:1}
+.ls-head{font-family:var(--font-head);font-size:1.25rem;line-height:1.3}
+.ls-intro{font-size:1.02rem;line-height:1.65;color:rgba(27,30,36,0.8);margin-top:8px}
+.ls-body ul{list-style:none;margin-top:10px}
+.ls-body li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--line);font-size:1rem;line-height:1.6}
+.ls-body li:last-child{border-bottom:0}
+.ls-body li .tick{color:var(--moss);font-weight:800;flex-shrink:0}
+
+/* ----- Map CTA -------------------------------------------------------------- */
+.mapcta .split{margin-top:28px}
+
+/* ----- Motion preferences --------------------------------------------------- */
+@media(prefers-reduced-motion:reduce){
+  .kr-section{animation:none}
+  #kisan-root:empty::after{animation:none}
+  .kr-chap,.soil-tile{transition:none}
+}
