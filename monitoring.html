@@ -57,17 +57,32 @@
 
 <section class="section section--paper">
   <div class="wrap">
-    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch9 · Finance Ch6.7</span>
-    <h2 style="margin-top:14px">Indicators & scorecard</h2>
-    <p class="lede">In Brief: The plan doesn't end at implementation. Every major proposal links to an indicator (§61 chain).</p>
-    <div id="indGrid" class="grid" style="margin-top:16px"></div>
-    <div class="note" style="margin-top:14px">Indicators pending extraction from Ch9.2 + Ward template Ch9.5. Showing provenance per field.</div>
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch9.2 · Ch9.5 · Ch9.3 + Finance Ch6.7</span>
+    <h2 style="margin-top:14px">Annual scorecard — 22 indicators (2026 → 2031)</h2>
+    <p class="lede">Every indicator has <b>baseline, target, source</b> — the test the annual budget is read against (Ch2 Objectives → Ch9). Source: <code>v3 Ch9.2 Table 9.2 (23×4) > For addition Ch9 identical</code>.</p>
+    <div class="table-wrap" style="margin-top:14px"><table id="annualTable"><thead><tr><th>Indicator</th><th>Baseline 2026</th><th>Target 2031</th><th>Source</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:20px;opacity:.6">Loading <code>data/indicators.json</code>…</td></tr></tbody></table></div>
+    <div class="note" style="margin-top:10px">Sample: Population 55,261→56,656 (NSO projection), Households 15,924→16,600 (Ward registers), Literacy 83.5%→90% — all verbatim from Table 9.2.</div>
+
+    <h2 style="margin-top:32px">Ward scorecard template — 8 indicators (Ward 2 example)</h2>
+    <p class="lede">Municipal baseline vs Ward 2 baseline vs Ward 2 2031 target — template for all 14 wards. Source: <code>v3 Ch9.5 Table 9.5 (9×6)</code>.</p>
+    <div class="table-wrap" style="margin-top:14px"><table id="wardTable"><thead><tr><th>Indicator</th><th>Municipal</th><th>Ward 2 baseline</th><th>Ward 2 target 2031</th><th>Actual</th><th>Status</th></tr></thead><tbody><tr><td colspan="6" style="text-align:center;padding:20px;opacity:.6">Loading…</td></tr></tbody></table></div>
+    <p style="font-size:0.82rem;opacity:.6;margin-top:8px">Rows: Literacy 83.5%→88.2%→92%, Birth registration 62%→75%→100%, Tap water 88.7%→95%→100%, etc. — leaves Actual/Status to be filled annually.</p>
+
+    <h2 style="margin-top:32px">Roles & review rhythm</h2>
+    <div class="grid" style="margin-top:14px">
+      <div class="chart-figure"><span class="fignum">Ch9.3 Roles</span><div class="figtitle">Who does what</div><ul id="rolesList" style="font-size:0.9rem;line-height:1.7;margin-left:18px"></ul></div>
+      <div class="chart-figure"><span class="fignum">Ch9.1 + Finance §6.5</span><div class="figtitle">Review rhythm</div><p style="font-size:0.9rem;line-height:1.6"><b>Annual scorecard</b> — Municipal assembly adopts plan, executive runs year-one actions, ward committees align budgets, planning section manages GIS/permit. MSIP rolling via Annual Review (Finance T15, §6.5 rules). Data collection: planning section + ward registers (Ch9.6).</p><p style="font-size:0.82rem;opacity:.6">Source: <code>v3 Ch9.1/Ch9.6 + Finance doc §6.5</code></p></div>
+    </div>
   </div>
 </section>
 <script>
   fetch('data/indicators.json').then(r=>r.json()).then(j=>{
-    const g=document.getElementById('indGrid');
-    if(!j.indicators.length) g.innerHTML=`<div class="card"><div class="cap"><b>Data not available in current IUDP documentation.</b><p>Indicators to be extracted from v3 Ch9.2 Scorecard + Ch9.5 Ward template + Finance Ch6.7. Source hierarchy applies.</p></div></div>`;
+    const at=document.querySelector('#annualTable tbody');
+    at.innerHTML=j.annual_scorecard.map(row=>`<tr><td><b>${row.indicator}</b></td><td>${row.baseline_2026}</td><td>${row.target_2031}</td><td style="font-size:0.82rem">${row.source}</td></tr>`).join('');
+    const wt=document.querySelector('#wardTable tbody');
+    wt.innerHTML=j.ward_scorecard_template.map(row=>`<tr><td>${row.indicator}</td><td>${row.municipal_baseline}</td><td>${row.ward2_baseline}</td><td>${row.ward2_target_2031}</td><td>${row.actual||'—'}</td><td>${row.status||'—'}</td></tr>`).join('');
+    const rl=document.getElementById('rolesList');
+    rl.innerHTML=j.roles.map(r=>`<li><b>${r.actor}</b> — ${r.duty}</li>`).join('');
   });
 </script>
 

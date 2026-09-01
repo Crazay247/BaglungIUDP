@@ -1,9 +1,279 @@
 {
-  "_provenance": "v3 Ch9.2 Scorecard + Ch9.5 Ward template + Financial doc Ch6.7 Monitoring Indicators. For addition.docx Ch9 overlay.",
-  "_note": "Indicators to be extracted from Ch9.2 and 9.5 tables; show source/year/responsible/frequency; do not invent.",
-  "indicators": [],
-  "scorecard_template": "Data not available in current IUDP documentation.",
-  "review_rhythm": "Data not available in current IUDP documentation.",
-  "roles": [],
-  "data_responsibilities": []
+  "_provenance": "v3 Ch9.2 (23×4) + Ch9.5 (9×6) + Ch9.3 Roles (9×2) — For addition Ch9 identical. Financial doc Ch6.7 also has monitoring indicators but v3 is primary for scorecard.",
+  "annual_scorecard": [
+    {
+      "indicator": "Population",
+      "baseline_2026": "55,261",
+      "target_2031": "56,656",
+      "source": "NSO projection and ward records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Households",
+      "baseline_2026": "15,924",
+      "target_2031": "16,600",
+      "source": "Ward registers",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Literacy",
+      "baseline_2026": "83.5 percent",
+      "target_2031": "90 percent",
+      "source": "NSO and school records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Female headed households served",
+      "baseline_2026": "46.4 percent",
+      "target_2031": "all served",
+      "source": "Social security register",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Birth registration",
+      "baseline_2026": "62 percent",
+      "target_2031": "100 percent",
+      "source": "Vital registration records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Child marriage below 18",
+      "baseline_2026": "19.9 percent",
+      "target_2031": "below 5 percent",
+      "source": "Marriage register",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Aged 60 plus",
+      "baseline_2026": "13.2 percent",
+      "target_2031": "16 percent",
+      "source": "Census and register",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Tap water coverage",
+      "baseline_2026": "88.7 percent",
+      "target_2031": "98 percent",
+      "source": "Water user committee records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Grid electricity",
+      "baseline_2026": "98.6 percent",
+      "target_2031": "100 percent",
+      "source": "NEA records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Wards on formal waste collection",
+      "baseline_2026": "6 of 14",
+      "target_2031": "14 of 14",
+      "source": "Sanitation section",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Roads blacktopped",
+      "baseline_2026": "47 km",
+      "target_2031": "110 km by 2031, 160 km by 2041",
+      "source": "GIS road audit",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Wards flood free in monsoon",
+      "baseline_2026": "0",
+      "target_2031": "14",
+      "source": "DRRM committee",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Wards with evacuation centre",
+      "baseline_2026": "2",
+      "target_2031": "6",
+      "source": "DRRM committee",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Sewer connections in core",
+      "baseline_2026": "0",
+      "target_2031": "2,000",
+      "source": "Municipal works",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "School estate",
+      "baseline_2026": "89",
+      "target_2031": "77",
+      "source": "Education section",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Hospital specialty posts filled",
+      "baseline_2026": "0 of 8",
+      "target_2031": "8 of 8",
+      "source": "Hospital records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Old age homes",
+      "baseline_2026": "2",
+      "target_2031": "3",
+      "source": "Social security register",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Tourism royalty revenue",
+      "baseline_2026": "0",
+      "target_2031": "4 crore",
+      "source": "Tourism cell accounts",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Internal revenue autonomy",
+      "baseline_2026": "29.2 percent",
+      "target_2031": "40 percent",
+      "source": "Budget red book",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Capital pooled into trunk works",
+      "baseline_2026": "0",
+      "target_2031": "100 percent",
+      "source": "Project completion reports",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "GIS and planning posts filled",
+      "baseline_2026": "0 of 4",
+      "target_2031": "4 of 4",
+      "source": "Municipal establishment",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    },
+    {
+      "indicator": "Women in ward committees",
+      "baseline_2026": "baseline",
+      "target_2031": "50 percent",
+      "source": "Election records",
+      "provenance": "v3 Ch9.2 The annual scorecard Table 9.2 (23×4) — numeric authority v3; For addition Ch9.2 identical"
+    }
+  ],
+  "ward_scorecard_template": [
+    {
+      "indicator": "Literacy",
+      "municipal_baseline": "83.5%",
+      "ward2_baseline": "88.2%",
+      "ward2_target_2031": "92%",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Birth registration",
+      "municipal_baseline": "62%",
+      "ward2_baseline": "75%",
+      "ward2_target_2031": "100%",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Tap water",
+      "municipal_baseline": "88.7%",
+      "ward2_baseline": "95%",
+      "ward2_target_2031": "100%",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Waste collection",
+      "municipal_baseline": "6 of 14",
+      "ward2_baseline": "Yes",
+      "ward2_target_2031": "Yes",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Roads blacktopped",
+      "municipal_baseline": "13%",
+      "ward2_baseline": "65%",
+      "ward2_target_2031": "90%",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Flood damage events",
+      "municipal_baseline": "Annual",
+      "ward2_baseline": "1 per year",
+      "ward2_target_2031": "0",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "Health facility staff",
+      "municipal_baseline": "14 total",
+      "ward2_baseline": "45",
+      "ward2_target_2031": "80",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    },
+    {
+      "indicator": "School consolidation",
+      "municipal_baseline": "89 total",
+      "ward2_baseline": "8",
+      "ward2_target_2031": "8 (no change)",
+      "actual": "",
+      "status": "",
+      "provenance": "v3 Ch9.5 Ward scorecard template Table 9.5 (9×6)"
+    }
+  ],
+  "roles": [
+    {
+      "actor": "Municipal assembly",
+      "duty": "Adopt the plan, approve the annual budget against the MSIP",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Municipal executive",
+      "duty": "Run the year one actions, enforce the bylaws, publish the scorecard",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Ward committees",
+      "duty": "Align ward budgets, keep the ward registers, run the ward drills",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Planning section",
+      "duty": "Manage the GIS, the permit process and the plan review",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Tourism and PPP cell",
+      "duty": "Run the concessions, the royalties and the product standards",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Finance section",
+      "duty": "Run the revenue reform and the pooling of ward allocations",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "DRRM committee",
+      "duty": "Run the risk registers, the evacuation centres and the drills",
+      "provenance": "v3 Ch9.3 Roles Table"
+    },
+    {
+      "actor": "Development partners",
+      "duty": "Fund the lines the MSIP assigns, against the scorecard evidence",
+      "provenance": "v3 Ch9.3 Roles Table"
+    }
+  ],
+  "review_rhythm": "Annual scorecard; MSIP rolling via Annual Review §6.5 (Finance doc T15)",
+  "review_provenance": "v3 Ch9.1 How the plan gets implemented + Finance doc §6.5 rules",
+  "data_responsibilities": "Planning section manages GIS, permit, plan review; Ward committees keep ward registers (v3 Ch9.6)",
+  "data_responsibilities_provenance": "v3 Ch9.6 Data collection responsibility"
 }

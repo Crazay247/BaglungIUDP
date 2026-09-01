@@ -1,0 +1,145 @@
+{
+  "_provenance": "v3 Ch8.5 Zoning standards by ward category (15×7) — For addition Ch8.5 identical. Also includes Ch8.1-8.4, 8.6 Heritage, 8.7 Tourism.",
+  "zoning_standards": [
+    {
+      "ward": "1",
+      "zone": "Urban core",
+      "max_far": "2.0",
+      "max_height_storeys": "4",
+      "ground_coverage": "70%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/100 sqm, 1 car/250 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "2",
+      "zone": "Urban core",
+      "max_far": "2.0",
+      "max_height_storeys": "4",
+      "ground_coverage": "70%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/100 sqm, 1 car/250 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "3",
+      "zone": "Urban core",
+      "max_far": "1.8",
+      "max_height_storeys": "4",
+      "ground_coverage": "65%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/100 sqm, 1 car/250 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "4",
+      "zone": "Urban core",
+      "max_far": "1.5",
+      "max_height_storeys": "3",
+      "ground_coverage": "60%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/100 sqm, 1 car/250 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "5",
+      "zone": "Peri urban",
+      "max_far": "0.8",
+      "max_height_storeys": "2",
+      "ground_coverage": "40%",
+      "setback_m": "1.5 boundary, 2.0 road",
+      "parking_requirement": "1 tw/200 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "6",
+      "zone": "Peri urban",
+      "max_far": "1.0",
+      "max_height_storeys": "2",
+      "ground_coverage": "50%",
+      "setback_m": "1.5 boundary, 2.0 road",
+      "parking_requirement": "1 tw/200 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "7",
+      "zone": "Peri urban",
+      "max_far": "0.8",
+      "max_height_storeys": "2",
+      "ground_coverage": "40%",
+      "setback_m": "1.5 boundary, 2.0 road",
+      "parking_requirement": "1 tw/200 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "8",
+      "zone": "Agricultural",
+      "max_far": "0.5",
+      "max_height_storeys": "2",
+      "ground_coverage": "30%",
+      "setback_m": "2.0 boundary, 3.0 road",
+      "parking_requirement": "As needed",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "9",
+      "zone": "Agricultural",
+      "max_far": "0.5",
+      "max_height_storeys": "2",
+      "ground_coverage": "30%",
+      "setback_m": "2.0 boundary, 3.0 road",
+      "parking_requirement": "As needed",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "10",
+      "zone": "Agricultural",
+      "max_far": "0.5",
+      "max_height_storeys": "2",
+      "ground_coverage": "30%",
+      "setback_m": "2.0 boundary, 3.0 road",
+      "parking_requirement": "As needed",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "11",
+      "zone": "Agricultural",
+      "max_far": "0.5",
+      "max_height_storeys": "2",
+      "ground_coverage": "30%",
+      "setback_m": "2.0 boundary, 3.0 road",
+      "parking_requirement": "As needed",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "12",
+      "zone": "Peri urban",
+      "max_far": "0.8",
+      "max_height_storeys": "2",
+      "ground_coverage": "40%",
+      "setback_m": "1.5 boundary, 2.0 road",
+      "parking_requirement": "1 tw/200 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "13",
+      "zone": "Growth corridor",
+      "max_far": "1.2",
+      "max_height_storeys": "3",
+      "ground_coverage": "55%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/150 sqm, 1 car/300 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    },
+    {
+      "ward": "14",
+      "zone": "Growth corridor",
+      "max_far": "1.2",
+      "max_height_storeys": "3",
+      "ground_coverage": "55%",
+      "setback_m": "1.0 boundary, 1.5 road",
+      "parking_requirement": "1 tw/150 sqm, 1 car/300 sqm",
+      "provenance": "v3 Ch8.5 Zoning standards by ward category Table 8.5 (15×7)"
+    }
+  ]
+}

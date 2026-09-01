@@ -1,5 +1,60 @@
 {
-  "_provenance": "v3 Ch11 References (p159) — Government/legal, Municipal/field, Sector/benchmark + For addition overlay. No fabrication.",
-  "references": [],
-  "note": "Populate from v3 Ch11. Include source, institution, year, dataset, section. Verify each citation against document."
+  "_provenance": "v3 Ch11 References (p159) — Government and legal documents, Municipal and field sources, Sector and benchmark sources, Bibliography. For addition Ch11 identical. No fabrication.",
+  "sections": [
+    {
+      "section": "Government and legal documents",
+      "items": [
+        "Asian Development Bank. (2019). Guidelines for preparation of integrated urban development plan. TA-9384 NEP, prepared for the Department of Urban Development and Building Construction. Government of Nepal.https://www.adb.org/projects/52193-004/main",
+        "Central Bureau of Statistics. (2012 [2068 BS]). National population and housing census 2011, municipality tables. Government of Nepal.https://cbs.gov.np/national-population-and-housing-census-2011/",
+        "Department of Roads. (2011 [2067 BS]). Nepal urban road standard. Government of Nepal.",
+        "Department of Urban Development and Building Construction. (2013 [2069 BS]). Planning norms and standards. Government of Nepal.",
+        "Department of Urban Development and Building Construction. (2015 [2072 BS]). Conceptual building bye-laws 2072. Government of Nepal.",
+        "Government of Nepal. (2015 [2072 BS]). Constitution of Nepal.https://lawcommission.gov.np/constitution-of-nepal-2072-2015/",
+        "Government of Nepal. (2017 [2074 BS]). Local Government Operation Act, 2074.",
+        "Government of Nepal. (2017 [2074 BS]). National urban development strategy.",
+        "Government of Nepal. (2017 [2074 BS]). Disaster Risk Reduction and Management Act, 2074.",
+        "Ministry of Culture, Tourism and Civil Aviation. (2023 [2080 BS]). Nepal tourism statistics 2023. Government of Nepal.https://www.nepaltourism.gov.np/statistics",
+        "National Planning Commission. (2020 [2077 BS]). Fifteenth five year plan (2019/20 to 2023/24). Government of Nepal.",
+        "National Statistics Office. (2023 [2080 BS]). National population and housing census 2021, national report. Government of Nepal.https://cbs.gov.np/national-population-and-housing-census-2021/",
+        "National Statistics Office. (2023 [2080 BS]). Population projections of Nepal 2021 to 2051. Government of Nepal.https://cbs.gov.np/population-projections-of-nepal-2021-2051/",
+        "Siddharthanagar Municipality. (2020 [2077 BS]). Integrated urban development plan 2020 to 2035. Rupandehi."
+      ]
+    },
+    {
+      "section": "Municipal and field sources",
+      "items": [
+        "Baglung Chamber of Commerce and Industry. (2082 BS [2025/26 AD]). Lifetime and general member registry.",
+        "Baglung Group. (2026 [2082/83 BS]). Baglung Municipality social development plan. The companion report to this IUDP.",
+        "Baglung Group. (82 BS [2025/26 AD]). Demographic analysis workbook and chart suite. Baglung Output folder.",
+        "Baglung Group. (82 BS [2025/26 AD]). Field survey records, key informant interviews and focus group minutes. Planning Studio II.",
+        "Baglung Group. (82 BS [2025/26 AD]). Second presentation, physical and sector plans of the Baglung IUDP. Including the norms, gap and SWOT tables.",
+        "Baglung Municipality. (2075 BS [2018/19 AD]). Municipal profile.",
+        "Baglung Municipality. (2082 BS [2025/26 AD]). Ward wise data workbook for the IUDP, EDP, SDP, EnDP, PDP, FDP and IDP sheets.",
+        "Baglung Municipality. (2083/84 BS [2026/27 AD]). Approved budget and revenue policy."
+      ]
+    },
+    {
+      "section": "Sector and benchmark sources",
+      "items": [
+        "Chandragiri Hills Limited. (2021 [2078 BS]). Company reporting on visitor numbers and operations.",
+        "ESA. (2021). ESA WorldCover 10 metre land cover product, clipped for Baglung Municipality in the team GIS.https://esa-worldcover.org/en/data/ worldcover1002021",
+        "Nepal Rafting Association. (n.d.). River inventory and safety guidelines. Retrieved from the association records, 2082 BS.",
+        "The Cliff Nepal. (2020 to 2024). Public records and media reporting on the Kushma bungy operations.https://thecliffnepal.com",
+        "WorldClim. (2020). Bioclimatic temperature data, downscaled for Baglung Municipality in the team GIS.https://www.worldclim.org/data/worldclim21.html"
+      ]
+    },
+    {
+      "section": "Bibliography, works consulted beyond the cited references",
+      "items": [
+        "Baglung Chamber of Commerce and Industry. (2082 BS [2026 AD]). Lifetime and general member registries. Compiled in the Baglung IUDP DataSets workbook.",
+        "Baglung Municipality. (2075 BS [2018 AD]). Nagar profile. Office of the Municipal Executive.",
+        "Baglung Municipality. (2083/84 BS [2026/27 AD]). Annual budget, red book. Office of the Municipal Executive.",
+        "Government of Nepal. (2023 [2080 BS]). National population and housing census 2021, local level results, Baglung District. National Statistics Office.",
+        "National Institute of Urban and Regional Studies. (n.d.). Municipality profile series, Baglung.",
+        "Siddharthanagar Municipality. (2020). Integrated urban development plan of Siddharthanagar Municipality 2020 to 2035. Rupandehi, Lumbini Province. Used as a structural benchmark.",
+        "Government of Nepal. (2019). Guidelines for preparation of integrated urban development plan. DUDBC and ADB TA-9384 NEP. Used as the methodological standard."
+      ]
+    }
+  ],
+  "note": "Full bibliography pending verbatim extraction of each entry; structure above reflects document headings."
 }

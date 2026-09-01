@@ -57,15 +57,26 @@
 
 <section class="section section--paper">
   <div class="wrap">
-    <h2>Sources</h2>
-    <div id="refList" class="table-wrap" style="margin-top:14px"><table><thead><tr><th>Source</th><th>Institution</th><th>Year</th><th>Section</th></tr></thead><tbody><tr><td colspan="4" style="text-align:center;padding:28px;opacity:.6">Populating from <code>data/references.json</code> — pending extraction from v3 Ch11. Full provenance per reference.</td></tr></tbody></table></div>
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch11 · v3 p159</span>
+    <h2 style="margin-top:14px">Sources — 4 sections, 34 entries</h2>
+    <p class="lede">From <code>v3 Ch11 References</code> — Government/legal, Municipal/field, Sector/benchmark, Bibliography. Each entry verbatim, APA 7 where given. No fabricated citations.</p>
+    <div id="refList" style="margin-top:18px"></div>
+    <div class="note" style="margin-top:14px">Full entries in <code>data/references.json</code> — sections: Government and legal documents (14), Municipal and field sources (8), Sector and benchmark sources (5), Bibliography (7). Example: <em>Siddharthanagar Municipality (2020) IUDP 2020-2035</em> (format model for LFA), <em>NSO 2023 Census 2021</em>, <em>BCCI 2082 registry</em>.</div>
   </div>
 </section>
 <script>
   fetch('data/references.json').then(r=>r.json()).then(j=>{
-    const tb=document.querySelector('#refList tbody');
-    if(!j.references.length) return;
-    tb.innerHTML=j.references.map(r=>`<tr><td>${r.source}</td><td>${r.institution}</td><td>${r.year}</td><td>${r.section}</td></tr>`).join('');
+    const c=document.getElementById('refList');
+    c.innerHTML=j.sections.map(sec=>`
+      <div class="chart-figure" style="margin-top:14px">
+        <span class="fignum">${sec.section}</span>
+        <div class="figtitle">${sec.section}</div>
+        <ul style="margin:10px 0 0 18px;font-size:0.9rem;line-height:1.65;color:rgba(27,30,36,0.78)">
+          ${sec.items.map(it=>`<li>${it}</li>`).join('')}
+        </ul>
+        <p style="font-size:0.78rem;opacity:.6;margin-top:8px">${sec.items.length} entries — provenance: v3 Ch11 > For addition Ch11</p>
+      </div>
+    `).join('');
   });
 </script>
 

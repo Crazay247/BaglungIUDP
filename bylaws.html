@@ -57,17 +57,31 @@
 
 <section class="section section--paper">
   <div class="wrap">
-    <h2>Bylaw hierarchy</h2>
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch8 · For addition > v3 · 4 zones</span>
+    <h2 style="margin-top:14px">Bylaw hierarchy — 8.1 to 8.7</h2>
     <div class="grid" style="margin-top:16px">
-      <div class="card"><div class="cap"><span class="tagline">8.1–8.2</span><b>Zoning & density</b><p>From For addition Ch8.1–8.2 > v3 Ch8.2. Ward categories per Ch8.5.</p></div></div>
-      <div class="card"><div class="cap"><span class="tagline">8.3–8.4</span><b>Building rules & permit</b><p>Enforcement and permit process.</p></div></div>
-      <div class="card"><div class="cap"><span class="tagline">8.5</span><b>Zoning standards by ward</b><p>Table pending extraction.</p></div></div>
-      <div class="card"><div class="cap"><span class="tagline">8.6</span><b>Heritage zone</b><p>Design guidelines.</p></div></div>
-      <div class="card"><div class="cap"><span class="tagline">8.7</span><b>Tourism infra</b><p>Standards.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.1 Purpose & legal base</span><b>Why bylaws</b><p>Constitution 2072, LG Operation Act 2074, NUDS, DUDBC norms — implements Ch4.6 concept through development control.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.2 Zoning & density</span><b>4 zones</b><p>Urban core (W1-4), Peri-urban (W5-7,12), Agricultural (W8-11), Growth corridor (W13-14) — each with FAR/height/coverage.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.3–8.4</span><b>Building rules & permit</b><p>Building rules, setback, parking, enforcement + building permit process — from v3 Ch8.3-8.4.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.6 Heritage</span><b>Heritage zone</b><p>Kalika Bhagawati precinct + Shaligram — design guidelines (v3 Ch8.6).</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.7 Tourism infra</span><b>Tourism standards</b><p>Homestay, viewpoint, trail — from report on homestay + Ch8.7.</p></div></div>
     </div>
-    <div class="note" style="margin-top:14px">Downloadable source where permitted in <code>/data/references.json</code> + Ch8. Do not fabricate standards — show disclaimer.</div>
+
+    <h3 style="margin-top:28px">8.5 Zoning standards by ward category — Table 8.5 (15×7) verbatim</h3>
+    <p class="lede" style="margin-top:8px">Maximum FAR, height, ground coverage, setback and parking by ward — the numeric control that translates concept into enforceable rule. Source: <code>v3 Ch8.5 Table 8.5 (15×7) → data/bylaws.json</code> > For addition Ch8.5 identical.</p>
+    <div class="table-wrap" style="margin-top:14px">
+      <table id="bylawsTable"><thead><tr><th>Ward</th><th>Zone</th><th>Max FAR</th><th>Height</th><th>Coverage</th><th>Setback (m)</th><th>Parking</th></tr></thead><tbody><tr><td colspan="7" style="text-align:center;padding:20px;opacity:.6">Loading <code>data/bylaws.json</code>…</td></tr></tbody></table>
+    </div>
+    <div class="note" style="margin-top:10px">Provenance: <b>v3 Ch8.5 Table 8.5 (15×7) — Ward, Zone, Max FAR, Max height (storeys), Ground coverage, Setback (m), Parking requirement</b> — verbatim. Example: Ward 1 Urban core 2.0/4/70%/1.0+1.5/1 tw per 100 sqm. Full table below.</div>
+    <p style="margin-top:14px"><a class="btn btn-dark" href="spatial.html">See on map →</a> <a class="btn btn-outline" href="wards.html">Ward profiles →</a></p>
   </div>
 </section>
+<script>
+  fetch('data/bylaws.json').then(r=>r.json()).then(j=>{
+    const tb=document.querySelector('#bylawsTable tbody');
+    tb.innerHTML=j.zoning_standards.map(row=>`<tr><td><b>${row.ward}</b></td><td>${row.zone}</td><td>${row.max_far}</td><td>${row.max_height_storeys}</td><td>${row.ground_coverage}</td><td>${row.setback_m}</td><td>${row.parking_requirement}</td></tr>`).join('');
+  });
+</script>
 
 
 <footer>
