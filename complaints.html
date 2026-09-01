@@ -13,178 +13,172 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <nav class="navlinks" aria-label="Primary">
-      <div class="nav-item">
-        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
-        <div class="dropdown">
-          <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Horizon, vision, objectives</span></a>
-          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
-          <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Demography, gaps, SWOT</span></a>
-          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
-          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Eight plans &amp; MSIP</span></a>
-          <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; annex</span></a>
-          <a href="investment.html"><span class="dd-title">Investment / MSIP</span><span class="dd-sub">Phasing &amp; finance</span></a>
-          <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Profiles &amp; potential</span></a>
-          <a href="monitoring.html"><span class="dd-title">Monitoring</span><span class="dd-sub">Indicators &amp; scorecard</span></a>
-          <div class="dd-sep"></div>
-          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
-          <a href="references.html"><span class="dd-title">References</span><span class="dd-sub">Sources</span></a>
-          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
-          <a href="bylaws.html"><span class="dd-title">Bylaws</span><span class="dd-sub">Planning &amp; building</span></a>
-        </div>
-      </div>
-      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
-      <a href="complaints.html" data-link="complaints.html">Complaints</a>
-      <a href="gallery.html">Gallery</a>
-    </nav>
-  </div>
+ <div class="wrap">
+ <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+ <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+ <nav class="navlinks" aria-label="Primary">
+ <div class="nav-item">
+ <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+ <div class="dropdown">
+ <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+ <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+ <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+ <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+ <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+ <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+ <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ </div>
+ </div>
+ <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+ <a href="complaints.html" data-link="complaints.html">Complaints</a>
+ <a href="gallery.html">Gallery</a>
+ </nav>
+ </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <noscript>
-  <div class="giant">
-    <div class="giant-inner landscape" style="background:var(--paper);color:var(--ink);border-radius:20px;padding:26px">
-      <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
-      <p>The quick-complaint form and live wall need JavaScript. To file a real complaint, contact your <a href="#official">ward office</a> or <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a>.</p>
-    </div>
-  </div>
+ <div class="giant">
+ <div class="giant-inner landscape" style="background:var(--paper);color:var(--ink);border-radius:20px;padding:26px">
+ <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
+ <p>The quick-complaint form and live wall need JavaScript. To file a real complaint, contact your <a href="#official">ward office</a> or <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a>.</p>
+ </div>
+ </div>
 </noscript>
 
 <!-- React renders: the GIANT form first, then the live wall -->
 <div id="cp-root"></div>
 
 <section class="cp-steps" aria-labelledby="whn-title">
-  <div class="wrap">
-    <div class="steps-head">
-      <span class="kicker">What happens next · अब के हुन्छ?</span>
-      <h2 id="whn-title">Your complaint, tracked end-to-end</h2>
-      <p class="steps-lead">Transparent and time-bound under <b>LGO 2073</b> — no black box. Save your tracking ID and follow it on the wall.</p>
-    </div>
-    <div class="steps" role="list" aria-label="Three steps from submission to resolution">
-      <div class="step" role="listitem">
-        <div class="step-num" aria-hidden="true">1</div>
-        <div class="step-body">
-          <h3>Registered <span class="step-np" lang="ne">दर्ता</span> <span class="step-time">Instant · तत्काल</span></h3>
-          <p>You get a <b>tracking ID</b> at once — it appears on the live wall instantly.</p>
-        </div>
-        <span class="step-arrow" aria-hidden="true">→</span>
-      </div>
-      <div class="step" role="listitem">
-        <div class="step-num" aria-hidden="true">2</div>
-        <div class="step-body">
-          <h3>Reviewed <span class="step-np" lang="ne">समीक्षा</span> <span class="step-time">≤ 15 days</span></h3>
-          <p>Your ward verifies the issue on site within <b>15 working days</b> (LGO 2073).</p>
-        </div>
-        <span class="step-arrow" aria-hidden="true">→</span>
-      </div>
-      <div class="step" role="listitem">
-        <div class="step-num" aria-hidden="true">3</div>
-        <div class="step-body">
-          <h3>Fixed <span class="step-np" lang="ne">समाधान</span> <span class="step-time">Trackable</span></h3>
-          <p>Status moves to <b>Resolved</b> — follow every update with your tracking ID.</p>
-        </div>
-        <span class="step-check" aria-hidden="true">✓</span>
-      </div>
-    </div>
-    <p class="steps-footnote">Tip: screenshot your <b>tracking ID</b> (e.g. BGL-2026-XXXX). For urgent cases, visit your ward (1–14) or <a href="https://baglungmun.gov.np" target="_blank" rel="noopener">baglungmun.gov.np</a>.</p>
-  </div>
+ <div class="wrap">
+ <div class="steps-head">
+ <span class="kicker">What happens next · अब के हुन्छ?</span>
+ <h2 id="whn-title">Your complaint, tracked end-to-end</h2>
+ <p class="steps-lead">Transparent and time-bound under <b>LGO 2073</b> — no black box. Save your tracking ID and follow it on the wall.</p>
+ </div>
+ <div class="steps" role="list" aria-label="Three steps from submission to resolution">
+ <div class="step" role="listitem">
+ <div class="step-num" aria-hidden="true">1</div>
+ <div class="step-body">
+ <h3>Registered <span class="step-np" lang="ne">दर्ता</span> <span class="step-time">Instant · तत्काल</span></h3>
+ <p>You get a <b>tracking ID</b> at once — it appears on the live wall instantly.</p>
+ </div>
+ <span class="step-arrow" aria-hidden="true">→</span>
+ </div>
+ <div class="step" role="listitem">
+ <div class="step-num" aria-hidden="true">2</div>
+ <div class="step-body">
+ <h3>Reviewed <span class="step-np" lang="ne">समीक्षा</span> <span class="step-time">≤ 15 days</span></h3>
+ <p>Your ward verifies the issue on site within <b>15 working days</b> (LGO 2073).</p>
+ </div>
+ <span class="step-arrow" aria-hidden="true">→</span>
+ </div>
+ <div class="step" role="listitem">
+ <div class="step-num" aria-hidden="true">3</div>
+ <div class="step-body">
+ <h3>Fixed <span class="step-np" lang="ne">समाधान</span> <span class="step-time">Trackable</span></h3>
+ <p>Status moves to <b>Resolved</b> — follow every update with your tracking ID.</p>
+ </div>
+ <span class="step-check" aria-hidden="true">✓</span>
+ </div>
+ </div>
+ <p class="steps-footnote">Tip: screenshot your <b>tracking ID</b> (e.g. BGL-2026-XXXX). For urgent cases, visit your ward (1–14) or <a href="https://baglungmun.gov.np" target="_blank" rel="noopener">baglungmun.gov.np</a>.</p>
+ </div>
 </section>
 
 <section class="photo-band" aria-hidden="true">
-  <img src="assets/photos/baglung_bazaar.jpg" alt="">
-  <div class="photo-cap">Baglung bazaar · बागलुङ बजार</div>
+ <img src="assets/photos/baglung_bazaar.jpg" alt="">
+ <div class="photo-cap">Baglung bazaar · बागलुङ बजार</div>
 </section>
 
 <section class="cp-official" id="official">
-  <div class="wrap">
-    <div class="ch-strip">
-      <b>Official filing · आधिकारिक:</b>
-      <span>Your ward office (1–14) keeps a complaint register</span>
-      <span class="pip">·</span>
-      <span>or online at <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a></span>
-      <span class="pip">·</span>
-      <span class="np" lang="ne">LGO 2073 — 15 working days</span>
-    </div>
-  </div>
+ <div class="wrap">
+ <div class="ch-strip">
+ <b>Official filing · आधिकारिक:</b>
+ <span>Your ward office (1–14) keeps a complaint register</span>
+ <span class="pip">·</span>
+ <span>or online at <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a></span>
+ <span class="pip">·</span>
+ <span class="np" lang="ne">LGO 2073 — 15 working days</span>
+ </div>
+ </div>
 </section>
 
 <footer>
-  <div class="footer-top">
-    <div class="wrap">
-      <span><b>Protect the core, grow the corridor, hold the hills</b> — Wards 1–4 · 13–14 · 5–12 &nbsp;·&nbsp; 2026–2041 · 98.01 km² · 56,102 · 14 wards</span>
-      <span>Source hierarchy: <b>For Addition</b> (narrative) &gt; <b>Financial MSIP</b> (numeric) &gt; v3 &nbsp;·&nbsp; No invented data</span>
-    </div>
-  </div>
-  <div class="wrap footer-main grid">
-    <div class="footer-brand">
-      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
-      <div class="foot-title">Baglung <span>IUDP 2026–2041</span></div>
-      <p class="foot-desc">Digital Integrated Urban Development Plan — M.Sc. Urban Planning (2025–27), IOE Pulchowk Campus, Tribhuvan University, 3rd Semester Planning Studio II. Planning logic visible: Baglung today → evidence → vision → spatial strategy → sector plans → projects → MSIP → implementation → monitoring.</p>
-      <div class="foot-meta">
-        <span>IOE Pulchowk</span>
-        <span>Planning Studio II</span>
-        <span>14 wards</span>
-        <span>98.01 km²</span>
-      </div>
-    </div>
-    <div>
-      <h3>Explore the Plan</h3>
-      <ul>
-        <li><a href="overview.html">Plan at a Glance</a></li>
-        <li><a href="municipality.html">Municipality Profile</a></li>
-        <li><a href="analysis.html">Analysis &amp; Diagnosis</a></li>
-        <li><a href="spatial.html">Spatial Plan &amp; Explorer</a></li>
-        <li><a href="demographics.html">Demographic Evidence</a></li>
-      </ul>
-      <h4>Sector Plans</h4>
-      <ul>
-        <li><a href="sectors.html">All 8 Thematic Plans</a></li>
-        <li><a href="sector-physical.html">Physical</a> · <a href="sector-social.html">Social</a> · <a href="sector-economic.html">Economic</a></li>
-        <li><a href="sector-tourism.html">Tourism &amp; Homestay</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Implementation</h3>
-      <ul>
-        <li><a href="projects.html">Projects &amp; Programmes</a></li>
-        <li><a href="investment.html">MSIP &amp; Phasing</a></li>
-        <li><a href="wards.html">Wards 1–14 Profiles</a></li>
-        <li><a href="monitoring.html">Monitoring &amp; Scorecard</a></li>
-        <li><a href="bylaws.html">Planning &amp; Building Bylaws</a></li>
-      </ul>
-      <h4>Flagships</h4>
-      <ul>
-        <li><a href="flagship-rafting.html">Rafting Corridor</a></li>
-        <li><a href="flagship-bungy.html">Gorge Bungy</a></li>
-        <li><a href="flagship-cablecar.html">Panchakot Cable Car</a></li>
-        <li><a href="annex-shaligram.html">Shaligram Museum</a> · <a href="homestay-ward10.html">Homestay</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Evidence &amp; Method</h3>
-      <ul>
-        <li><a href="methodology.html">Methodology &amp; Data Lineage</a></li>
-        <li><a href="fieldwork.html">Fieldwork (14 wards)</a></li>
-        <li><a href="gallery.html">Charts &amp; Maps Gallery (171)</a></li>
-        <li><a href="references.html">References &amp; Sources (Ch11)</a></li>
-        <li><a href="spatial.html">Interactive GIS (Leaflet 1.9.4)</a></li>
-      </ul>
-      <h4>Citizen</h4>
-      <ul>
-        <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
-        <li><a href="gallery.html">Visual Gallery</a></li>
-      </ul>
-      <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
-    </div>
-  </div>
-  <div class="wrap foot-bottom">
-    <span>© 2026 <b>Baglung Planning Studio</b> · IOE Pulchowk · Tribhuvan University · 3rd Sem Planning Studio II · Last update: 2026-09-02</span>
-    <span>Source hierarchy frozen · <b>For Addition > Financial > v3</b> · <a href="https://github.com/Crazay247/BaglungIUDP" target="_blank" rel="noopener">github.com/Crazay247/BaglungIUDP</a> · Static site · No build step</span>
-  </div>
+ <div class="footer-top">
+ <div class="wrap">
+ <span><b>Protect the core, grow the corridor, hold the hills</b> — Wards 1–4 · 13–14 · 5–12 &nbsp;·&nbsp; 2026–2041 · 98.01 km² · 56,102 · 14 wards</span>
+ <span>Sources: Census 2021 · Municipal records · Field surveys 2025–26 — <a href="references.html">see References</a></span>
+ </div>
+ </div>
+ <div class="wrap footer-main grid">
+ <div class="footer-brand">
+ <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+ <div class="foot-title">Baglung <span>IUDP 2026–2041</span></div>
+ <p class="foot-desc">Digital Integrated Urban Development Plan — M.Sc. Urban Planning (2025–27), IOE Pulchowk Campus, Tribhuvan University, 3rd Semester Planning Studio II. Planning logic visible: Baglung today → evidence → vision → spatial strategy → sector plans → projects → MSIP → implementation → monitoring.</p>
+ <div class="foot-meta">
+ <span>IOE Pulchowk</span>
+ <span>Planning Studio II</span>
+ <span>14 wards</span>
+ <span>98.01 km²</span>
+ </div>
+ </div>
+ <div>
+ <h3>Explore the Plan</h3>
+ <ul>
+ <li><a href="overview.html">Plan at a Glance</a></li>
+ <li><a href="municipality.html">Municipality Profile</a></li>
+ <li><a href="analysis.html">Analysis &amp; Diagnosis</a></li>
+ <li><a href="spatial.html">Spatial Plan &amp; Explorer</a></li>
+ <li><a href="demographics.html">Demographic Evidence</a></li>
+ </ul>
+ <h4>Sector Plans</h4>
+ <ul>
+ <li><a href="sectors.html">All 8 Thematic Plans</a></li>
+ <li><a href="sector-physical.html">Physical</a> · <a href="sector-social.html">Social</a> · <a href="sector-economic.html">Economic</a></li>
+ <li><a href="sector-tourism.html">Tourism &amp; Homestay</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3>Implementation</h3>
+ <ul>
+ <li><a href="projects.html">Projects &amp; Programmes</a></li>
+ <li><a href="investment.html">MSIP &amp; Phasing</a></li>
+ <li><a href="wards.html">Wards 1–14 Profiles</a></li>
+ <li><a href="monitoring.html">Monitoring &amp; Scorecard</a></li>
+ <li><a href="bylaws.html">Planning &amp; Building Bylaws</a></li>
+ </ul>
+ <h4>Flagships</h4>
+ <ul>
+ <li><a href="flagship-rafting.html">Rafting Corridor</a></li>
+ <li><a href="flagship-bungy.html">Gorge Bungy</a></li>
+ <li><a href="flagship-cablecar.html">Panchakot Cable Car</a></li>
+ <li><a href="annex-shaligram.html">Shaligram Museum</a> · <a href="homestay-ward10.html">Homestay</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3>Evidence &amp; Method</h3>
+ <ul>
+ <li><a href="methodology.html">Methodology &amp; Data Lineage</a></li>
+ <li><a href="fieldwork.html">Fieldwork (14 wards)</a></li>
+ <li><a href="gallery.html">Charts &amp; Maps Gallery (171)</a></li>
+ <li><a href="references.html">References &amp; Sources (Ch11)</a></li>
+ <li><a href="spatial.html">Interactive GIS (Leaflet 1.9.4)</a></li>
+ </ul>
+ <h4>Citizen</h4>
+ <ul>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="gallery.html">Visual Gallery</a></li>
+ </ul>
+ <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
+ </div>
+ </div>
+ <div class="wrap foot-bottom">
+ <span>© 2026 <b>Baglung Planning Studio</b> · IOE Pulchowk · Tribhuvan University · 3rd Sem Planning Studio II · Last update: 2026-09-02</span>
+ <span>Sources: Census, municipal &amp; field records · <a href="https://github.com/Crazay247/BaglungIUDP" target="_blank" rel="noopener">github.com/Crazay247/BaglungIUDP</a> · Static site</span>
+ </div>
 </footer>
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>

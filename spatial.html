@@ -11,197 +11,191 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  .map-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
-  .layer-chip{background:var(--paper);border:1.5px solid var(--line);border-radius:100px;padding:7px 14px;font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:all .15s}
-  .layer-chip:hover{border-color:var(--moss);color:var(--moss)}
-  .layer-chip.active{background:var(--moss);color:#fff;border-color:var(--moss)}
-  .legend-overlay{position:absolute;left:14px;top:14px;z-index:620;background:rgba(255,253,249,0.97);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:180px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
-  .legend-overlay h5{font-size:var(--fs-xs);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
-  .legend-overlay .row{display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);margin:4px 0}
-  .legend-overlay .sw{width:14px;height:14px;border-radius:3px;border:1px solid rgba(0,0,0,0.12);flex-shrink:0}
-  .map-note{font-size:var(--fs-sm);color:rgba(27,30,36,0.68);margin-top:12px;line-height:1.6}
+ .map-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+ .layer-chip{background:var(--paper);border:1.5px solid var(--line);border-radius:100px;padding:7px 14px;font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:all .15s}
+ .layer-chip:hover{border-color:var(--moss);color:var(--moss)}
+ .layer-chip.active{background:var(--moss);color:#fff;border-color:var(--moss)}
+ .legend-overlay{position:absolute;left:14px;top:14px;z-index:620;background:rgba(255,253,249,0.97);border:1px solid var(--line);border-radius:14px;padding:12px;min-width:180px;box-shadow:0 10px 30px rgba(0,0,0,0.12)}
+ .legend-overlay h5{font-size:var(--fs-xs);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+ .legend-overlay .row{display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);margin:4px 0}
+ .legend-overlay .sw{width:14px;height:14px;border-radius:3px;border:1px solid rgba(0,0,0,0.12);flex-shrink:0}
+ .map-note{font-size:var(--fs-sm);color:rgba(27,30,36,0.68);margin-top:12px;line-height:1.6}
 </style>
 </head>
 <body>
 <header class="topbar">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
-    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <nav class="navlinks" aria-label="Primary">
-      <div class="nav-item">
-        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
-        <div class="dropdown">
-          <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Horizon, vision, objectives</span></a>
-          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
-          <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Demography, gaps, SWOT</span></a>
-          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
-          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Eight plans &amp; MSIP</span></a>
-          <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; annex</span></a>
-          <a href="investment.html"><span class="dd-title">Investment / MSIP</span><span class="dd-sub">Phasing &amp; finance</span></a>
-          <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Profiles &amp; potential</span></a>
-          <a href="monitoring.html"><span class="dd-title">Monitoring</span><span class="dd-sub">Indicators &amp; scorecard</span></a>
-          <div class="dd-sep"></div>
-          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
-          <a href="references.html"><span class="dd-title">References</span><span class="dd-sub">Sources</span></a>
-          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
-          <a href="bylaws.html"><span class="dd-title">Bylaws</span><span class="dd-sub">Planning &amp; building</span></a>
-        </div>
-      </div>
-      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
-      <a href="complaints.html" data-link="complaints.html">Complaints</a>
-      <a href="gallery.html">Gallery</a>
-    </nav>
-  </div>
+ <div class="wrap">
+ <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+ <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+ <nav class="navlinks" aria-label="Primary">
+ <div class="nav-item">
+ <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+ <div class="dropdown">
+ <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+ <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+ <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+ <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+ <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+ <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+ <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ </div>
+ </div>
+ <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+ <a href="complaints.html" data-link="complaints.html">Complaints</a>
+ <a href="gallery.html">Gallery</a>
+ </nav>
+ </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.4) 0%,rgba(12,16,12,0.78) 100%),url('assets/overlays/dem_relief.png')">
-  <div class="wrap">
-    <div class="crumb"><a href="index.html">Home</a> / Spatial Analysis</div>
-    <h1>Spatial analysis,<br><em>terrain, network and risk.</em></h1>
-    <p class="lede">The QGIS Studio archive turned into an interactive atlas — a 30 m SRTM elevation model, ward choropleth, the road network, ESA land cover, flood and landslide grids, and the final land-suitability surface.</p>
-    <div class="hero-meta">
-      <span class="chip">⛰️ 645–2,679 m DEM</span>
-      <span class="chip">🛣️ 487 km roads · 29.5 km blacktopped</span>
-      <span class="chip">🛰️ ESA WorldCover</span>
-      <span class="chip">🗺️ 60 GIS maps</span>
-    </div>
-  </div>
+ <div class="wrap">
+ <div class="crumb"><a href="index.html">Home</a> / Spatial Analysis</div>
+ <h1>Spatial analysis,<br><em>terrain, network and risk.</em></h1>
+ <p class="lede">The QGIS Studio archive turned into an interactive atlas — a 30 m SRTM elevation model, ward choropleth, the road network, ESA land cover, flood and landslide grids, and the final land-suitability surface.</p>
+ <div class="hero-meta">
+ <span class="chip">⛰️ 645–2,679 m DEM</span>
+ <span class="chip">🛣️ 487 km roads · 29.5 km blacktopped</span>
+ <span class="chip">🛰️ ESA WorldCover</span>
+ <span class="chip">🗺️ 60 GIS maps</span>
+ </div>
+ </div>
 </section>
 
 <div class="statbar" aria-label="Key stats">
-  <div class="wrap">
-    <div><b>30 m</b><span>SRTMGL1 DEM resolution</span></div>
-    <div><b>154</b><span>Schools &amp; colleges</span></div>
-    <div><b>20</b><span>Health facilities</span></div>
-    <div><b>6</b><span>Thematic raster layers</span></div>
-  </div>
+ <div class="wrap">
+ <div><b>30 m</b><span>SRTMGL1 DEM resolution</span></div>
+ <div><b>154</b><span>Schools &amp; colleges</span></div>
+ <div><b>20</b><span>Health facilities</span></div>
+ <div><b>6</b><span>Thematic raster layers</span></div>
+ </div>
 </div>
 
 <section class="section section--paper">
-  <div class="wrap">
-    <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.12)">Interactive map</span>
-    <h2 style="margin-top:14px">Pan, toggle and compare</h2>
-    <p class="lede">Explore the municipality interactively. Use the layer chips below to switch overlays, the controls to toggle vectors, and click any feature for details. Base imagery via OSM, Esri and CARTO.</p>
-    <div class="map-shell reveal" style="margin-top:20px">
-      <div id="map" role="application" aria-label="Interactive map of Baglung Municipality" tabindex="0" style="width:100%;height:100%"></div>
-      <div class="legend-overlay" id="mapLegend"><h5>Legend</h5><div class="row"><span class="sw" style="background:#f2a900"></span> Ward pop: 1 875–9 829</div></div>
-      <div class="map-caption"><span>Click features · toggle layers · compare overlays</span></div>
-      <button class="map-toggle" id="fsBtn" aria-label="Toggle fullscreen map">⛶ Fullscreen</button>
-    </div>
-    <div class="map-toolbar">
-      <button class="layer-chip" data-layer="dem">Terrain (DEM)</button>
-      <button class="layer-chip" data-layer="hillshade">Hillshade</button>
-      <button class="layer-chip" data-layer="landcover">Landcover</button>
-      <button class="layer-chip" data-layer="suitability">Suitability</button>
-      <button class="layer-chip" data-layer="flood">Flood</button>
-      <button class="layer-chip" data-layer="landslide">Landslide</button>
-      <button class="layer-chip" data-layer="wards active">Wards (pop.)</button>
-      <button class="layer-chip" data-layer="roads">Roads</button>
-      <button class="layer-chip" data-layer="hospitals">Hospitals</button>
-      <button class="layer-chip" data-layer="schools">Schools</button>
-      <label style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:600"><span>Opacity</span><input id="opacity" type="range" min="0.2" max="1" step="0.05" value="0.68" style="accent-color:var(--moss)"><span id="opVal">68%</span></label>
-    </div>
-    <div id="infoPanel" class="chart-figure" style="margin-top:16px;display:none">
-      <span class="fignum">Selection</span>
-      <div class="figtitle" id="infoTitle">Click a ward or feature</div>
-      <p id="infoDesc" style="font-size:0.9rem;line-height:1.6;color:rgba(27,30,36,0.7)">Ward click → ward profile → development potential → constraints → related sectors → projects → investment. No invented locations — only existing GIS layers.</p>
-      <div id="infoLinks" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
-      <p id="infoMeta" style="font-size:0.78rem;color:rgba(27,30,36,0.55);margin-top:10px"></p>
-    </div>
-    <p class="map-note">Rasters: DEM &amp; hillshade EPSG:4326; landcover, suitability, flood &amp; landslide reprojected to 4326 as styled PNG imageOverlays. Vectors from <code>Baglung_Vectors.gpkg</code> and ward/road shapefiles. <span style="color:var(--moss);font-weight:700">Plan Explorer:</span> Click a ward to trace the planning chain. Proposal layers only where data exists — no invented geometry.</p>
-  </div>
+ <div class="wrap">
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.12)">Interactive map</span>
+ <h2 style="margin-top:14px">Pan, toggle and compare</h2>
+ <p class="lede">Explore the municipality interactively. Use the layer chips below to switch overlays, the controls to toggle vectors, and click any feature for details. Base imagery via OSM, Esri and CARTO.</p>
+ <div class="map-shell reveal" style="margin-top:20px">
+ <div id="map" role="application" aria-label="Interactive map of Baglung Municipality" tabindex="0" style="width:100%;height:100%"></div>
+ <div class="legend-overlay" id="mapLegend"><h5>Legend</h5><div class="row"><span class="sw" style="background:#f2a900"></span> Ward pop: 1 875–9 829</div></div>
+ <div class="map-caption"><span>Click features · toggle layers · compare overlays</span></div>
+ <button class="map-toggle" id="fsBtn" aria-label="Toggle fullscreen map">⛶ Fullscreen</button>
+ </div>
+ <div class="map-toolbar">
+ <button class="layer-chip" data-layer="dem">Terrain (DEM)</button>
+ <button class="layer-chip" data-layer="hillshade">Hillshade</button>
+ <button class="layer-chip" data-layer="landcover">Landcover</button>
+ <button class="layer-chip" data-layer="suitability">Suitability</button>
+ <button class="layer-chip" data-layer="flood">Flood</button>
+ <button class="layer-chip" data-layer="landslide">Landslide</button>
+ <button class="layer-chip" data-layer="wards active">Wards (pop.)</button>
+ <button class="layer-chip" data-layer="roads">Roads</button>
+ <button class="layer-chip" data-layer="hospitals">Hospitals</button>
+ <button class="layer-chip" data-layer="schools">Schools</button>
+ <label style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:600"><span>Opacity</span><input id="opacity" type="range" min="0.2" max="1" step="0.05" value="0.68" style="accent-color:var(--moss)"><span id="opVal">68%</span></label>
+ </div>
+ <div id="infoPanel" class="chart-figure" style="margin-top:16px;display:none">
+ <span class="fignum">Selection</span>
+ <div class="figtitle" id="infoTitle">Click a ward or feature</div>
+ <p id="infoDesc" style="font-size:0.9rem;line-height:1.6;color:rgba(27,30,36,0.7)">Ward click → ward profile → development potential → constraints → related sectors → projects → investment. No invented locations — only existing GIS layers.</p>
+ <div id="infoLinks" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
+ <p id="infoMeta" style="font-size:0.78rem;color:rgba(27,30,36,0.55);margin-top:10px"></p>
+ </div>
+ <p class="map-note">Rasters: DEM &amp; hillshade EPSG:4326; landcover, suitability, flood &amp; landslide reprojected to 4326 as styled PNG imageOverlays. Vectors from <code>Baglung_Vectors.gpkg</code> and ward/road shapefiles. <span style="color:var(--moss);font-weight:700">Plan Explorer:</span> Click a ward to trace the planning chain. Proposal layers only where data exists — no invented geometry.</p>
+ </div>
 </section>
 
 <section class="section section--cream">
-  <div class="wrap">
-    <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">The spatial science</span>
-    <h2 style="margin-top:14px">What the analysis reveals</h2>
-    <div class="grid" style="margin-top:28px">
-      <div class="card reveal"><img src="assets/maps/03_topography.png" alt="Topography" loading="lazy"><div class="cap"><span class="tagline">Terrain</span><b>Hill &amp; valley</b><p>The DEM reads the north–south fall from ~2,600 m ridges to the river bench — the fundamental constraint on where anything can go.</p></div></div>
-      <div class="card reveal"><img src="assets/maps/05_land_suitability.png" alt="Land suitability" loading="lazy"><div class="cap"><span class="tagline">Suitability</span><b>Where to grow</b><p>A multi-criteria weighted overlay scores every cell — flat terraces near the primary road score highest, steep flood-prone fans lowest.</p></div></div>
-      <div class="card reveal"><img src="assets/maps/06_flood_hazard.png" alt="Flood hazard" loading="lazy"><div class="cap"><span class="tagline">Flood</span><b>River risk</b><p>The weighted flood grid (2.05–5.0) maps the Kali Gandaki and tributary corridors — the constraint on riverside expansion.</p></div></div>
-      <div class="card reveal"><img src="assets/maps/07_landslide_hazard.png" alt="Landslide hazard" loading="lazy"><div class="cap"><span class="tagline">Landslide</span><b>Slope risk</b><p>The landslide grid (1–4.28) flags steep, destabilised slopes — central to the DRR and embankment proposals.</p></div></div>
-      <div class="card reveal"><img src="assets/maps/08_road_network.png" alt="Road network" loading="lazy"><div class="cap"><span class="tagline">Transport</span><b>487 km of roads</b><p>875 segments from OSM — only 29.5 km blacktopped. The primary NH-03 is the spine; much else is trail or rural track.</p></div></div>
-      <div class="card reveal"><img src="assets/maps/04_landcover_2021.png" alt="Land cover" loading="lazy"><div class="cap"><span class="tagline">Land cover</span><b>The forest belt</b><p>ESA WorldCover: ~68% of valid pixels are tree — the classic Baglung hills, ahead of shrub, grass, cropland and built-up.</p></div></div>
-    </div>
-  </div>
+ <div class="wrap">
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">The spatial science</span>
+ <h2 style="margin-top:14px">What the analysis reveals</h2>
+ <div class="grid" style="margin-top:28px">
+ <div class="card reveal"><img src="assets/maps/03_topography.png" alt="Topography" loading="lazy"><div class="cap"><span class="tagline">Terrain</span><b>Hill &amp; valley</b><p>The DEM reads the north–south fall from ~2,600 m ridges to the river bench — the fundamental constraint on where anything can go.</p></div></div>
+ <div class="card reveal"><img src="assets/maps/05_land_suitability.png" alt="Land suitability" loading="lazy"><div class="cap"><span class="tagline">Suitability</span><b>Where to grow</b><p>A multi-criteria weighted overlay scores every cell — flat terraces near the primary road score highest, steep flood-prone fans lowest.</p></div></div>
+ <div class="card reveal"><img src="assets/maps/06_flood_hazard.png" alt="Flood hazard" loading="lazy"><div class="cap"><span class="tagline">Flood</span><b>River risk</b><p>The weighted flood grid (2.05–5.0) maps the Kali Gandaki and tributary corridors — the constraint on riverside expansion.</p></div></div>
+ <div class="card reveal"><img src="assets/maps/07_landslide_hazard.png" alt="Landslide hazard" loading="lazy"><div class="cap"><span class="tagline">Landslide</span><b>Slope risk</b><p>The landslide grid (1–4.28) flags steep, destabilised slopes — central to the DRR and embankment proposals.</p></div></div>
+ <div class="card reveal"><img src="assets/maps/08_road_network.png" alt="Road network" loading="lazy"><div class="cap"><span class="tagline">Transport</span><b>487 km of roads</b><p>875 segments from OSM — only 29.5 km blacktopped. The primary NH-03 is the spine; much else is trail or rural track.</p></div></div>
+ <div class="card reveal"><img src="assets/maps/04_landcover_2021.png" alt="Land cover" loading="lazy"><div class="cap"><span class="tagline">Land cover</span><b>The forest belt</b><p>ESA WorldCover: ~68% of valid pixels are tree — the classic Baglung hills, ahead of shrub, grass, cropland and built-up.</p></div></div>
+ </div>
+ </div>
 </section>
 
 <footer>
-  <div class="footer-top">
-    <div class="wrap">
-      <span><b>Protect the core, grow the corridor, hold the hills</b> — Wards 1–4 · 13–14 · 5–12 &nbsp;·&nbsp; 2026–2041 · 98.01 km² · 56,102 · 14 wards</span>
-      <span>Source hierarchy: <b>For Addition</b> (narrative) &gt; <b>Financial MSIP</b> (numeric) &gt; v3 &nbsp;·&nbsp; No invented data</span>
-    </div>
-  </div>
-  <div class="wrap footer-main grid">
-    <div class="footer-brand">
-      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
-      <div class="foot-title">Baglung <span>IUDP 2026–2041</span></div>
-      <p class="foot-desc">Digital Integrated Urban Development Plan — M.Sc. Urban Planning (2025–27), IOE Pulchowk Campus, Tribhuvan University, 3rd Semester Planning Studio II. Planning logic visible: Baglung today → evidence → vision → spatial strategy → sector plans → projects → MSIP → implementation → monitoring.</p>
-      <div class="foot-meta">
-        <span>IOE Pulchowk</span>
-        <span>Planning Studio II</span>
-        <span>14 wards</span>
-        <span>98.01 km²</span>
-      </div>
-    </div>
-    <div>
-      <h3>Explore the Plan</h3>
-      <ul>
-        <li><a href="overview.html">Plan at a Glance</a></li>
-        <li><a href="municipality.html">Municipality Profile</a></li>
-        <li><a href="analysis.html">Analysis &amp; Diagnosis</a></li>
-        <li><a href="spatial.html">Spatial Plan &amp; Explorer</a></li>
-        <li><a href="demographics.html">Demographic Evidence</a></li>
-      </ul>
-      <h4>Sector Plans</h4>
-      <ul>
-        <li><a href="sectors.html">All 8 Thematic Plans</a></li>
-        <li><a href="sector-physical.html">Physical</a> · <a href="sector-social.html">Social</a> · <a href="sector-economic.html">Economic</a></li>
-        <li><a href="sector-tourism.html">Tourism &amp; Homestay</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Implementation</h3>
-      <ul>
-        <li><a href="projects.html">Projects &amp; Programmes</a></li>
-        <li><a href="investment.html">MSIP &amp; Phasing</a></li>
-        <li><a href="wards.html">Wards 1–14 Profiles</a></li>
-        <li><a href="monitoring.html">Monitoring &amp; Scorecard</a></li>
-        <li><a href="bylaws.html">Planning &amp; Building Bylaws</a></li>
-      </ul>
-      <h4>Flagships</h4>
-      <ul>
-        <li><a href="flagship-rafting.html">Rafting Corridor</a></li>
-        <li><a href="flagship-bungy.html">Gorge Bungy</a></li>
-        <li><a href="flagship-cablecar.html">Panchakot Cable Car</a></li>
-        <li><a href="annex-shaligram.html">Shaligram Museum</a> · <a href="homestay-ward10.html">Homestay</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3>Evidence &amp; Method</h3>
-      <ul>
-        <li><a href="methodology.html">Methodology &amp; Data Lineage</a></li>
-        <li><a href="fieldwork.html">Fieldwork (14 wards)</a></li>
-        <li><a href="gallery.html">Charts &amp; Maps Gallery (171)</a></li>
-        <li><a href="references.html">References &amp; Sources (Ch11)</a></li>
-        <li><a href="spatial.html">Interactive GIS (Leaflet 1.9.4)</a></li>
-      </ul>
-      <h4>Citizen</h4>
-      <ul>
-        <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
-        <li><a href="gallery.html">Visual Gallery</a></li>
-      </ul>
-      <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
-    </div>
-  </div>
-  <div class="wrap foot-bottom">
-    <span>© 2026 <b>Baglung Planning Studio</b> · IOE Pulchowk · Tribhuvan University · 3rd Sem Planning Studio II · Last update: 2026-09-02</span>
-    <span>Source hierarchy frozen · <b>For Addition > Financial > v3</b> · <a href="https://github.com/Crazay247/BaglungIUDP" target="_blank" rel="noopener">github.com/Crazay247/BaglungIUDP</a> · Static site · No build step</span>
-  </div>
+ <div class="footer-top">
+ <div class="wrap">
+ <span><b>Protect the core, grow the corridor, hold the hills</b> — Wards 1–4 · 13–14 · 5–12 &nbsp;·&nbsp; 2026–2041 · 98.01 km² · 56,102 · 14 wards</span>
+ <span>Sources: Census 2021 · Municipal records · Field surveys 2025–26 — <a href="references.html">see References</a></span>
+ </div>
+ </div>
+ <div class="wrap footer-main grid">
+ <div class="footer-brand">
+ <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+ <div class="foot-title">Baglung <span>IUDP 2026–2041</span></div>
+ <p class="foot-desc">Digital Integrated Urban Development Plan — M.Sc. Urban Planning (2025–27), IOE Pulchowk Campus, Tribhuvan University, 3rd Semester Planning Studio II. Planning logic visible: Baglung today → evidence → vision → spatial strategy → sector plans → projects → MSIP → implementation → monitoring.</p>
+ <div class="foot-meta">
+ <span>IOE Pulchowk</span>
+ <span>Planning Studio II</span>
+ <span>14 wards</span>
+ <span>98.01 km²</span>
+ </div>
+ </div>
+ <div>
+ <h3>Explore the Plan</h3>
+ <ul>
+ <li><a href="overview.html">Plan at a Glance</a></li>
+ <li><a href="municipality.html">Municipality Profile</a></li>
+ <li><a href="analysis.html">Analysis &amp; Diagnosis</a></li>
+ <li><a href="spatial.html">Spatial Plan &amp; Explorer</a></li>
+ <li><a href="demographics.html">Demographic Evidence</a></li>
+ </ul>
+ <h4>Sector Plans</h4>
+ <ul>
+ <li><a href="sectors.html">All 8 Thematic Plans</a></li>
+ <li><a href="sector-physical.html">Physical</a> · <a href="sector-social.html">Social</a> · <a href="sector-economic.html">Economic</a></li>
+ <li><a href="sector-tourism.html">Tourism &amp; Homestay</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3>Implementation</h3>
+ <ul>
+ <li><a href="projects.html">Projects &amp; Programmes</a></li>
+ <li><a href="investment.html">MSIP &amp; Phasing</a></li>
+ <li><a href="wards.html">Wards 1–14 Profiles</a></li>
+ <li><a href="monitoring.html">Monitoring &amp; Scorecard</a></li>
+ <li><a href="bylaws.html">Planning &amp; Building Bylaws</a></li>
+ </ul>
+ <h4>Flagships</h4>
+ <ul>
+ <li><a href="flagship-rafting.html">Rafting Corridor</a></li>
+ <li><a href="flagship-bungy.html">Gorge Bungy</a></li>
+ <li><a href="flagship-cablecar.html">Panchakot Cable Car</a></li>
+ <li><a href="annex-shaligram.html">Shaligram Museum</a> · <a href="homestay-ward10.html">Homestay</a></li>
+ </ul>
+ </div>
+ <div>
+ <h3>Evidence &amp; Method</h3>
+ <ul>
+ <li><a href="methodology.html">Methodology &amp; Data Lineage</a></li>
+ <li><a href="fieldwork.html">Fieldwork (14 wards)</a></li>
+ <li><a href="gallery.html">Charts &amp; Maps Gallery (171)</a></li>
+ <li><a href="references.html">References &amp; Sources (Ch11)</a></li>
+ <li><a href="spatial.html">Interactive GIS (Leaflet 1.9.4)</a></li>
+ </ul>
+ <h4>Citizen</h4>
+ <ul>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="gallery.html">Visual Gallery</a></li>
+ </ul>
+ <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
+ </div>
+ </div>
+ <div class="wrap foot-bottom">
+ <span>© 2026 <b>Baglung Planning Studio</b> · IOE Pulchowk · Tribhuvan University · 3rd Sem Planning Studio II · Last update: 2026-09-02</span>
+ <span>Sources: Census, municipal &amp; field records · <a href="https://github.com/Crazay247/BaglungIUDP" target="_blank" rel="noopener">github.com/Crazay247/BaglungIUDP</a> · Static site</span>
+ </div>
 </footer>
+
 
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Map preview"><button class="x" aria-label="Close preview">×</button><figure><img alt="Preview"><figcaption></figcaption></figure></div>
