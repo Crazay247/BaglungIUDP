@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects & Programmes · Baglung IUDP 2026–2041</title>
+<meta name="description" content="Projects database — flagships, annex, homestay; filter by sector/ward/phase/priority. From Ch7 + Finance MSIP + DPRs.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" aria-label="Primary">
+      <div class="nav-item">
+        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+        <div class="dropdown">
+          <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Horizon, vision, objectives</span></a>
+          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
+          <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Demography, gaps, SWOT</span></a>
+          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
+          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Eight plans &amp; MSIP</span></a>
+          <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; annex</span></a>
+          <a href="investment.html"><span class="dd-title">Investment / MSIP</span><span class="dd-sub">Phasing &amp; finance</span></a>
+          <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Profiles &amp; potential</span></a>
+          <a href="monitoring.html"><span class="dd-title">Monitoring</span><span class="dd-sub">Indicators &amp; scorecard</span></a>
+          <div class="dd-sep"></div>
+          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
+          <a href="references.html"><span class="dd-title">References</span><span class="dd-sub">Sources</span></a>
+          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
+          <a href="bylaws.html"><span class="dd-title">Bylaws</span><span class="dd-sub">Planning &amp; building</span></a>
+        </div>
+      </div>
+      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+      <a href="complaints.html" data-link="complaints.html">Complaints</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </div>
+</header>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> / Projects & Programmes</div>
+    <h1>Projects & programmes<br><em>from strategy to investment.</em></h1>
+    <p class="lede">Trace every proposal: <b>Evidence → Strategy → Project → Phasing → Investment → Indicator</b>. Source field-level hierarchy: <code>For addition (narrative)</code> + <code>Financial doc (cost/phase)</code> + <code>DPRs</code>.</p>
+    <div class="hero-meta">
+      <span class="chip">🚧 3 flagships</span><span class="chip">📎 2 annex</span><span class="chip">🏡 W10 homestay</span><span class="chip">🔗 Sector→Project</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section--paper">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch7 + Annex</span>
+    <h2 style="margin-top:14px">Project explorer</h2>
+    <div class="tabs" style="margin-top:14px">
+      <button class="tab active" data-f="all">All</button>
+      <button class="tab" data-f="flagship">Flagships</button>
+      <button class="tab" data-f="annex">Annex</button>
+      <button class="tab" data-f="homestay">Homestay</button>
+      <button class="tab" data-f="tourism">Tourism</button>
+    </div>
+    <div class="wall-tools" style="margin-top:14px">
+      <select id="wardFilter" aria-label="Filter by ward"><option value="">All wards</option><option value="10">Ward 10</option></select>
+      <select id="phaseFilter" aria-label="Filter by phase"><option value="">Any phase</option><option value="Phase I">Phase I</option><option value="Phase II">Phase II</option><option value="Phase III">Phase III</option></select>
+    </div>
+    <div id="projGrid" class="grid" style="margin-top:18px"></div>
+    <div class="note" style="margin-top:14px">Cost/phase fields show provenance (Finance doc vs narrative). Missing → “Data not available…” — no fabrication.</div>
+  </div>
+</section>
+<script>
+  let projects=[];
+  fetch('data/projects.json').then(r=>r.json()).then(j=>{
+    projects=j.projects;
+    renderProjects('all');
+  });
+  function renderProjects(filter){
+    const g=document.getElementById('projGrid');
+    let list=projects;
+    if(filter==='flagship') list=list.filter(p=>p.id.startsWith('flagship'));
+    else if(filter==='annex') list=list.filter(p=>p.id.startsWith('annex'));
+    else if(filter==='homestay') list=list.filter(p=>p.id.includes('homestay'));
+    else if(filter==='tourism') list=list.filter(p=>p.sector==='tourism');
+    const wf=document.getElementById('wardFilter').value;
+    const pf=document.getElementById('phaseFilter').value;
+    if(wf) list=list.filter(p=>String(p.ward)===wf);
+    if(pf) list=list.filter(p=>p.phase===pf || (p.phase&&p.phase.includes(pf)));
+    g.innerHTML=list.map(p=>`<div class="card"><div class="cap"><span class="tagline">${p.sector}${p.type?' · '+p.type:''}</span><b>${p.name}</b><p>${p.description}</p><p style="font-size:0.78rem;opacity:.6">Ward: ${p.ward} · Phase: ${p.phase} · Cost: ${p.cost_estimate_npr}</p><p style="font-size:0.76rem;color:var(--moss)"><b>Source:</b> ${p.source}</p></div></div>`).join('');
+  }
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    renderProjects(t.dataset.f);
+  }));
+  document.getElementById('wardFilter')?.addEventListener('change',()=> renderProjects(document.querySelector('.tab.active').dataset.f));
+  document.getElementById('phaseFilter')?.addEventListener('change',()=> renderProjects(document.querySelector('.tab.active').dataset.f));
+</script>
+
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+      <h3>Baglung IUDP — Planning Studio</h3>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus. Field-level source hierarchy: For Addition (narrative) > Financial MSIP (numeric) > v3 fallback.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="overview.html">Plan at a Glance</a></li>
+        <li><a href="spatial.html">Spatial Explorer</a></li>
+        <li><a href="wards.html">Wards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Plan</h3>
+      <ul>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="investment.html">MSIP</a></li>
+        <li><a href="monitoring.html">Monitoring</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio</span><span>Static site · data/*.json</span></div>
+</footer>
+<script src="js/nav.js"></script>
+</body>
+</html>

@@ -3,13 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kisan Guide · Baglung IUDP 2026–2041</title>
-<meta name="description" content="A practical farmer's guide for Baglung, read one step at a time — the farming year, a 12-crop planting calendar, 8 priority crops, soil & water, organic pest control, livestock and seed saving. Built from the IUDP agriculture sector work.">
+<title>Planning & Building Bylaws · Baglung IUDP 2026–2041</title>
+<meta name="description" content="Bylaws — zoning, density, building rules, permit & enforcement, heritage, tourism infra (Ch8).">
 <link rel="icon" href="assets/logos/baglung-municipality-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/kisan.css">
 </head>
 <body>
 <header class="topbar">
@@ -44,46 +43,59 @@
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<noscript>
-  <div class="kisan-noscript">
-    <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
-    <p>The Kisan Guide is a step-by-step reader that needs JavaScript — please enable it and refresh. It covers: the four farming seasons, a 12-crop planting calendar, 8 priority crops, soil &amp; water targets, 4-step organic pest control, and livestock &amp; seed-saving. The <a href="sectors.html">Sector Plans</a> page has the same information in a plain report form.</p>
+<section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> / Planning & Building Bylaws</div>
+    <h1>Planning & building bylaws<br><em>zoning & controls.</em></h1>
+    <p class="lede">Development controls that implement the spatial strategy — <b>zoning, density, building rules, enforcement, heritage & tourism standards</b> (Ch8.1–8.7). Source: <code>For addition Ch8 > v3 Ch8</code>.</p>
+    <div class="hero-meta">
+      <span class="chip">🏘️ Zoning</span><span class="chip">📏 Density</span><span class="chip">🏗️ Building rules</span><span class="chip">🏛️ Heritage</span>
+    </div>
   </div>
-</noscript>
+</section>
 
-<!-- React renders the hero, stat bar, 6-step reader and map CTA here -->
-<div id="kisan-root"></div>
+
+<section class="section section--paper">
+  <div class="wrap">
+    <h2>Bylaw hierarchy</h2>
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><div class="cap"><span class="tagline">8.1–8.2</span><b>Zoning & density</b><p>From For addition Ch8.1–8.2 > v3 Ch8.2. Ward categories per Ch8.5.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.3–8.4</span><b>Building rules & permit</b><p>Enforcement and permit process.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.5</span><b>Zoning standards by ward</b><p>Table pending extraction.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.6</span><b>Heritage zone</b><p>Design guidelines.</p></div></div>
+      <div class="card"><div class="cap"><span class="tagline">8.7</span><b>Tourism infra</b><p>Standards.</p></div></div>
+    </div>
+    <div class="note" style="margin-top:14px">Downloadable source where permitted in <code>/data/references.json</code> + Ch8. Do not fabricate standards — show disclaimer.</div>
+  </div>
+</section>
+
 
 <footer>
   <div class="wrap">
     <div>
       <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
       <h3>Baglung IUDP — Planning Studio</h3>
-      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus, Tribhuvan University · 3rd Semester Planning Studio II. Kisan Guide drawn from the agriculture sector plan and ward fieldwork.</p>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus. Field-level source hierarchy: For Addition (narrative) > Financial MSIP (numeric) > v3 fallback.</p>
     </div>
     <div>
       <h3>Explore</h3>
       <ul>
-        <li><a href="municipality.html">Municipality profile</a></li>
-        <li><a href="sectors.html">Sector plans &amp; MSIP</a></li>
-        <li><a href="demographics.html">Demographic analysis</a></li>
+        <li><a href="overview.html">Plan at a Glance</a></li>
+        <li><a href="spatial.html">Spatial Explorer</a></li>
+        <li><a href="wards.html">Wards</a></li>
       </ul>
     </div>
     <div>
-      <h3>Outputs</h3>
+      <h3>Plan</h3>
       <ul>
-        <li><a href="gallery.html">Charts &amp; maps gallery</a></li>
-        <li><a href="spatial.html">Spatial &amp; GIS</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="investment.html">MSIP</a></li>
+        <li><a href="monitoring.html">Monitoring</a></li>
       </ul>
     </div>
   </div>
-  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio · Local build</span><span>Static site · no build step</span></div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio</span><span>Static site · data/*.json</span></div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
-<script src="js/kisan.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

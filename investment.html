@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investment & MSIP · Baglung IUDP 2026–2041</title>
+<meta name="description" content="Multi-Sector Investment Plan — 15-year programme, phasing, financing, year-one actions. From Finance MSIP doc Ch6.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" aria-label="Primary">
+      <div class="nav-item">
+        <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
+        <div class="dropdown">
+          <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Horizon, vision, objectives</span></a>
+          <a href="municipality.html"><span class="dd-title">Municipality</span><span class="dd-sub">Profile &amp; mandate</span></a>
+          <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Demography, gaps, SWOT</span></a>
+          <a href="spatial.html"><span class="dd-title">Spatial Analysis</span><span class="dd-sub">GIS &amp; interactive map</span></a>
+          <a href="sectors.html"><span class="dd-title">Sector Plans</span><span class="dd-sub">Eight plans &amp; MSIP</span></a>
+          <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; annex</span></a>
+          <a href="investment.html"><span class="dd-title">Investment / MSIP</span><span class="dd-sub">Phasing &amp; finance</span></a>
+          <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Profiles &amp; potential</span></a>
+          <a href="monitoring.html"><span class="dd-title">Monitoring</span><span class="dd-sub">Indicators &amp; scorecard</span></a>
+          <div class="dd-sep"></div>
+          <a href="methodology.html"><span class="dd-title">Method</span><span class="dd-sub">Data lineage</span></a>
+          <a href="references.html"><span class="dd-title">References</span><span class="dd-sub">Sources</span></a>
+          <a href="fieldwork.html"><span class="dd-title">Fieldwork</span><span class="dd-sub">Surveys &amp; records</span></a>
+          <a href="bylaws.html"><span class="dd-title">Bylaws</span><span class="dd-sub">Planning &amp; building</span></a>
+        </div>
+      </div>
+      <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
+      <a href="complaints.html" data-link="complaints.html">Complaints</a>
+      <a href="gallery.html">Gallery</a>
+    </nav>
+  </div>
+</header>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">Home</a> / Investment & MSIP</div>
+    <h1>Multi-Sector Investment Plan<br><em>phasing & financing.</em></h1>
+    <p class="lede">15-year programme (2026–2041) — <b>Phase I / II / III</b>. Totals, sector/ward splits, funding sources, Year-1 actions from <code>Financial_Development_Plan_MSIP_IUDP_Format.docx Ch6.1–6.7</code> (numeric authority). For addition Ch6 secondary, v3 Ch6 fallback.</p>
+    <div class="hero-meta">
+      <span class="chip">💰 15-year MSIP</span><span class="chip">🪜 Phases I-III</span><span class="chip">🏦 Funding</span><span class="chip">📅 Year 1</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section--paper">
+  <div class="wrap">
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch6 · MSIP</span>
+    <h2 style="margin-top:14px">Investment framework</h2>
+    <p class="lede">In Brief: How much, where, when. Total cited in brief as 1,039.4cr — <b>not displayed until verified</b> from source tables.</p>
+    <div class="grid grid--2" style="margin-top:20px">
+      <div class="chart-figure"><span class="fignum">Total</span><div class="figtitle">Total investment</div><p id="totalVal" style="font-size:1.6rem;font-weight:800;color:var(--moss2)">Data not available…</p><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc Ch6.1</code></p></div>
+      <div class="chart-figure"><span class="fignum">Phasing</span><div class="figtitle">Phase breakdown</div><div id="phaseList" style="font-size:0.9rem;line-height:1.6"></div><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc Ch6.3</code></p></div>
+    </div>
+    <div class="table-wrap" style="margin-top:18px"><table id="msipTable"><thead><tr><th>Project / Programme</th><th>Sector</th><th>Ward</th><th>Phase</th><th>Cost (NPR)</th><th>Source</th></tr></thead><tbody><tr><td colspan="6" style="text-align:center;padding:28px;opacity:.6">Populating from <code>data/investment.json</code> + <code>data/projects.json</code> — numeric fields pending extraction. Missing → “Data not available…”</td></tr></tbody></table></div>
+    <div class="note" style="margin-top:14px">Filters only for fields that exist (§28). No invented sectors/costs.</div>
+  </div>
+</section>
+<script>
+  fetch('data/investment.json').then(r=>r.json()).then(j=>{
+    document.getElementById('totalVal').textContent=j.total_investment.value + ' ' + (j.total_investment.unit||'');
+    const pl=document.getElementById('phaseList');
+    pl.innerHTML=j.by_phase.map(p=>`<div><b>${p.phase}</b> (${p.years}): ${p.amount} <span style="opacity:.6">— ${p.provenance}</span></div>`).join('');
+  });
+  fetch('data/projects.json').then(r=>r.json()).then(j=>{
+    const tb=document.querySelector('#msipTable tbody');
+    tb.innerHTML=j.projects.map(p=>`<tr><td>${p.name}</td><td>${p.sector}</td><td>${p.ward}</td><td>${p.phase}</td><td>${p.cost_estimate_npr}</td><td style="font-size:0.78rem">${p.source}</td></tr>`).join('');
+  });
+</script>
+
+
+<footer>
+  <div class="wrap">
+    <div>
+      <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
+      <h3>Baglung IUDP — Planning Studio</h3>
+      <p>M.Sc. Urban Planning (2025–27) · IOE Pulchowk Campus. Field-level source hierarchy: For Addition (narrative) > Financial MSIP (numeric) > v3 fallback.</p>
+    </div>
+    <div>
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="overview.html">Plan at a Glance</a></li>
+        <li><a href="spatial.html">Spatial Explorer</a></li>
+        <li><a href="wards.html">Wards</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Plan</h3>
+      <ul>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="investment.html">MSIP</a></li>
+        <li><a href="monitoring.html">Monitoring</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Baglung Planning Studio</span><span>Static site · data/*.json</span></div>
+</footer>
+<script src="js/nav.js"></script>
+</body>
+</html>
