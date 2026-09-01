@@ -22,9 +22,17 @@ const OVERLAYS = {
   flood:{url:'assets/overlays/flood.png',bounds:BOUNDS.flood,opacity:0.62},
   landslide:{url:'assets/overlays/landslide.png',bounds:BOUNDS.landslide,opacity:0.62},
 };
-let map, baseLayers={}, imageLayers={}, vectorLayers={}, wardLayer, wardData;
+let map, baseLayers={}, imageLayers={}, vectorLayers={}, wardLayer, wardData, conceptsData=null;
 let highlightedWard=null;
 const RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Fetch concepts for zone lookup (core 1-4, corridor 13-14, hills 5-12)
+fetch('data/concepts.json').then(r=>r.json()).then(j=>{ conceptsData=j; }).catch(()=>{});
+function zoneForWard(w){
+  if(!conceptsData) return 'Data not available';
+  const n=Number(w);
+  for(const z of conceptsData.zones){ if(z.wards.includes(n)) return `${z.label} — Wards ${z.wards.join(', ')}`; }
+  return 'Data not available';
+}
 const state = {base:'osm', overlays:{dem:false,hillshade:false,landcover:false,suitability:false,flood:false,landslide:false}, vectors:{wards:true,boundary:true,roads:false,rivers:false,hospitals:false,schools:false,ward_offices:false}};
 
 function wardColor(pop){
@@ -84,7 +92,8 @@ async function initMap(){
     style:f=>({fillColor:wardColor(f.properties.POPULATION),fillOpacity:0.62,color:'#fff',weight:1,opacity:0.9}),
     onEachFeature:(f,layer)=>{
       const p=f.properties;
-      layer.bindPopup(`<b>Ward ${p.WARD}</b><br>Population: ${p.POPULATION?.toLocaleString()||'—'}<br>${p.PALIKA||''}`);
+      const zoneTxt = zoneForWard(p.WARD);
+      layer.bindPopup(`<b>Ward ${p.WARD}</b><br>Population: ${p.POPULATION?.toLocaleString()||'—'} · ${zoneTxt.split(' — ')[0]}<br><a href="wards.html#ward-${p.WARD}" style="color:#1C4F3A;font-weight:700;text-decoration:underline">Ward profile →</a> · <a href="analysis.html" style="color:#1C4F3A">Analysis</a>`);
       layer.on('mouseover',()=>{
         if(String(p.WARD)===String(highlightedWard)) return;
         layer.setStyle({weight:2,fillOpacity:0.78});
@@ -93,7 +102,25 @@ async function initMap(){
         if(String(p.WARD)===String(highlightedWard)) return;
         wardLayer.resetStyle(layer);
       });
-      layer.on('click',()=> { map.fitBounds(layer.getBounds(),{padding:[20,20]}); highlightWard(p.WARD); layer.openPopup(); });
+      layer.on('click',()=> {
+        map.fitBounds(layer.getBounds(),{padding:[20,20]});
+        highlightWard(p.WARD);
+        layer.openPopup();
+        // Update info panel (Plan Explorer chain)
+        const panel=document.getElementById('infoPanel');
+        const title=document.getElementById('infoTitle');
+        const desc=document.getElementById('infoDesc');
+        const links=document.getElementById('infoLinks');
+        const meta=document.getElementById('infoMeta');
+        if(panel && title){
+          panel.style.display='block';
+          title.textContent=`Ward ${p.WARD} — ${zoneTxt.split(' — ')[0]}`;
+          desc.innerHTML=`Population <b>${p.POPULATION?.toLocaleString()}</b> · PALIKA ${p.PALIKA||''} — <b>${zoneTxt}</b>. Trace: <b>Ward → Sector → Project → Investment</b>.`;
+          links.innerHTML=`<a class="btn btn-dark" href="wards.html#ward-${p.WARD}" style="padding:8px 14px;font-size:0.82rem">Ward profile →</a><a class="btn btn-outline" href="spatial.html" style="padding:8px 14px;font-size:0.82rem">Spatial</a><a class="btn btn-outline" href="projects.html" style="padding:8px 14px;font-size:0.82rem">Projects</a><a class="btn btn-outline" href="investment.html" style="padding:8px 14px;font-size:0.82rem">MSIP</a>`;
+          meta.textContent=`Source: wards.geojson (POPULATION) + data/concepts.json (zone) + data/wards.json. Clicked feature — no invented location.`;
+          panel.scrollIntoView({behavior: RM?'auto':'smooth', block:'nearest'});
+        }
+      });
     }
   }).addTo(map);
   vectorLayers.wards=wardLayer;

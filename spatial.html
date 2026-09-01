@@ -102,7 +102,14 @@
       <button class="layer-chip" data-layer="schools">Schools</button>
       <label style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:var(--fs-sm);font-weight:600"><span>Opacity</span><input id="opacity" type="range" min="0.2" max="1" step="0.05" value="0.68" style="accent-color:var(--moss)"><span id="opVal">68%</span></label>
     </div>
-    <p class="map-note">Rasters: DEM &amp; hillshade EPSG:4326; landcover, suitability, flood &amp; landslide reprojected to 4326 as styled PNG imageOverlays. Vectors from <code>Baglung_Vectors.gpkg</code> and ward/road shapefiles.</p>
+    <div id="infoPanel" class="chart-figure" style="margin-top:16px;display:none">
+      <span class="fignum">Selection</span>
+      <div class="figtitle" id="infoTitle">Click a ward or feature</div>
+      <p id="infoDesc" style="font-size:0.9rem;line-height:1.6;color:rgba(27,30,36,0.7)">Ward click → ward profile → development potential → constraints → related sectors → projects → investment. No invented locations — only existing GIS layers.</p>
+      <div id="infoLinks" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"></div>
+      <p id="infoMeta" style="font-size:0.78rem;color:rgba(27,30,36,0.55);margin-top:10px"></p>
+    </div>
+    <p class="map-note">Rasters: DEM &amp; hillshade EPSG:4326; landcover, suitability, flood &amp; landslide reprojected to 4326 as styled PNG imageOverlays. Vectors from <code>Baglung_Vectors.gpkg</code> and ward/road shapefiles. <span style="color:var(--moss);font-weight:700">Plan Explorer:</span> Click a ward to trace the planning chain. Proposal layers only where data exists — no invented geometry.</p>
   </div>
 </section>
 
