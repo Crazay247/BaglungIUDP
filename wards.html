@@ -67,7 +67,7 @@
       <button class="tab" data-filter="hills">Hills 5–12</button>
     </div>
     <div id="wardGrid" class="grid" style="margin-top:16px"></div>
-    <div class="note" style="margin-top:16px">Population 2021 from <code>assets/data/wards.geojson</code>; other fields scaffolded as “Data not available…” until Appendix B extraction. Homestay Ward 10 from <code>report on homestay.docx Ch5</code>.</div>
+    <div class="note" style="margin-top:16px">Pop/Area/Households from <code>For addition.docx Table 3.1</code> (primary, sums to 98.01 km² / 56,102) + Table 4.9 strength/weakness/priority; Appendix B 2011/pop-change/firms/projects as fallback (see <code>data/wards.json</code> conflict note). Ward 10 homestay from <code>report on homestay.docx Ch5</code>. Zones <code>data/concepts.json</code>. Full provenance per field in JSON.</div>
   </div>
 </section>
 <section class="section section--cream">
@@ -83,10 +83,30 @@
     wardsData=j.wards;
     renderWards('all');
   });
+  function fmt(v){ return typeof v==='number' ? v.toLocaleString() : (v||'Data not available…'); }
   function renderWards(filter){
     const g=document.getElementById('wardGrid');
     const f = wardsData.filter(w=> filter==='all' || w.zone===filter);
-    g.innerHTML=f.map(w=>`<a class="card-link" href="wards.html#ward-${w.ward}" data-zone="${w.zone}"><div class="ic">${w.ward}</div><b>Ward ${w.ward}</b> — ${w.zone} · ${w.population_2021.toLocaleString()}<p>Strategy: ${w.strategy}</p><p style="font-size:0.78rem;opacity:.6">Source: ${w.source}</p></a>`).join('');
+    g.innerHTML=f.map(w=>`
+      <div class="card" id="ward-${w.ward}" style="padding:16px 18px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <div class="ic" style="width:38px;height:38px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">${w.ward}</div>
+          <div>
+            <b>Ward ${w.ward}</b> — <span style="text-transform:capitalize;font-weight:700;color:var(--moss)">${w.zone}</span> · ${fmt(w.population_2021)} (2021)
+            <div style="font-size:0.78rem;opacity:.6">Households ${fmt(w.households_2021)} · Area ${fmt(w.area_sq_km)} km² (Table 3.1; Appx ${w.area_appendix_b} km²) · Density ${fmt(w.density_per_sq_km)}/km²</div>
+          </div>
+        </div>
+        <p style="font-size:0.88rem;line-height:1.55"><b>Strength:</b> ${w.key_strength} <span style="opacity:.6">| <b>Weakness:</b> ${w.key_weakness}</span></p>
+        <p style="font-size:0.84rem"><span style="background:rgba(28,79,58,0.08);border:1px solid rgba(28,79,58,0.16);padding:2px 8px;border-radius:100px;font-weight:700;color:var(--moss)">${w.priority_sector}</span> <span style="font-size:0.78rem;opacity:.6">Priority</span></p>
+        <p style="font-size:0.82rem;margin-top:6px"><b>Key projects:</b> ${w.key_project_1} · ${w.key_project_2}</p>
+        <p style="font-size:0.76rem;opacity:.55;margin-top:8px">2011 ${fmt(w.population_2011)} (${w.change_2011_2021}) · Firms ${w.registered_firms}<br>Strategy: ${w.strategy}</p>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-dark" href="spatial.html" style="padding:6px 12px;font-size:0.78rem">Map →</a>
+          <a class="btn btn-outline" href="projects.html" style="padding:6px 12px;font-size:0.78rem">Projects →</a>
+          <a class="btn btn-outline" href="sector-${w.priority_sector.split(',')[0].trim().toLowerCase().replace(' ','-')}.html" style="padding:6px 12px;font-size:0.78rem" onerror="this.style.display='none'">Sector →</a>
+        </div>
+      </div>
+    `).join('');
   }
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));

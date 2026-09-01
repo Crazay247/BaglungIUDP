@@ -57,22 +57,39 @@
 
 <section class="section section--paper">
   <div class="wrap">
-    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch6 · MSIP</span>
-    <h2 style="margin-top:14px">Investment framework</h2>
-    <p class="lede">In Brief: How much, where, when. Total cited in brief as 1,039.4cr — <b>not displayed until verified</b> from source tables.</p>
+    <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ch6 · MSIP · Numeric authority: Financial doc</span>
+    <h2 style="margin-top:14px">Investment framework — ~1,040 crore envelope</h2>
+    <p class="lede">15-year working envelope <b>~NPR 1,040.00 crore</b> at planning-stage unit rates (25% municipal / 55% federal+provincial / 17% private-PPP / 3% DP) — <code>Financial doc Table 6.4 T14</code> (supersedes brief 1,039.4). Gross municipal budget scenario Base 5%: <code>Phase I 635.17 / II 810.66 / III 1034.63 = 2,480.46cr cumulative</code> (T6). <span style="color:var(--moss);font-weight:700">±30% accuracy before DPR/BOQ.</span></p>
     <div class="grid grid--2" style="margin-top:20px">
-      <div class="chart-figure"><span class="fignum">Total</span><div class="figtitle">Total investment</div><p id="totalVal" style="font-size:1.6rem;font-weight:800;color:var(--moss2)">Data not available…</p><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc Ch6.1</code></p></div>
-      <div class="chart-figure"><span class="fignum">Phasing</span><div class="figtitle">Phase breakdown</div><div id="phaseList" style="font-size:0.9rem;line-height:1.6"></div><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc Ch6.3</code></p></div>
+      <div class="chart-figure"><span class="fignum">Total · T14</span><div class="figtitle">Working envelope</div><p id="totalVal" style="font-size:1.6rem;font-weight:800;color:var(--moss2)">1,040.00 NPR crore</p><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc Table 6.4 T14 25% 260 +55% 572 +17% 176.8 +3% 31.2 =1,040.00</code> · Note: brief 1,039.4 is pre-final, now locked to 1,040.</p></div>
+      <div class="chart-figure"><span class="fignum">Phasing · T12 + T6</span><div class="figtitle">Priority 5 projects + gross budget</div><div id="phaseList" style="font-size:0.9rem;line-height:1.65"></div><p style="font-size:0.82rem;opacity:.6">Provenance: <code>Financial doc T12 Priority 5 (51.25cr public/mixed) + T6 gross budget Base 5%</code></p></div>
     </div>
-    <div class="table-wrap" style="margin-top:18px"><table id="msipTable"><thead><tr><th>Project / Programme</th><th>Sector</th><th>Ward</th><th>Phase</th><th>Cost (NPR)</th><th>Source</th></tr></thead><tbody><tr><td colspan="6" style="text-align:center;padding:28px;opacity:.6">Populating from <code>data/investment.json</code> + <code>data/projects.json</code> — numeric fields pending extraction. Missing → “Data not available…”</td></tr></tbody></table></div>
-    <div class="note" style="margin-top:14px">Filters only for fields that exist (§28). No invented sectors/costs.</div>
+    <div class="grid grid--2" style="margin-top:18px">
+      <div class="chart-figure"><span class="fignum">Funding · T13 + T14</span><div class="figtitle">Where the money comes from</div><div id="fundingList" style="font-size:0.88rem;line-height:1.6"></div></div>
+      <div class="chart-figure"><span class="fignum">Year-1 · T7 + T11</span><div class="figtitle">Immediate / Year-1 actions</div><ul id="yearOneList" style="font-size:0.88rem;line-height:1.6;margin-left:18px;color:rgba(27,30,36,0.78)"></ul><p style="font-size:0.78rem;opacity:.6">Provenance: <code>Financial doc Tables T7 RIAP + T11 Plans</code> — MSIP rolling via Annual Review §6.5</p></div>
+    </div>
+    <div class="table-wrap" style="margin-top:18px"><table id="msipTable"><thead><tr><th>Project / Programme</th><th>Sector</th><th>Ward</th><th>Phase</th><th>Cost (NPR)</th><th>Source</th></tr></thead><tbody><tr><td colspan="6" style="text-align:center;padding:28px;opacity:.6">Loading <code>data/investment.json</code> + <code>data/projects.json</code>…</td></tr></tbody></table></div>
+    <div class="note" style="margin-top:14px">By sector / by ward (cr) — <b>Data not available in current IUDP documentation.</b> No numeric table in Financial doc (15 tables) — T14 Col4 only qualitative mapping. Do not invent. Funding split municipal 12% of priority cost shows financing gap reality.</div>
   </div>
 </section>
 <script>
   fetch('data/investment.json').then(r=>r.json()).then(j=>{
-    document.getElementById('totalVal').textContent=j.total_investment.value + ' ' + (j.total_investment.unit||'');
+    document.getElementById('totalVal').textContent=j.total_investment.value + ' ' + j.total_investment.unit;
     const pl=document.getElementById('phaseList');
-    pl.innerHTML=j.by_phase.map(p=>`<div><b>${p.phase}</b> (${p.years}): ${p.amount} <span style="opacity:.6">— ${p.provenance}</span></div>`).join('');
+    pl.innerHTML=j.by_phase.map(p=>{
+      const amt = p.amount_public_mixed_cr ? `${p.amount_public_mixed_cr}cr public/mixed (${p.amount_total_with_resort_cr}cr with resort)` : (p.amount||'Data not available…');
+      const gross = p.gross_budget_scenario ? `Base 5% gross ${p.gross_budget_scenario.base_5pct}cr` : '';
+      return `<div style="margin-bottom:8px"><b>${p.phase}</b> <span style="opacity:.7">(${p.years})</span>: <b>${amt}</b><br><span style="font-size:0.78rem;opacity:.6">${gross} — ${p.provenance}</span></div>`;
+    }).join('');
+    const fl=document.getElementById('fundingList');
+    if(j.funding_sources && j.funding_sources.working_framework_1040cr){
+      fl.innerHTML=j.funding_sources.working_framework_1040cr.map(f=>`<div><b>${f.source}</b> ${f.share_pct}% · ${f.amount_cr}cr <span style="opacity:.6">— ${f.use}</span></div>`).join('');
+    }
+    const yl=document.getElementById('yearOneList');
+    if(j.year_one_actions){
+      const acts=[...(j.year_one_actions.immediate_phase_I||[]), ...(j.year_one_actions.plans_programmes||[])].slice(0,6);
+      yl.innerHTML=acts.map(a=>`<li>${a}</li>`).join('');
+    }
   });
   fetch('data/projects.json').then(r=>r.json()).then(j=>{
     const tb=document.querySelector('#msipTable tbody');

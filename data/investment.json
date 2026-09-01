@@ -1,20 +1,127 @@
 {
-  "_provenance": "Financial_Development_Plan_MSIP_IUDP_Format.docx Ch6 (6.1–6.7) numeric authority; For addition.docx Ch6 secondary. v3 Ch6.1 fallback. No synthesis — record conflicts.",
-  "_conflict_log": [],
-  "total_investment": {
-    "value": "Data not available in current IUDP documentation.",
-    "unit": "NPR",
-    "provenance": "Financial doc Ch6.1 — pending extraction (brief cites 1,039.4cr but verify from tables)",
-    "note": "Brief §7 cites 1,039.4cr 15-year; do not display until verified from source tables"
-  },
-  "by_sector": [],
-  "by_phase": [
-    {"phase": "Phase I", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3 Phasing logic"},
-    {"phase": "Phase II", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3"},
-    {"phase": "Phase III", "years": "Data not available in current IUDP documentation.", "amount": "Data not available in current IUDP documentation.", "provenance": "Financial doc Ch6.3"}
+  "_provenance": "Field-level hierarchy: Financial_Development_Plan_MSIP_IUDP_Format.docx Ch6 (6.1–6.7) numeric authority > For addition.docx Ch6 secondary > v3 Ch6.1 fallback. Verbatim table titles preserved. No synthesis.",
+  "_conflict_log": [
+    "Total envelope: brief cites 1,039.4cr (pre-final ±30% planning accuracy, For addition P145) vs Finance doc T14 1,040.00cr working envelope — using 1,040.00 as locked numeric authority with footnote."
   ],
-  "by_ward": [],
-  "funding_sources": [],
-  "year_one_actions": [],
-  "note": "Filters (sector/phase/ward/priority/funding) only where fields exist per §28. Do not create filters for missing fields."
+  "total_investment": {
+    "value": "1,040.00",
+    "unit": "NPR crore",
+    "provenance": "Financial doc Table 6.4 Financing Framework for the Wider IUDP (T14) — total 100% =1,040.00; also P25/41 working fifteen-year envelope ~NPR 1,040cr at 25/55/17/3 split. Supersedes brief 1,039.4 (rounded).",
+    "note": "Working IUDP envelope pending final cross-sector cost consolidation; Finance doc 1,040.00 is locked numeric authority."
+  },
+  "by_sector": {
+    "_note": "No dedicated numeric table for investment by sector (cr) found in Financial doc (15 tables) or For addition (53 tables) — closest T14 Col4 maps financing to sectors qualitatively only. Do not invent; show disclaimer.",
+    "value": "Data not available in current IUDP documentation.",
+    "provenance": "Searched HDR Sector|Cost — negative; T14 qualitative mapping only"
+  },
+  "by_phase": [
+    {
+      "phase": "Phase I",
+      "years": "2026–2031 (5yrs)",
+      "amount_public_mixed_cr": "22.95",
+      "amount_total_with_resort_cr": "22.95",
+      "provenance": "Finance doc Table 6.2 Priority Project Phasing T12 — sum Phase I 22.95 of 51.25 public/mixed; gross municipal budget scenario Base 5% 635.17 (T6)",
+      "gross_budget_scenario": {
+        "conservative_3pct": "610.29",
+        "base_5pct": "635.17",
+        "higher_7pct": "661.05"
+      }
+    },
+    {
+      "phase": "Phase II",
+      "years": "2031–2036 (5yrs)",
+      "amount_public_mixed_cr": "19.80",
+      "amount_total_with_resort_cr": "34.80",
+      "provenance": "Finance doc T12 Phase II 19.80 + resort 15.00 all Phase II =34.80; gross Base 810.66 (T6)",
+      "gross_budget_scenario": {
+        "conservative_3pct": "707.49",
+        "base_5pct": "810.66",
+        "higher_7pct": "927.15"
+      }
+    },
+    {
+      "phase": "Phase III",
+      "years": "2036–2041 (5yrs)",
+      "amount_public_mixed_cr": "8.50",
+      "amount_total_with_resort_cr": "8.50",
+      "provenance": "Finance doc T12 Phase III 8.50; gross Base 1034.63 (T6)",
+      "gross_budget_scenario": {
+        "conservative_3pct": "820.17",
+        "base_5pct": "1034.63",
+        "higher_7pct": "1300.38"
+      }
+    }
+  ],
+  "priority_projects_phasing": {
+    "_provenance": "Finance doc Table 6.2 Priority Project Phasing T12 (8 rows ×6 HDR+7, ~p8/11 seq43)",
+    "projects": [
+      {"id": "P1", "name": "Agro-Processing, Collection & Cold-Chain Centre", "total_cr": "33.00", "phase_I": "18.00", "phase_II": "10.00", "phase_III": "5.00", "provenance": "T12 R02 + T8 R02 + T13 R02"},
+      {"id": "P2", "name": "Bhakunde Homestay & One-Day/One-Night Route (Ward 10)", "total_cr": "2.25", "phase_I": "0.75", "phase_II": "1.00", "phase_III": "0.50", "provenance": "T12 R03"},
+      {"id": "P3", "name": "Bhairabsthan Adventure & Pilgrimage Package (incl. rafting/bungy scope)", "total_cr": "4.50", "phase_I": "1.00", "phase_II": "2.50", "phase_III": "1.00", "provenance": "T12 R04 — provisional allowance, hydrology/geotech pending"},
+      {"id": "P4", "name": "Shaligram Museum, Meditation & Pilgrim Hub", "total_cr": "6.00", "phase_I": "2.00", "phase_II": "3.00", "phase_III": "1.00", "provenance": "T12 R05 — final team estimate"},
+      {"id": "P5", "name": "Kalika-Malika-Panchakot Heritage & Spiritual Circuit (public)", "total_cr": "5.50", "phase_I": "1.20", "phase_II": "3.30", "phase_III": "1.00", "provenance": "T12 R06 — public circuit; plus private eco-resort 15.00 all Phase II"},
+      {"id": "P5a", "name": "Eco-resort (private/PPP illustrative)", "total_cr": "15.00", "phase_I": "0.00", "phase_II": "15.00", "phase_III": "0.00", "provenance": "T12 R07 resort row — private, not municipal CAPEX"},
+      {"id": "TOTAL_PUBLIC_MIXED", "name": "TOTAL public/mixed", "total_cr": "51.25", "phase_I": "22.95", "phase_II": "19.80", "phase_III": "8.50", "provenance": "T12 R07"},
+      {"id": "TOTAL_WITH_RESORT", "name": "TOTAL with resort mobilised", "total_cr": "66.25", "phase_I": "22.95", "phase_II": "34.80", "phase_III": "8.50", "provenance": "T12 R07 + P5a"}
+    ]
+  },
+  "funding_sources": {
+    "_provenance": "Finance doc Table 6.3 T13 per-project split (7×7 HDR+6 ~p8-9) + Table 6.4 T14 working 25/55/17/3 (~p9) + Table 6.3 context FY82/83 budget",
+    "working_framework_1040cr": [
+      {"source": "Municipal own funds", "share_pct": "25", "amount_cr": "260.00", "use": "Major roads, water/sanitation, social infra, DRR", "provenance": "T14 R02"},
+      {"source": "Federal + provincial", "share_pct": "55", "amount_cr": "572.00", "use": "Federal/provincial grants, incl. NUGIP", "provenance": "T14 R03"},
+      {"source": "Private / PPP", "share_pct": "17", "amount_cr": "176.80", "use": "PPP/coop, private resort", "provenance": "T14 R04"},
+      {"source": "Development Partner (DP)", "share_pct": "3", "amount_cr": "31.20", "use": "DP", "provenance": "T14 R05"},
+      {"source": "TOTAL", "share_pct": "100", "amount_cr": "1,040.00", "use": "Working envelope pending final consolidation", "provenance": "T14 R06"}
+    ],
+    "priority_5_projects_split_cr": [
+      {"project": "P1 Agro 33.00", "municipality": "3.30", "province": "8.25", "federal_dp": "9.90", "private_ppp_coop": "11.55", "community_trust": "0.00", "total": "33.00", "provenance": "T13 R02"},
+      {"project": "P2 Bhakunde 2.25", "municipality": "0.45", "province": "0.45", "federal_dp": "0.45", "private_ppp_coop": "0.45", "community_trust": "0.45", "total": "2.25", "provenance": "T13 R03"},
+      {"project": "P3 Bhairabsthan 4.50", "municipality": "0.67", "province": "1.13", "federal_dp": "1.35", "private_ppp_coop": "0.90", "community_trust": "0.45", "total": "4.50", "provenance": "T13 R04"},
+      {"project": "P4 Shaligram 6.00", "municipality": "0.90", "province": "1.50", "federal_dp": "1.80", "private_ppp_coop": "0.90", "community_trust": "0.90", "total": "6.00", "provenance": "T13 R05"},
+      {"project": "P5 Heritage 5.50", "municipality": "0.83", "province": "1.38", "federal_dp": "1.93", "private_ppp_coop": "0.81", "community_trust": "0.55", "total": "5.50", "provenance": "T13 R06"},
+      {"project": "TOTAL public/mixed 51.25", "municipality": "6.15", "province": "12.71", "federal_dp": "15.43", "private_ppp_coop": "14.61", "community_trust": "2.35", "total": "51.25", "provenance": "T13 R07 — municipal share only 12% of flagship cost"}
+    ],
+    "current_budget_context": {
+      "fy_2082_83_total_cr": "130.96",
+      "fy_2083_84_total_cr": "114.95",
+      "change_pct": "-12.2",
+      "internal_plus_bank": "14.79 → 18.00",
+      "revenue_sharing": "16.13 → 15.55",
+      "federal_grants": "91.35 → 78.22",
+      "provincial_grants": "3.19 → 3.17",
+      "autonomy_2328": "23.6% → 29.2%",
+      "capital_share": "33.8%",
+      "tdf_debt_annual_cr": "3.50 (3.0% budget)",
+      "provenance": "Finance doc T1 FY82/83 budget §5.6.1 ~p1-2"
+    }
+  },
+  "year_one_actions": {
+    "_provenance": "Finance doc Table 5.6.7 RIAP T7 (9×4 ~p5 seq28) + Table 5.6.10 T11 Plans 8×4 (~p7 seq37) + For addition 5.5.8 institutional 10×4 (~p89)",
+    "immediate_phase_I": [
+      "Separate own-source vs bank balance: audited baseline + monthly dashboard → Finance/Revenue (T7)",
+      "GIS property/business: link parcels in core wards first → Revenue+GIS/ICT (T7)",
+      "Digital billing: expand e-payment + reconciliation → Revenue+ICT (T7)",
+      "Business registration drive → BCCI/Wards (T7)",
+      "Davgara Bus Park: enforce routing + separate operating account → Municipality/Transport (T7)",
+      "Asset inventory + lease docs → Executive/Legal (T7)",
+      "Tourism fees → Tourism/Finance (T7)",
+      "Project DPR pipeline + matching funds → Planning/Finance (T7)"
+    ],
+    "plans_programmes": [
+      "Municipal Revenue DB & GIS Tax → Phase I-High (T11)",
+      "Asset & Bus Park Revenue → Phase I-High (T11)",
+      "Strategic Capital Pooling & MSIP Budgeting → Phase I onward-High (T11)",
+      "Project Preparation & Co-financing Facility → Phase I-II High (T11)",
+      "PPP/Coop Investment → Phase I-II High (T11)",
+      "O&M Lifecycle → All phases-High (T11)",
+      "Financial Monitoring & Annual MSIP Review → Annual-High (T11) — MSIP rolling, §6.5 rules (T15)"
+    ]
+  },
+  "by_ward": {
+    "_note": "No ward-wise financial allocation table (cr) found in Financial doc (15 tables) — only fragment 6.40cr ward allocations +4.00cr municipal pool to be pooled for corridor (P07). Do not invent; show disclaimer.",
+    "value": "Data not available in current IUDP documentation.",
+    "provenance": "Searched For addition + Finance — negative; ward tables are demographic/institutional (Table 3.1, 4.9, 3.3-3.5) not cost"
+  },
+  "note": "All amounts are planning-stage estimates at unit rates; Finance doc P145: ±30% accuracy before DPR/BOQ. MSIP rolling via Annual Review (T15, §6.5). Filters only where fields exist per §28."
 }

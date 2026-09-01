@@ -1,7 +1,33 @@
 {
-  "_provenance": "Field-level hierarchy: 1) For addition.docx (narrative) 2) Financial_Development_Plan_MSIP_IUDP_Format.docx (numeric: cost/phase/funding) 3) v3 fallback 4) IUDP PROJECTS DESIGNS.docx annex 4-5 5) report on homestay.docx Ward10. MERGED.docx deprecated. Every cost/phase has provenance; missing → 'Data not available in current IUDP documentation.'",
+  "_provenance": "Field-level hierarchy: 1) For addition.docx narrative > 2) Financial_Development_Plan_MSIP_IUDP_Format.docx numeric (cost/phase/funding) > 3) v3 fallback > 4) IUDP PROJECTS DESIGNS.docx annex > 5) homestay. Added P1 Agro (33cr) and P3 Bhairabsthan (4.5cr) from Finance T12 to complement legacy 3 flagships (103cr text superseded by 5 priority). MERGED deprecated.",
   "_next_step": "Populate from Ch6 MSIP tables + Ch7 flagship sections + For Addition annexes. Do not fabricate.",
   "projects": [
+    {
+      "id": "priority-P1-agro",
+      "name": "Agro-Processing, Collection & Cold-Chain Centre (500-1000T)",
+      "sector": "economic",
+      "sub_sector": "Agro-processing",
+      "ward": "Data not available in current IUDP documentation.",
+      "location": "Ward 8/4 (Cold storage) per For addition Ch5.4.9 — verify",
+      "description": "From Financial doc P1 (largest, 33.00cr) — productive flagship, modular PPP/coop. DPR + equipment quotes required. Replaces generic 3-project industrial flag.",
+      "rationale": "Low value addition core problem (For addition Ch5.4.5 Problem Tree)",
+      "objective": "Diversify local economy beyond retail trade (Ch2 Objective 2)",
+      "strategy": "Cold chain 500-1000T, collection, Made-in-Baglung 15 products (Ch5.4.8 LFA)",
+      "priority": "Priority A — largest investment",
+      "phase": "Phase I 18.00 / Phase II 10.00 / Phase III 5.00 (Total 33.00cr)",
+      "phase_provenance": "Financial doc T12 R02",
+      "start_year": "2026",
+      "end_year": "2041",
+      "cost_estimate_npr": "33.00 (18.00+10.00+5.00)",
+      "cost_provenance": "Financial doc Table 6.2 T12 R02 — P1 Agro 33.00 planning envelope, modular PPP/coop",
+      "funding_source": "Municipality 3.30 / Province 8.25 / Federal+DP 9.90 / Private/PPP 11.55 / Community 0.00 =33.00 (T13 R02)",
+      "funding_provenance": "Financial doc Table 6.3 T13 R02",
+      "implementing_agency": "Data not available in current IUDP documentation.",
+      "outcome": "6 outputs: cold chain, collection, etc. (Ch5.4.8 LFA)",
+      "risk": "DPR/BOQ pending ±30%",
+      "status": "proposed",
+      "source": "Financial doc T8 R02, T9 R02, T12 R02, T13 R02 — numeric authority; For addition Ch5.4.9 narrative"
+    },
     {
       "id": "flagship-01-rafting",
       "name": "Kali Gandaki Rafting Corridor",
@@ -14,17 +40,18 @@
       "objective": "Data not available in current IUDP documentation.",
       "strategy": "Data not available in current IUDP documentation.",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Data not available in current IUDP documentation.",
+      "phase": "2026–2031 (Phase I 1.00) / 2031–2036 (2.50) / 2036–2041 (1.00)",
       "start_year": "Data not available in current IUDP documentation.",
       "end_year": "Data not available in current IUDP documentation.",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "cost_provenance": "Financial_Development_Plan_MSIP_IUDP_Format.docx Ch6 (numeric authority) — pending extraction",
+      "cost_estimate_npr": "4.50 (P3 Bhairabsthan package — includes rafting/bungy scope, Finance T12 R04 provisional)",
+      "cost_provenance": "Financial doc Table 6.2 T12 R04 — P3 Bhairabsthan 4.50cr (1.00+2.50+1.00), rafting/bungy licensed to operators; not standalone",
       "funding_source": "Data not available in current IUDP documentation.",
       "implementing_agency": "Data not available in current IUDP documentation.",
       "outcome": "Data not available in current IUDP documentation.",
       "risk": "Data not available in current IUDP documentation.",
       "status": "proposed",
-      "source": "v3 Ch7.1; For addition.docx Ch7.1 (narrative); Financial doc Ch6 (cost)"
+      "source": "v3 Ch7.1; For addition.docx Ch7.1 (narrative); Financial doc Ch6 (cost)",
+      "phase_provenance": "T12 R04"
     },
     {
       "id": "flagship-02-bungy",
@@ -35,9 +62,9 @@
       "description": "From v3 Ch7.2 + For addition.docx Ch7.2",
       "rationale": "Data not available in current IUDP documentation.",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Data not available in current IUDP documentation.",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "cost_provenance": "Financial doc Ch6",
+      "phase": "2026–2031 (1.00) / 2031–2036 (2.50) / 2036–2041 (1.00)",
+      "cost_estimate_npr": "4.50 (same P3 package — see rafting)",
+      "cost_provenance": "Financial doc T12 R04 — shared with rafting scope, hydrology/geotech pending",
       "funding_source": "Data not available in current IUDP documentation.",
       "source": "v3 Ch7.2; For addition.docx Ch7.2; Financial doc Ch6"
     },
@@ -50,10 +77,11 @@
       "description": "From v3 Ch7.3 + For addition.docx Ch7.3",
       "rationale": "Data not available in current IUDP documentation.",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Data not available in current IUDP documentation.",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "cost_provenance": "Financial doc Ch6",
-      "source": "v3 Ch7.3; For addition.docx Ch7.3; Financial doc Ch6"
+      "phase": "Phase I 1.20 / Phase II 3.30 (+15.00 resort) / Phase III 1.00",
+      "cost_estimate_npr": "5.50 public + 15.00 private resort illustrative (P5 Heritage circuit, Finance T12 R06-07)",
+      "cost_provenance": "Financial doc T12 R06 P5 5.50 (1.20+3.30+1.00) + P5a resort 15.00 all Phase II = 66.25 mobilised",
+      "source": "v3 Ch7.3; For addition.docx Ch7.3; Financial doc Ch6",
+      "phase_provenance": "T12 R06-07"
     },
     {
       "id": "annex-04-shaligram",
@@ -64,10 +92,13 @@
       "location": "Data not available in current IUDP documentation.",
       "description": "From IUDP PROJECTS DESIGNS.docx PROJECT 4 — Zoning A–E, Meditation Centre, Retreat/Stay, Accommodation A–C, Visitor Flow, Economic/Livelihood, Financial Model",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Data not available in current IUDP documentation.",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "cost_provenance": "IUDP PROJECTS DESIGNS.docx PROJECT 4 Financial Model section",
-      "source": "IUDP PROJECTS DESIGNS.docx PROJECT 4 (11 H1s) — not in v3 core"
+      "phase": "Phase I 2.00 / II 3.00 / III 1.00",
+      "cost_estimate_npr": "6.00 (2.00+3.00+1.00)",
+      "cost_provenance": "Financial doc T12 R05 — P4 Shaligram 6.00 final team estimate",
+      "source": "IUDP PROJECTS DESIGNS.docx PROJECT 4 (11 H1s) — not in v3 core",
+      "phase_provenance": "T12 R05",
+      "funding_source": "See investment.json funding_sources priority_5_projects_split (T13) — e.g., municipality 0.90/0.83/0.45 etc.",
+      "funding_provenance": "Financial doc Table 6.3 T13"
     },
     {
       "id": "annex-05-kalika-malika",
@@ -78,10 +109,13 @@
       "location": "Data not available in current IUDP documentation.",
       "description": "From IUDP PROJECTS DESIGNS.docx PROJECT 5 — 17 heads",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Data not available in current IUDP documentation.",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "cost_provenance": "IUDP PROJECTS DESIGNS.docx PROJECT 5",
-      "source": "IUDP PROJECTS DESIGNS.docx PROJECT 5"
+      "phase": "Phase I 1.20 / II 3.30 / III 1.00 (+15 resort II)",
+      "cost_estimate_npr": "5.50 public (1.20+3.30+1.00) + 15.00 private eco-resort",
+      "cost_provenance": "Financial doc T12 R06-07",
+      "source": "IUDP PROJECTS DESIGNS.docx PROJECT 5",
+      "phase_provenance": "T12 R06-07",
+      "funding_source": "See investment.json funding_sources priority_5_projects_split (T13) — e.g., municipality 0.90/0.83/0.45 etc.",
+      "funding_provenance": "Financial doc Table 6.3 T13"
     },
     {
       "id": "homestay-ward10",
@@ -92,9 +126,28 @@
       "location": "Ward 10 — Strategic cluster location Ch5.1–5.4 report on homestay.docx",
       "description": "From report on homestay.docx — Existing situation Ch1, flow Ch2, activity mapping Ch3, 1D/1N route Ch4, cluster siting Ch5, area calc Ch6, architectural concept Ch7, Phase 1–4 actions Ch9",
       "priority": "Data not available in current IUDP documentation.",
-      "phase": "Phase 1–4 per Ch9",
-      "cost_estimate_npr": "Data not available in current IUDP documentation.",
-      "source": "report on homestay.docx (104p) — Ward 10"
+      "phase": "Phase I 0.75 / II 1.00 / III 0.50",
+      "cost_estimate_npr": "2.25 (0.75+1.00+0.50)",
+      "source": "report on homestay.docx (104p) — Ward 10",
+      "cost_provenance": "Financial doc T12 R03 — P2 Bhakunde 2.25 concept estimate",
+      "phase_provenance": "T12 R03",
+      "funding_source": "See investment.json funding_sources priority_5_projects_split (T13) — e.g., municipality 0.90/0.83/0.45 etc.",
+      "funding_provenance": "Financial doc Table 6.3 T13"
+    },
+    {
+      "id": "priority-P3-bhairabsthan",
+      "name": "Bhairabsthan Adventure & Pilgrimage Package",
+      "sector": "tourism",
+      "ward": "Data not available in current IUDP documentation.",
+      "location": "Bhairabsthan — includes rafting/bungy scope per Finance doc note",
+      "description": "From Financial doc P3 (4.50cr provisional allowance) — includes rafting/bungy corridor scope of old 3-flagships; public covers pilgrim/public-realm, rafting/climbing licensed to operators. Requires hydrology/geotech/safety studies.",
+      "priority": "Provisional",
+      "phase": "Phase I 1.00 / II 2.50 / III 1.00 (Total 4.50cr)",
+      "phase_provenance": "Finance T12 R04",
+      "cost_estimate_npr": "4.50 (1.00+2.50+1.00) provisional",
+      "cost_provenance": "Finance T12 R04",
+      "funding_source": "0.67 municipal / 1.13 province / 1.35 federal / 0.90 private / 0.45 community =4.50 (T13 R04)",
+      "source": "Financial doc T8 R04, T9 R04, T12 R04, T13 R04"
     }
   ]
 }
