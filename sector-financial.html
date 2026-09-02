@@ -104,7 +104,7 @@
 
 <section class="section section--cream">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Existing situation · Finance doc Ch5.6</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Existing situation</span>
  <h2 style="margin-top:14px">A budget that shrank while autonomy rose</h2>
  <p class="lede">FY82/83 to FY83/84: total budget fell 12.2% from NPR 130.96 cr to 114.95 cr — federal grants dropped from 91.35 to 78.22 while internal &amp; bank revenue rose 14.79 → 18.00. Autonomy climbed 23.6% → 29.2%, but the base is too thin.</p>
  <div class="table-wrap reveal" style="margin-top:24px">
@@ -119,13 +119,13 @@
  </tbody>
  </table>
  </div>
- <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Source: Finance doc Ch5.6.1 — budget data your municipal record; capital formation 33.8%.</p>
+ 
  </div>
 </section>
 
 <section class="section section--paper">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Key problems · Ch5.6</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Key problems</span>
  <h2 style="margin-top:14px">Three fiscal fragilities</h2>
  <div class="table-wrap reveal" style="margin-top:24px">
  <table>
@@ -138,13 +138,13 @@
  </tbody>
  </table>
  </div>
- <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Source: Finance doc Ch5.6 — dependence, low own-source, under-used asset framing.</p>
+ 
  </div>
 </section>
 
 <section class="section section--cream">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Alternatives · Ch5.6</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Alternatives</span>
  <h2 style="margin-top:14px">Four fiscal options, two grades apart</h2>
  <p class="lede">Fiscal strategy compares four options; the integrated package scores 24/24 outside the single-best 23 — but every option is decided against outlook scenarios of 3% / 5% / 7% growth.</p>
  <div class="table-wrap reveal" style="margin-top:24px">
@@ -158,13 +158,13 @@
  </tbody>
  </table>
  </div>
- <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Source: Finance doc Ch5.6 alternatives — 23/24 near-cluster; growth-outlook scenarios from the MSIP section.</p>
+ 
  </div>
 </section>
 
 <section class="section section--paper">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Strategy &amp; programmes · RIAP T7 + Plans T11</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Strategy &amp; programmes</span>
  <h2 style="margin-top:14px">Revenue DB, asset inventory, one real bus park</h2>
  <p class="lede">Nine RIAP actions and eight Plan actions operationalise the fiscal objective. The highest-leverage start: the Revenue Database with GIS tax layer — Phase I — High.</p>
  <div class="grid" style="margin-top:28px">
@@ -173,7 +173,7 @@
  <div class="card reveal"><div class="cap"><span class="tagline">MSIP</span><b>Envelope budgeting</b><p>Pool 1,040 cr (25/55/17/3 public/PPP/grant/sources) against the programme phasing.</p></div></div>
  <div class="card reveal"><div class="cap"><span class="tagline">PPP facility</span><b>Partnership framework</b><p>A standing PPP structure to absorb the 55% private share of the envelope.</p></div></div>
  </div>
- <div class="note" style="margin-top:24px"><b>Money note.</b> Of the 1,040 cr envelope, total <em>public</em> outlay is 51.25 cr across P1–P5 — the crowding-in engine, not the whole bill. <b>Risks:</b> grant cut, TDF debt service. <span style="font-size:0.82rem;opacity:.6">Source: Finance doc T7 / T11 / T14; cross-ref <a href="investment.html">MSIP &amp; Phasing</a>.</span></div>
+ <div class="note" style="margin-top:24px"><b>Money note.</b> Of the 1,040 cr envelope, total <em>public</em> outlay is 51.25 cr across P1–P5 — the crowding-in engine, not the whole bill. <b>Risks:</b> grant cut, TDF debt service.</div>
  <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Spatially: fiscal is not a map sector, but the envelope is what funds the <a href="spatial.html">corridor projects</a> — the money follows the concept.</p>
  </div>
 </section>
@@ -266,12 +266,13 @@
 <script src="js/search-index.js"></script>
 <script src="js/search.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/project-blurbs.js"></script>
 <script>
   fetch('data/projects.json').then(r=>r.json()).then(j=>{
     const c=document.getElementById('relProjects-financial');
     const rel=j.projects.filter(p=>p.sector==="financial");
     if(!rel.length) c.innerHTML='<div class="card"><div class="cap"><p>Related projects pending cross-ref — check <a href="projects.html">Project Explorer</a>.</p></div></div>';
-    else c.innerHTML=rel.map(p=>`<a class="card-link" href="projects.html#${p.id}"><b>${p.name}</b><p>${p.description}</p></a>`).join('');
+    else c.innerHTML=rel.map(p=>`<a class="card-link" href="projects.html#${p.id}"><b>${p.name}</b><p>${PROJECT_DESC(p.id,p.description)}</p></a>`).join('');
   });
 </script>
 </body>

@@ -23,7 +23,7 @@
   .pcard__body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:10px}
   .pcard__tagline{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--moss)}
   .pcard h3{margin:0;font-family:var(--font-head);font-size:1.06rem;line-height:1.25;color:var(--ink)}
-  .pcard__desc{font-size:.82rem;line-height:1.5;color:rgba(27,30,36,.8);margin:0}
+  .pcard__desc{font-size:.82rem;line-height:1.5;color:rgba(27,30,36,.78);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .pcard__chips{display:flex;gap:6px;flex-wrap:wrap}
   .pcard__chip{font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:100px;background:rgba(28,79,58,.08);border:1px solid rgba(28,79,58,.18);color:var(--moss)}
   .pcard__chip--gold{background:rgba(242,169,0,.12);border-color:rgba(242,169,0,.35);color:#9c6a00}
@@ -48,7 +48,7 @@
   .fin-oth{background:#B9B3A6}
   .pcard__status{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:.68rem;font-weight:800;color:var(--moss)}
   .pcard__status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(242,169,0,.22)}
-  .pcard__foot{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(27,30,36,.14);font-size:.68rem;color:rgba(27,30,36,.6);line-height:1.45}
+  .pcard__foot{margin-top:auto;padding-top:10px;border-top:1px solid rgba(27,30,36,.07);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(27,30,36,.48)}
   .pcard__actions{display:flex;gap:8px;padding:12px 16px 14px;border-top:1px solid rgba(27,30,36,.07);background:rgba(255,253,249,.6)}
   .pcard__actions .btn{flex:1;text-align:center;padding:7px 10px;font-size:.76rem}
   .plink-f{display:flex;align-items:center;gap:4px}
@@ -157,8 +157,8 @@
  <select id="wardFilter" aria-label="Filter by ward"><option value="">All wards</option><option value="10">Ward 10</option></select>
  <select id="phaseFilter" aria-label="Filter by phase"><option value="">Any phase</option><option value="Phase I">Phase I</option><option value="Phase II">Phase II</option><option value="Phase III">Phase III</option></select>
  </div>
- <div id="projGrid" class="grid" style="margin-top:18px"></div>
-<div class="note" style="margin-top:14px">Every figure carries its provenance (Finance doc vs v3 vs narrative). Missing → “Data not available…”</div>
+<div id="projGrid" class="grid" style="margin-top:18px"></div>
+  <div class="note" style="margin-top:14px">Project phasing and funding figures are drawn from the plan's finance and sector documents.</div>
   </div>
 </section>
 <script>
@@ -206,6 +206,56 @@
     if(p.id.includes('homestay')||p.type==='homestay-cluster') return 'HOMESTAY';
     if(p.priority&&/provisional/i.test(p.priority)) return 'PROVISIONAL';
     return 'PROGRAMME';
+  }
+  // ---- Minimal, site-facing copy (no provenance, no field notes) ----
+  function stripPrefix(s){
+    return String(s||'')
+      .replace(/\s*(?:From|See)\s+[^:]*?\.?docx\s*[—-]?\s*(?:PROJECT\s*\d+)?\s*[—-]\s*/i,'')
+      .replace(/^From\s+[^:]*?\s*[:-]\s*/i,'')
+      .replace(/From\s+(?:v3|For addition|Financial doc|IUDP)[^;.;]*?[.;]\s*/i,'')
+      .trim();
+  }
+  // Site one-liners — derived ONLY from existing data fields (never invented numbers).
+  const BLURB={
+    'annex-04-shaligram':'Museum, meditation centre and pilgrim facilities on the Kali Gandaki at Kundule, Ward 4 — an economic catalyst for the ward and its surroundings.',
+    'annex-05-kalika-malika':'A heritage circuit linking Kalika Bhagawati, the Malika forest and the Panchakot ridge — 17 project heads and a private eco-resort.',
+    'homestay-ward10':'A 1D/1N homestay route around Baraha Lake — a booking desk and quality standard to revive 11 registered homestays, 4 of them operating.',
+    'flagship-02-bungy':'A 120–150 m drop on the Baglung bank of the Kali Gandaki gorge, opposite the Kushma jump — the bankable flagship at IRR 32%.',
+    'flagship-03-cablecar':'A ~1.6 km lift from the bazaar edge to the Panchakot ridge, built on existing 5,000–7,000 visitor/day demand.',
+    'flagship-01-rafting':'A ~25 km grade 2–3 corridor from Balewa to Ramrekha — 10-year concession turning the river into a revenue asset.',
+    'priority-P1-agro':'Cold chain, collection and processing infrastructure serving Wards 8 and 4 — the largest single investment in the plan.',
+    'priority-P3-bhairabsthan':'A provisional public-realm package covering pilgrim, rafting and climbing infrastructure, licensed to operators.',
+    'pl-physical-spine':'64.2 km of strategic all-weather blacktop, a bazaar storm-drainage trunk, four gravity tanks and a working bus park — drain first, blacktop second.',
+    'pl-social-services':'Consolidate nine under-enrolled schools into destination schools, upgrade the Ward 7 health post, and roll out child-protection and geriatric care in the thin hills wards.',
+    'pl-environment-waste-forest':'Scale zero-waste collection to all 14 wards, close the open dump, and protect the green belt — no net forest loss.',
+    'pl-drr-resilience':'Early-warning sirens on the river, slope works on the landslide corridor, and a hazard screen on every project.',
+    'pl-financial-revenue':'One revenue database with a GIS tax layer, a complete asset inventory, and a monetised bus park.',
+    'pl-institutional-capacity':'Add GIS and urban-planning staff, launch the Baglung App and call centre, and keep mapping capability in-house.'
+  };
+  function cleanDesc(p){
+    if(BLURB[p.id]) return BLURB[p.id];
+    // Prefer a substantive stripped description; fall back to objective/strategy/outcome.
+    const stripped=stripPrefix(p.description);
+    if(stripped && stripped.trim().length>18) return stripped;
+    const clean=[p.objective,p.strategy,p.outcome,p.rationale]
+      .filter(x=>x&&typeof x==='string'&&x.trim().length>10)
+      .map(x=>x.trim());
+    return clean[0]||'Proposed project.';
+  }
+  function wardLabel(p){
+    const w=p.ward;
+    if(typeof w==='number') return 'Ward '+w;
+    const m=String(w).match(/(Ward(?:s)?\s+\d+(?:[–,]\s*\d+)*)/i);
+    return m?m[1]:String(w).replace(/\s*—.*$/,'').slice(0,26);
+  }
+  function footSource(p){
+    const s=String(p.source||'');
+    const id=p.id;
+    if(id==='annex-04-shaligram'||id==='annex-05-kalika-malika'||/IUDP PROJECTS DESIGNS/i.test(s)) return 'Project designs';
+    if(/homestay/i.test(s)) return 'Homestay report';
+    if(/Financial/i.test(s)&&!/v3/i.test(s)) return 'Finance plan';
+    if(/v3/i.test(s)) return 'IUDP Plan';
+    return 'IUDP';
   }
   // Parse phasing into [p1,p2,p3] from forms like:
   //   "Phase I 18.00 / Phase II 10.00 / Phase III 5.00"
@@ -337,6 +387,7 @@
       const hasPhase=phase.p1!==null||phase.p2!==null||phase.p3!==null;
       const fundHTML=fundBar(p);
       const link=flagsLink(p);
+      const title=(p.sub_sector||p.type||'').replace(/(?:From v3|For addition|\.docx)/gi,'').split(';')[0].trim();
       return `<div class="pcard">
         <div class="pcard__img" style="background-image:url('${imgFor(p)}')">
           <span class="pcard__sector">${SICON[p.sector]||''} ${sector}</span>
@@ -344,18 +395,17 @@
           <div class="pcard__cost"><span>Estimated investment</span><b>${cost? 'NPR '+cost+' cr':'Data not available'}</b></div>
         </div>
         <div class="pcard__body">
-          <div class="pcard__tagline">${p.sub_sector||p.type||((p.phase_provenance)?'Phased':'Project')}</div>
+          ${title?`<div class="pcard__tagline">${title}</div>`:''}
           <h3>${p.name}</h3>
-          <p class="pcard__desc">${p.description}</p>
+          <p class="pcard__desc">${cleanDesc(p)}</p>
           <div class="pcard__chips">
-            <span class="pcard__chip"><b>Ward:</b> ${p.ward}</span>
-            ${p.status?`<span class="pcard__chip">${p.status}</span>`:''}
+            <span class="pcard__chip"><b>Ward</b> ${wardLabel(p)}</span>
             ${p.start_year?`<span class="pcard__chip pcard__chip--gold">${p.start_year}${p.end_year?'–'+p.end_year:''}</span>`:''}
+            ${p.status==='proposed'?`<span class="pcard__chip">Proposed</span>`:''}
           </div>
           ${(hasPhase||p.phase)?`<div class="pcard__phase"><label>Phasing · NPR crore</label>${phaseBar(p)}</div>`:''}
           ${fundHTML?`<div class="pcard__fund"><label>Funding split</label>${fundHTML}</div>`:''}
-          <span class="pcard__status">${p.status==='proposed'?'Proposed · feasibility':(p.status||'Proposed')}</span>
-          <div class="pcard__foot"><b>Source:</b> ${p.source}</div>
+          <div class="pcard__foot">${footSource(p)}</div>
         </div>
         <div class="pcard__actions">
           ${link||'<a class="btn btn-outline" href="investment.html">MSIP →</a>'}

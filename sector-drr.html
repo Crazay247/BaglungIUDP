@@ -104,7 +104,7 @@
 
 <section class="section section--cream">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Existing situation · Ch5.3.8</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Existing situation</span>
  <h2 style="margin-top:14px">The flood that killed, the corridor that slides</h2>
  <p class="lede">Baglung's risk is written into its terrain: the Pangre Khola flood took two lives, the Ward 13–14 slopes form a known landslide corridor, and the Kali Gandaki front needs sirens that aren't all in place.</p>
  <div class="grid" style="margin-top:28px">
@@ -112,13 +112,13 @@
  <div class="chart-figure reveal"><img src="assets/maps/07_landslide_hazard.png" alt="Landslide hazard" loading="lazy"><div class="figtitle">Landslide hazard (1–4.28)</div><figcaption>Wards 13–14 corridor ranks highest — where the bio-engineering spend concentrates.</figcaption></div>
  <div class="chart-figure reveal"><img src="assets/maps/17_fault_lines.png" alt="Fault lines" loading="lazy"><div class="figtitle">Fault lines</div><figcaption>Regional faulting overlays the hazard picture — a constraint for settlement expansion.</figcaption></div>
  </div>
- <div class="note" style="margin-top:24px"><b>Baseline.</b> Pangre Khola flood (2 dead); Ward 14 landslide corridor; Kali Gandaki sirens partial; hazard maps compiled ward-wise (14 registers). <span style="font-size:0.82rem;opacity:.6">Source: For addition Ch5.3.8 (embedded in Env 5.3) + v3 Ch5 DRR standalone.</span></div>
+ <div class="note" style="margin-top:24px"><b>Baseline.</b> Pangre Khola flood (2 dead); Ward 14 landslide corridor; Kali Gandaki sirens partial; hazard maps compiled ward-wise (14 registers).</div>
  </div>
 </section>
 
 <section class="section section--paper">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Key problems · Ch5</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Key problems</span>
  <h2 style="margin-top:14px">Narrow rows, sliding slopes, silent rivers</h2>
  <div class="table-wrap reveal" style="margin-top:24px">
  <table>
@@ -131,7 +131,7 @@
  </tbody>
  </table>
  </div>
- <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Source: For addition Ch5.3.8 + v3 Ch5 DRR (normalised); hazard grids from the spatial analysis set.</p>
+ 
  </div>
 </section>
 
@@ -150,9 +150,9 @@
 
 <section class="section section--paper">
  <div class="wrap">
- <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Strategy &amp; alternatives · v3 Ch5</span>
+ <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.2)">Strategy &amp; alternatives</span>
  <h2 style="margin-top:14px">Mainstreaming over monuments</h2>
- <p class="lede">v3 runs a standalone 3-alternative test; For addition embeds the same logic as 5.3.8 without formal scoring. The winner in both: risk-sensitivity embedded in every other sector, not a DRR island.</p>
+ <p class="lede">A standalone 3-alternative test embeds risk-sensitivity logic. The winner: risk-sensitivity embedded in every other sector, not a DRR island.</p>
  <div class="table-wrap reveal" style="margin-top:24px">
  <table>
  <thead><tr><th>Approach</th><th>Framing</th><th>Verdict</th></tr></thead>
@@ -163,7 +163,7 @@
  </tbody>
  </table>
  </div>
- <p style="font-size:0.82rem;opacity:.6;margin-top:6px">Source: v3 Ch5 DRR standalone 3 alts; For addition 5.3.8 same logic embedded without scoring.</p>
+ 
  </div>
 </section>
 
@@ -177,7 +177,7 @@
  <div class="card reveal"><div class="cap"><span class="tagline">Slope works</span><b>1.9 km bio-engineering</b><p>Stabilises the Ward 13–14 corridor with vegetation-led, low-carbon works.</p></div></div>
  <div class="card reveal"><div class="cap"><span class="tagline">Mainstreaming</span><b>Hazard screen on all projects</b><p>Flood/landslide rasters gate every sector programme (Ch4 → projects).</p></div></div>
  </div>
- <div class="note" style="margin-top:24px"><b>Purpose &amp; LFA.</b> LFA GOAL: disaster-resilient municipality; PURPOSE: 14 hazard maps live + early-warning operational (For addition 5.3.8; v3 full LFA). <b>Risks:</b> monsoon, grant cut, contractor capacity (shared register with Physical).</div>
+ <div class="note" style="margin-top:24px"><b>Purpose &amp; LFA.</b> LFA GOAL: disaster-resilient municipality; PURPOSE: 14 hazard maps live + early-warning operational. <b>Risks:</b> monsoon, grant cut, contractor capacity (shared register with Physical).</div>
  </div>
 </section>
 
@@ -269,12 +269,13 @@
 <script src="js/search-index.js"></script>
 <script src="js/search.js"></script>
 <script src="js/nav.js"></script>
+<script src="js/project-blurbs.js"></script>
 <script>
   fetch('data/projects.json').then(r=>r.json()).then(j=>{
     const c=document.getElementById('relProjects-drr');
     const rel=j.projects.filter(p=>p.sector==="drr");
     if(!rel.length) c.innerHTML='<div class="card"><div class="cap"><p>Related projects pending cross-ref — check <a href="projects.html">Project Explorer</a>.</p></div></div>';
-    else c.innerHTML=rel.map(p=>`<a class="card-link" href="projects.html#${p.id}"><b>${p.name}</b><p>${p.description}</p></a>`).join('');
+    else c.innerHTML=rel.map(p=>`<a class="card-link" href="projects.html#${p.id}"><b>${p.name}</b><p>${PROJECT_DESC(p.id,p.description)}</p></a>`).join('');
   });
 </script>
 </body>
