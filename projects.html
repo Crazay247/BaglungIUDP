@@ -158,15 +158,167 @@
  <select id="phaseFilter" aria-label="Filter by phase"><option value="">Any phase</option><option value="Phase I">Phase I</option><option value="Phase II">Phase II</option><option value="Phase III">Phase III</option></select>
  </div>
  <div id="projGrid" class="grid" style="margin-top:18px"></div>
- <div class="note" style="margin-top:14px">Cost/phase fields show provenance (Finance doc vs narrative). Missing → “Data not available…” — </div>
- </div>
+<div class="note" style="margin-top:14px">Every figure carries its provenance (Finance doc vs v3 vs narrative). Missing → “Data not available…”</div>
+  </div>
 </section>
 <script>
+  const IMGS={
+    tourism:{base:'assets/photos/kali_gandaki_gorge.jpg',flag:'assets/photos/kali_gandaki_gorge.jpg',annex:'assets/photos/kalika_temple.jpg',homestay:'assets/photos/baglung_lake.jpg'},
+    physical:'assets/photos/baglung_bazaar.jpg',
+    social:'assets/photos/baglung_bazaar.jpg',
+    environment:'assets/photos/dhaulagiri_panorama.jpg',
+    drr:'assets/photos/kali_gandaki_gorge.jpg',
+    financial:'assets/photos/baglung_bazaar.jpg',
+    economic:'assets/photos/kali_gandaki_gorge.jpg',
+    institutional:'assets/photos/baglung_bazaar.jpg'
+  };
+  const SECTORS={economic:'Economic',tourism:'Tourism',physical:'Physical',social:'Social',environment:'Environment',drr:'DRR',financial:'Financial',institutional:'Institutional'};
+  const SICON={economic:'🌾',tourism:'⛰️',physical:'🛣️',social:'🏫',environment:'🌿',drr:'⚠️',financial:'🏦',institutional:'⚙️'};
   let projects=[];
   fetch('data/projects.json').then(r=>r.json()).then(j=>{
     projects=j.projects;
     renderProjects('all');
   });
+  function num(v){ const m=String(v||'').match(/(\d+(?:\.\d+)?)/g); return m?m.map(Number):[]; }
+  function imgFor(p){
+    if(p.sector==='tourism'){
+      if(p.id.startsWith('flagship')) return IMGS.tourism.flag;
+      if(p.type==='annex') return IMGS.tourism.annex;
+      if(p.id.includes('homestay')) return IMGS.tourism.homestay;
+      return IMGS.tourism.base;
+    }
+    return IMGS[p.sector]||IMGS.social;
+  }
+  function prioClass(p){
+    if(p.id.startsWith('flagship')) return 'prio-flag';
+    if(p.priority&&/priority p?\s*1|priority a/i.test(p.priority)) return 'prio-p1';
+    if(p.id.startsWith('annex')) return 'prio-annex';
+    if(p.type==='homestay-cluster'||p.id.includes('homestay')) return 'prio-homestay';
+    if(p.priority&&/provisional/i.test(p.priority)) return 'prio-provisional';
+    return 'prio-prog';
+  }
+  function prioLabel(p){
+    if(p.id.startsWith('flagship')){
+      const m=String(p.id).match(/(\d+)/); const n=m?m[1]:'';
+      return 'FLAGSHIP';
+    }
+    if(p.id.startsWith('annex')) return 'ANNEX';
+    if(p.id.includes('homestay')||p.type==='homestay-cluster') return 'HOMESTAY';
+    if(p.priority&&/provisional/i.test(p.priority)) return 'PROVISIONAL';
+    return 'PROGRAMME';
+  }
+  // Parse phasing into [p1,p2,p3] from forms like:
+  //   "Phase I 18.00 / Phase II 10.00 / Phase III 5.00"
+  //   "2026–2031 (Phase I 1.00) / 2031–2036 (2.50) / 2036–2041 (1.00)"
+  //   "Phase I 226.0 / Phase II 180.0 / Phase III 145.3"
+  function phaseSplit(p){
+    const t=p.phase||'';
+    const out={p1:null,p2:null,p3:null};
+    if(!t) return out;
+    // 1) Explicit "Phase N" labels win. Also accept the compact "Phase I a / II b / III c" form.
+    const labelled=[
+      [/Phase I\s*([\d.,]+)/i,'p1'],
+      [/Phase II\s*([\d.,]+)/i,'p2'],
+      [/Phase III\s*([\d.,]+)/i,'p3']
+    ];
+    labelled.forEach(([re,k])=>{ const m=t.match(re); if(m) out[k]=parseFloat(String(m[1]).replace(/,/g,'')); });
+    // 1b) Compact "Phase I a / II b / III c" — bare II/III after a Phase I.
+    if(out.p1!==null){
+      const compact=[
+        [/(?:Phase\s+)?II\s+([\d.,]+)/i,'p2'],
+        [/(?:Phase\s+)?III\s+([\d.,]+)/i,'p3']
+      ];
+      compact.forEach(([re,k])=>{ if(out[k]===null){ const m=t.match(re); if(m) out[k]=parseFloat(String(m[1]).replace(/,/g,'')); } });
+    }
+    // 2) Fill remaining slots, in order, from parenthesised numeric tuples.
+    //    Skip year ranges (>=1000), percents, and tuples that already matched a "Phase N" label.
+    const unlabelled=Object.keys(out).filter(k=>out[k]===null);
+    if(unlabelled.length){
+      const nums=[];
+      const re=/\(([^)]*)\)/g;
+      let mm;
+      while((mm=re.exec(t))){
+        const inner=mm[1];
+        // Skip labelled group (already captured p1/p2/p3), year ranges, percents,
+        // totals, and table/row references like (T7) or (R02).
+        if(/Phase (I|II|III)\s*[\d.,]+/i.test(inner)) continue;
+        if(/total/i.test(inner)) continue;
+        if(/\bT\d+\b|\bR\d+\b/i.test(inner)) continue;
+        const n=inner.match(/(\d[\d.,]*)/);
+        if(!n) continue;
+        const v=parseFloat(n[1].replace(/,/g,''));
+        if(Number.isFinite(v) && v<1000 && !/percent|%/i.test(inner)) nums.push(v);
+      }
+      let slot=0;
+      for(let i=0;i<nums.length && slot<unlabelled.length;i++){
+        out[unlabelled[slot]]=nums[i]; slot++;
+      }
+    }
+    return out;
+  }
+  function phaseBar(p){
+    const s=phaseSplit(p);
+    const vals=[s.p1,s.p2,s.p3].filter(v=>v!==null);
+    if(!vals.length) return `<span style="font-size:.72rem;opacity:.6;color:var(--gold2)">Phase split not itemised</span>`;
+    const total=vals.reduce((a,b)=>a+b,0)||1;
+    const seg=(v,cls)=>{ if(v===null) return ''; const w=(v/total*100).toFixed(1); return `<i class="${cls}" style="width:${w}%" title="Phase I: ${v}"></i>`; };
+    return `<div class="pseg">${seg(s.p1,'pf1')}${seg(s.p2,'pf2')}${seg(s.p3,'pf3')}</div>
+      <div class="pkey">
+        ${s.p1!==null?`<span><i class="FK1"></i>I ${s.p1}</span>`:''}
+        ${s.p2!==null?`<span><i class="FK2"></i>II ${s.p2}</span>`:''}
+        ${s.p3!==null?`<span><i class="FK3"></i>III ${s.p3}</span>`:''}
+      </div>`;
+  }
+  // Parse funding into labelled components. Primary pattern:
+  //   "Municipality 3.30 / Province 8.25 / Federal+DP 9.90 / Private/PPP 11.55 / Community 0.00"
+  // Fallback (flagship narrative): "municipal grant 7.00 ... operator equity 3.90 ... operator bank loan 9.10"
+  function fundingSplit(p){
+    const t=p.funding_source||'';
+    const map=[{re:/municipal(?:ity| grant)?\s*([\d.]+)/i,cls:'fin-mun',label:'Municipality'},
+      {re:/province\s*([\d.]+)/i,cls:'fin-pro',label:'Province'},
+      {re:/federal[^\d]*([\d.]+)/i,cls:'fin-fed',label:'Federal+DP'},
+      {re:/\bVGF\b\s*([\d.]+)/i,cls:'fin-fed',label:'Federal VGF'},
+      {re:/private[^\d]*([\d.]+)/i,cls:'fin-prv',label:'Private/PPP'},
+      {re:/\boperator(?: capital)?\s*([\d.]+)/i,cls:'fin-prv',label:'Operator'},
+      {re:/community\s*([\d.]+)/i,cls:'fin-com',label:'Community'}];
+    let found=map.filter(x=>{const m=t.match(x.re); if(m){x.val=parseFloat(m[1]); return true;} return false;});
+    // Flagship narrative pattern: grant+equity+loan figures present.
+    const hasFlagPattern=/grant/i.test(t)&&/equity/i.test(t)&&/loan/i.test(t);
+    const hasVGFpattern=/\bVGF\b/i.test(t)&&/\boperator capital\b/i.test(t);
+    if(hasFlagPattern || hasVGFpattern){
+      found=[];
+      const g=t.match(/grant\s*([\d.]+)/i); if(g) found.push({cls:'fin-mun',label:'Grant',val:parseFloat(g[1])});
+      const eq=t.match(/equity\s*([\d.]+)/i); if(eq) found.push({cls:'fin-prv',label:'Equity',val:parseFloat(eq[1])});
+      const lo=t.match(/loan\s*([\d.]+)/i); if(lo) found.push({cls:'fin-fed',label:'Loan',val:parseFloat(lo[1])});
+      const vgf=t.match(/VGF\s*([\d.]+)/i); if(vgf) found.push({cls:'fin-fed',label:'Fed VGF',val:parseFloat(vgf[1])});
+      const op=t.match(/operator\s*([\d.]+)/i); if(op) found.push({cls:'fin-prv',label:'Operator',val:parseFloat(op[1])});
+    }
+    if(!found.length) return null;
+    const total=found.reduce((a,x)=>a+x.val,0)||1;
+    // Mark partial when a standard 5-way split clearly exists but we only caught one leg.
+    const partial = found.length===1 && /(municipality|province|federal|private|community)/i.test(t) && !hasFlagPattern && !hasVGFpattern;
+    return {found,total,partial};
+  }
+  function fundBar(p){
+    const f=fundingSplit(p);
+    if(!f || f.partial) return null;
+    const segs=f.found.map(x=>(`<i class="${x.cls}" style="width:${(x.val/f.total*100).toFixed(1)}%" title="${x.label} ${x.val}"></i>`)).join('');
+    return `<div class="fseg">${segs}</div><div class="pkey">${f.found.map(x=>`<span><i style="background:${soloColor(x.cls)}"></i>${x.label}</span>`).join('')}</div>`;
+  }
+  function soloColor(cls){ return {'fin-mun':getComputedStyle(document.documentElement).getPropertyValue('--moss').trim()||'#1C4F3A','fin-pro':'#7A8450','fin-fed':'#F2A900','fin-prv':'#C1502E','fin-com':'#A8C0B0'}[cls]||'#B9B3A6'; }
+  function costNum(p){
+    const m=String(p.cost_estimate_npr||'').match(/^\s*([\d.,]+)/);
+    return m?m[1]:null;
+  }
+  function flagsLink(p){
+    if(p.id==='flagship-01-rafting') return '<a class="plink-f" href="flagship-rafting.html">Full dossier →</a>';
+    if(p.id==='flagship-02-bungy') return '<a class="plink-f" href="flagship-bungy.html">Full dossier →</a>';
+    if(p.id==='flagship-03-cablecar') return '<a class="plink-f" href="flagship-cablecar.html">Full dossier →</a>';
+    if(p.id==='annex-04-shaligram') return '<a class="plink-f" href="annex-shaligram.html">Full dossier →</a>';
+    if(p.id==='annex-05-kalika-malika') return '<a class="plink-f" href="annex-kalika.html">Full dossier →</a>';
+    if(p.id==='homestay-ward10') return '<a class="plink-f" href="homestay-ward10.html">Full dossier →</a>';
+    return '';
+  }
   function renderProjects(filter){
     const g=document.getElementById('projGrid');
     let list=projects;
@@ -178,7 +330,39 @@
     const pf=document.getElementById('phaseFilter').value;
     if(wf) list=list.filter(p=>String(p.ward)===wf);
     if(pf) list=list.filter(p=>p.phase===pf || (p.phase&&p.phase.includes(pf)));
-    g.innerHTML=list.map(p=>`<div class="card"><div class="cap"><span class="tagline">${p.sector}${p.type?' · '+p.type:''}</span><b>${p.name}</b><p>${p.description}</p><p style="font-size:0.78rem;opacity:.6">Ward: ${p.ward} · Phase: ${p.phase} · Cost: ${p.cost_estimate_npr}</p><p style="font-size:0.76rem;color:var(--moss)"><b>Source:</b> ${p.source}</p></div></div>`).join('');
+    g.innerHTML=list.map(p=>{
+      const sector=SECTORS[p.sector]||p.sector||'Project';
+      const cost=costNum(p);
+      const phase=phaseSplit(p);
+      const hasPhase=phase.p1!==null||phase.p2!==null||phase.p3!==null;
+      const fundHTML=fundBar(p);
+      const link=flagsLink(p);
+      return `<div class="pcard">
+        <div class="pcard__img" style="background-image:url('${imgFor(p)}')">
+          <span class="pcard__sector">${SICON[p.sector]||''} ${sector}</span>
+          <span class="pcard__prio ${prioClass(p)}">${prioLabel(p)}</span>
+          <div class="pcard__cost"><span>Estimated investment</span><b>${cost? 'NPR '+cost+' cr':'Data not available'}</b></div>
+        </div>
+        <div class="pcard__body">
+          <div class="pcard__tagline">${p.sub_sector||p.type||((p.phase_provenance)?'Phased':'Project')}</div>
+          <h3>${p.name}</h3>
+          <p class="pcard__desc">${p.description}</p>
+          <div class="pcard__chips">
+            <span class="pcard__chip"><b>Ward:</b> ${p.ward}</span>
+            ${p.status?`<span class="pcard__chip">${p.status}</span>`:''}
+            ${p.start_year?`<span class="pcard__chip pcard__chip--gold">${p.start_year}${p.end_year?'–'+p.end_year:''}</span>`:''}
+          </div>
+          ${(hasPhase||p.phase)?`<div class="pcard__phase"><label>Phasing · NPR crore</label>${phaseBar(p)}</div>`:''}
+          ${fundHTML?`<div class="pcard__fund"><label>Funding split</label>${fundHTML}</div>`:''}
+          <span class="pcard__status">${p.status==='proposed'?'Proposed · feasibility':(p.status||'Proposed')}</span>
+          <div class="pcard__foot"><b>Source:</b> ${p.source}</div>
+        </div>
+        <div class="pcard__actions">
+          ${link||'<a class="btn btn-outline" href="investment.html">MSIP →</a>'}
+          <a class="btn btn-dark" href="spatial.html">Map →</a>
+        </div>
+      </div>`;
+    }).join('');
   }
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
