@@ -130,6 +130,37 @@
 .cmp-photo{margin-top:10px}
 .cmp-photo img{width:130px;height:88px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 
+/* ---------- FIX-RATE (Feature E) ---------- */
+.re-open{margin-left:2px;background:rgba(242,169,0,0.16);color:#8a5d00;border:1px solid rgba(242,169,0,0.4);
+  border-radius:100px;padding:4px 11px;font-size:0.74rem;font-weight:800}
+.fixbar{margin-top:22px;background:#fff;border:1px solid rgba(28,79,58,0.18);border-left:5px solid var(--moss);
+  border-radius:18px;padding:18px 22px;box-shadow:0 6px 22px rgba(27,30,36,0.05)}
+.fb-label{font-family:Poppins,sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--moss);margin-bottom:10px}
+.fb-meters{display:flex;align-items:center;gap:12px}
+.fb-track{flex:1;height:12px;border-radius:100px;background:rgba(28,79,58,0.12);overflow:hidden}
+.fb-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--moss) 0%,var(--moss2) 60%,var(--gold) 130%);
+  transition:width .5s cubic-bezier(.22,.9,.3,1)}
+.fb-num{font-family:Poppins,sans-serif;font-weight:800;font-size:1.05rem;color:var(--moss);min-width:52px;text-align:right}
+.fb-sub{margin-top:8px;font-size:0.85rem;font-weight:600;color:rgba(27,30,36,0.62)}
+.fb-sub b{font-weight:800;color:var(--ink)}
+
+/* ---------- CLOSE THE LOOP — rate a resolved complaint ---------- */
+.cmp-rate{margin-top:12px;background:rgba(28,79,58,0.055);border:1px solid rgba(28,79,58,0.14);
+  border-radius:14px;padding:12px 14px}
+.rate-q{display:block;font-weight:800;font-size:0.88rem;color:var(--moss);margin-bottom:9px}
+.rate-q .np{color:var(--moss);font-weight:700}
+.rates{display:flex;gap:8px;flex-wrap:wrap}
+.rate{display:inline-flex;align-items:center;gap:7px;border:1.5px solid rgba(28,79,58,0.22);border-radius:100px;
+  padding:7px 14px;font:inherit;font-size:0.85rem;font-weight:700;background:#fff;cursor:pointer;color:rgba(27,30,36,0.82);
+  transition:border-color .15s,background .15s,color .15s,transform .15s,box-shadow .15s}
+.rate:hover{transform:translateY(-1px);border-color:var(--moss);box-shadow:0 4px 12px rgba(28,79,58,0.14);color:var(--ink)}
+.rate.on{background:var(--moss);border-color:var(--moss);color:#fff;box-shadow:0 4px 14px rgba(28,79,58,0.3)}
+.rate .cnp{font-weight:600;font-size:0.78rem;opacity:0.75}
+.rate.on .cnp{opacity:0.94}
+.rate:focus-visible{outline:2px solid var(--moss);outline-offset:2px}
+.rate-done{display:inline-flex;align-items:center;gap:6px;margin-top:9px;font-size:0.8rem;font-weight:800;color:var(--moss)}
+
 /* ---------- WHAT HAPPENS NEXT — fixed + enhanced timeline ---------- */
 .cp-steps{
   background:linear-gradient(180deg, var(--paper) 0%, #ffffff 62%, var(--cream) 100%);
@@ -285,6 +316,8 @@
   .steps-footnote{text-align:left;margin-top:16px;font-size:0.8rem}
   .photo-band{height:150px}
   .cmp-photo img{width:100%;height:auto;aspect-ratio:3/2}
+  .fixbar{padding:15px 16px;border-left-width:4px}
+  .cmp-rate{padding:11px 12px}
 }
 @media(max-width:380px){
   .step{padding:14px 12px 12px 12px}
@@ -292,4 +325,4 @@
   .steps::before{left:19px}
 }
 
-@media(prefers-reduced-motion:reduce){ .cmp,.pill,.btn-send,.demo-btn,.st{animation:none;transition:none} }
+@media(prefers-reduced-motion:reduce){ .cmp,.pill,.btn-send,.demo-btn,.st,.rate,.fb-fill{animation:none;transition:none} }

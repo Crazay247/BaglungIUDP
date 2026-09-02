@@ -9,32 +9,126 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+  /* ===== Project feature cards ===== */
+  .pcard{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(27,30,36,.08);box-shadow:0 1px 3px rgba(12,16,12,.05),0 10px 28px rgba(12,16,12,.06);transition:transform .2s ease,box-shadow .2s ease}
+  .pcard:hover{transform:translateY(-4px);box-shadow:0 6px 14px rgba(12,16,12,.09),0 20px 44px rgba(12,16,12,.12)}
+  .pcard__img{position:relative;height:150px;background-size:cover;background-position:center;overflow:hidden}
+  .pcard__img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,16,12,0) 30%,rgba(12,16,12,.72) 100%)}
+  .pcard__sector{position:absolute;top:12px;left:12px;z-index:2;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:100px;background:rgba(12,16,12,.55);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.35)}
+  .pcard__prio{position:absolute;top:12px;right:12px;z-index:2;font-size:.66rem;font-weight:800;padding:4px 10px;border-radius:100px}
+  .pcard__cost{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;color:#fff}
+  .pcard__cost b{font-family:var(--font-head);font-size:1.5rem;line-height:1;display:block;text-shadow:0 1px 6px rgba(12,16,12,.5)}
+  .pcard__cost span{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+  .pcard__body{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:10px}
+  .pcard__tagline{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--moss)}
+  .pcard h3{margin:0;font-family:var(--font-head);font-size:1.06rem;line-height:1.25;color:var(--ink)}
+  .pcard__desc{font-size:.82rem;line-height:1.5;color:rgba(27,30,36,.8);margin:0}
+  .pcard__chips{display:flex;gap:6px;flex-wrap:wrap}
+  .pcard__chip{font-size:.68rem;font-weight:700;padding:2px 9px;border-radius:100px;background:rgba(28,79,58,.08);border:1px solid rgba(28,79,58,.18);color:var(--moss)}
+  .pcard__chip--gold{background:rgba(242,169,0,.12);border-color:rgba(242,169,0,.35);color:#9c6a00}
+  /* phase split segmented bar */
+  .pcard__phase{display:flex;flex-direction:column;gap:5px}
+  .pcard__phase label,.pcard__fund label{font-size:.62rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+  .pseg{display:flex;height:12px;border-radius:6px;overflow:hidden;background:rgba(27,30,36,.06)}
+  .pseg i{display:block;height:100%}
+  .pf1{background:#A8C0B0}.pf2{background:var(--gold)}.pf3{background:var(--moss2)}
+  .pkey{display:flex;gap:10px;font-size:.64rem;font-weight:700;opacity:.72;flex-wrap:wrap}
+  .pkey i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:0}
+  .pkey .FK1{background:#A8C0B0}.pkey .FK2{background:var(--gold)}.pkey .FK3{background:var(--moss2)}
+  /* funding split stacked bar */
+  .pcard__fund{display:flex;flex-direction:column;gap:4px}
+  .fseg{display:flex;height:11px;border-radius:6px;overflow:hidden}
+  .fseg i{display:block;height:100%;min-width:2px}
+  .fin-mun{background:var(--moss)}
+  .fin-pro{background:#7A8450}
+  .fin-fed{background:var(--gold)}
+  .fin-prv{background:var(--terracotta)}
+  .fin-com{background:#A8C0B0}
+  .fin-oth{background:#B9B3A6}
+  .pcard__status{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:.68rem;font-weight:800;color:var(--moss)}
+  .pcard__status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(242,169,0,.22)}
+  .pcard__foot{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(27,30,36,.14);font-size:.68rem;color:rgba(27,30,36,.6);line-height:1.45}
+  .pcard__actions{display:flex;gap:8px;padding:12px 16px 14px;border-top:1px solid rgba(27,30,36,.07);background:rgba(255,253,249,.6)}
+  .pcard__actions .btn{flex:1;text-align:center;padding:7px 10px;font-size:.76rem}
+  .plink-f{display:flex;align-items:center;gap:4px}
+  .prio-flag{background:linear-gradient(135deg,var(--moss),var(--moss2));color:#fff}
+  .prio-p1{background:linear-gradient(135deg,var(--moss),var(--moss2));color:#fff}
+  .prio-annex{background:linear-gradient(135deg,var(--terracotta),#8A3521);color:#fff}
+  .prio-homestay{background:linear-gradient(135deg,#7A8450,#4E5734);color:#fff}
+  .prio-provisional{background:linear-gradient(135deg,#8a8375,#5f5a50);color:#fff}
+  .prio-prog{background:linear-gradient(135deg,var(--gold),#b87b00);color:#3A2C00}
+</style>
 </head>
 <body>
 <header class="topbar">
- <div class="wrap">
- <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
- <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
- <nav class="navlinks" aria-label="Primary">
- <div class="nav-item">
- <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
- <div class="dropdown">
- <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
- <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
- <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
- <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
- <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
- <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
- <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ <div class="top-util" aria-label="Official municipal services">
+  <div class="wrap">
+   <span class="util-left"><b>बागलुङ नगरपालिका · Baglung Municipality</b> — Official Portal</span>
+   <div class="util-right">
+    <label class="util-ward" for="navWardFind"><span data-i18n="findward">Find my ward</span>:
+     <select id="navWardFind" aria-label="Find my ward">
+      <option value="">Ward…</option>
+    <option value="1">Ward 1</option>
+    <option value="2">Ward 2</option>
+    <option value="3">Ward 3</option>
+    <option value="4">Ward 4</option>
+    <option value="5">Ward 5</option>
+    <option value="6">Ward 6</option>
+    <option value="7">Ward 7</option>
+    <option value="8">Ward 8</option>
+    <option value="9">Ward 9</option>
+    <option value="10">Ward 10</option>
+    <option value="11">Ward 11</option>
+    <option value="12">Ward 12</option>
+    <option value="13">Ward 13</option>
+    <option value="14">Ward 14</option>
+     </select>
+    </label>
+    <a class="util-link" href="complaints.html#official" data-i18n="helpline">Helpline · Ward offices</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langlabel" aria-label="Switch language">EN / नेपाली</button>
+   </div>
+  </div>
  </div>
- </div>
- <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
- <a href="complaints.html" data-link="complaints.html">Complaints</a>
- <a href="gallery.html">Gallery</a>
- </nav>
+ <div class="topbar-main">
+  <div class="wrap">
+  <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav class="navlinks" aria-label="Primary">
+  <div class="nav-item">
+  <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
+  <div class="dropdown">
+  <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+  <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+  <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+  <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+  <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+  <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+  <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+  </div>
+  </div>
+  <a href="agriculture.html" data-link="agriculture.html" data-i18n="kisan">Kisan Guide</a>
+  <a href="complaints.html" data-link="complaints.html" data-i18n="complaints">Complaints</a>
+  <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
+  <a href="gallery.html" data-i18n="gallery">Gallery</a>
+  </nav>
+  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
+  </div>
  </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the plan" hidden>
+ <div class="sm-shell">
+  <div class="sm-head">
+   <span class="sbi">⌕</span>
+   <input id="searchInput" type="search" placeholder="Search the plan… खोज्नुहोस्" autocomplete="off" aria-label="Search the plan">
+   <button type="button" class="sm-close" id="searchClose" aria-label="Close search">✕</button>
+  </div>
+  <div class="sm-hint"><b>⌕</b> type to search every page · <b>↑↓</b> move · <b>↵</b> open · <b>Esc</b> or <b>Ctrl K</b> to close</div>
+  <ul class="sm-results" id="searchResults"></ul>
+  <div class="sm-none" id="searchNone" hidden></div>
+ </div>
+</div>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
  <div class="wrap">
@@ -159,7 +253,7 @@
  </ul>
  <h4>Citizen</h4>
  <ul>
- <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="services.html">Services</a> · <a href="complaints.html">Complaints</a></li>
  <li><a href="gallery.html">Visual Gallery</a></li>
  </ul>
  <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
@@ -172,6 +266,8 @@
 </footer>
 
 
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

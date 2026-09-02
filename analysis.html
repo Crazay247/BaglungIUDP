@@ -12,29 +12,73 @@
 </head>
 <body>
 <header class="topbar">
- <div class="wrap">
- <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
- <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
- <nav class="navlinks" aria-label="Primary">
- <div class="nav-item">
- <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
- <div class="dropdown">
- <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
- <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
- <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
- <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
- <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
- <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
- <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ <div class="top-util" aria-label="Official municipal services">
+  <div class="wrap">
+   <span class="util-left"><b>बागलुङ नगरपालिका · Baglung Municipality</b> — Official Portal</span>
+   <div class="util-right">
+    <label class="util-ward" for="navWardFind"><span data-i18n="findward">Find my ward</span>:
+     <select id="navWardFind" aria-label="Find my ward">
+      <option value="">Ward…</option>
+    <option value="1">Ward 1</option>
+    <option value="2">Ward 2</option>
+    <option value="3">Ward 3</option>
+    <option value="4">Ward 4</option>
+    <option value="5">Ward 5</option>
+    <option value="6">Ward 6</option>
+    <option value="7">Ward 7</option>
+    <option value="8">Ward 8</option>
+    <option value="9">Ward 9</option>
+    <option value="10">Ward 10</option>
+    <option value="11">Ward 11</option>
+    <option value="12">Ward 12</option>
+    <option value="13">Ward 13</option>
+    <option value="14">Ward 14</option>
+     </select>
+    </label>
+    <a class="util-link" href="complaints.html#official" data-i18n="helpline">Helpline · Ward offices</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langlabel" aria-label="Switch language">EN / नेपाली</button>
+   </div>
+  </div>
  </div>
- </div>
- <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
- <a href="complaints.html" data-link="complaints.html">Complaints</a>
- <a href="gallery.html">Gallery</a>
- </nav>
+ <div class="topbar-main">
+  <div class="wrap">
+  <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav class="navlinks" aria-label="Primary">
+  <div class="nav-item">
+  <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
+  <div class="dropdown">
+  <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+  <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+  <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+  <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+  <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+  <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+  <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+  </div>
+  </div>
+  <a href="agriculture.html" data-link="agriculture.html" data-i18n="kisan">Kisan Guide</a>
+  <a href="complaints.html" data-link="complaints.html" data-i18n="complaints">Complaints</a>
+  <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
+  <a href="gallery.html" data-i18n="gallery">Gallery</a>
+  </nav>
+  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
+  </div>
  </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the plan" hidden>
+ <div class="sm-shell">
+  <div class="sm-head">
+   <span class="sbi">⌕</span>
+   <input id="searchInput" type="search" placeholder="Search the plan… खोज्नुहोस्" autocomplete="off" aria-label="Search the plan">
+   <button type="button" class="sm-close" id="searchClose" aria-label="Close search">✕</button>
+  </div>
+  <div class="sm-hint"><b>⌕</b> type to search every page · <b>↑↓</b> move · <b>↵</b> open · <b>Esc</b> or <b>Ctrl K</b> to close</div>
+  <ul class="sm-results" id="searchResults"></ul>
+  <div class="sm-none" id="searchNone" hidden></div>
+ </div>
+</div>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
  <div class="wrap">
@@ -54,8 +98,8 @@
  <h2 style="margin-top:14px">Future forces → Development concept</h2>
  <p class="lede">In Brief: Four forces shape Baglung's future; they drive population, demand, suitability and SWOT — leading to <b>Protect the core, grow the corridor, hold the hills</b> (Ch4.6).</p>
  <div class="grid grid--2" style="margin-top:22px">
- <div class="chart-figure"><span class="fignum">4.1</span><div class="figtitle">Four forces</div><p style="font-size:0.92rem;line-height:1.6">Data not available in current IUDP documentation — pending extraction from For addition Ch4.1 > v3 Ch4.1.</p><div class="note">Source: Field surveys</div></div>
- <div class="chart-figure"><span class="fignum">4.2</span><div class="figtitle">Population 2041</div><p style="font-size:0.92rem;line-height:1.6">Projection to 2041 — cohort + scenario. Chart <code>demographic/06_population_projection_scenarios.png</code> preview below. Full table in <a href="demographics.html">Demographics</a>.</p><div class="note">Source: IUDP records</div></div>
+ <div class="chart-figure"><span class="fignum">4.1</span><div class="figtitle">Four forces</div><div style="font-size:0.92rem;line-height:1.7;text-align:left"><b>Ageing.</b> The 60-plus share rises from 13.2% toward ~20% by 2036; old-age dependency doubles from 21 to ~32 elders per 100 workers. Wards 9–13 already pass 16%.<br><b>Youth drain.</b> Of residents absent abroad, 70.5% left for foreign employment and 80.7% are aged 15–34 — the working-age pool keeps leaking.<br><b>Fragmentation.</b> Household size fell from 3.81 to 3.52; housing demand climbs against a flat population, adding 700–1,100 dwelling units by 2036.<br><b>Core pull.</b> Bazaar wards 1–4 and 14 hold 53% of the population on 16% of the land; Ward 4 grew 40.1% over the decade while Ward 11 lost 31.9%.</div><div class="note">Source: For addition Ch4.1 (Baglung SDP 2026) — adopted as the frame for every sector plan</div></div>
+ <div class="chart-figure"><span class="fignum">4.2</span><div class="figtitle">Population 2041</div><div style="font-size:0.92rem;line-height:1.7;text-align:left">Adopted path: <b>+0.5% geometric growth from the 2026 base of 55,261</b> → 56,656 (2031) → 58,087 (2036) → <b>59,556 (2041)</b>. Cohort (no-migration) ceiling 63,496 by 2031; low path (−0.3%) ≈53,600 by 2036; high path (+0.8%) 59,844. Sizing line: ~16,800 households by 2036, ~17,100 by 2041 at size 3.45.</div><div class="note">Source: For addition Ch4.2, Table 4.1 — chart below; full table in <a href="demographics.html">Demographics</a></div></div>
  </div>
  <div class="chart-row" style="margin-top:18px">
  <figure class="chart-figure"><img src="assets/charts/demographic/06_population_projection_scenarios.png" alt="Projection" loading="lazy"><figcaption><span class="figtitle">Population scenarios to 2041</span><br>Scenarios from Ch4.2 — source + year on chart.</figcaption></figure>
@@ -63,7 +107,7 @@
  </div>
  <h3 style="margin-top:28px">Suitability · SWOT · Concept</h3>
  <div class="grid" style="margin-top:14px">
- <div class="card"><div class="cap"><span class="tagline">4.4 Suitability</span><b>Weighted overlay</b><p>Multi-criteria surface — weights <code>A.4</code> pending extraction. Static maps in <a href="spatial.html">Spatial</a>.</p></div></div>
+ <div class="card"><div class="cap"><span class="tagline">4.4 Suitability</span><b>Weighted overlay</b><p>Weights: slope 30% · flood risk 25% · landslide 20% · fault distance 10% · land cover 10% · road access 5%. Classes: Very Low (1.0–1.8) → Very High (4.2–5.0). Static maps in <a href="spatial.html">Spatial</a>.</p></div></div>
  <div class="card"><div class="cap"><span class="tagline">4.5 SWOT</span><b>Synthesis</b><p>From Ch4.5 — will use decision trail component.</p></div></div>
  <div class="card"><div class="cap"><span class="tagline">4.6 Concept</span><b>Core / Corridor / Hills</b><p>Core 1–4, Corridor 13–14, Hills 5–12 — see <a href="spatial.html">Spatial</a> concept map + records.</p></div></div>
  </div>
@@ -149,7 +193,7 @@
  </ul>
  <h4>Citizen</h4>
  <ul>
- <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="services.html">Services</a> · <a href="complaints.html">Complaints</a></li>
  <li><a href="gallery.html">Visual Gallery</a></li>
  </ul>
  <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
@@ -162,6 +206,8 @@
 </footer>
 
 
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

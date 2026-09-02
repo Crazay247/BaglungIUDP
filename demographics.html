@@ -12,29 +12,73 @@
 </head>
 <body>
 <header class="topbar">
- <div class="wrap">
- <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
- <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
- <nav class="navlinks" aria-label="Primary">
- <div class="nav-item">
- <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
- <div class="dropdown">
- <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
- <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
- <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
- <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
- <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
- <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
- <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ <div class="top-util" aria-label="Official municipal services">
+  <div class="wrap">
+   <span class="util-left"><b>बागलुङ नगरपालिका · Baglung Municipality</b> — Official Portal</span>
+   <div class="util-right">
+    <label class="util-ward" for="navWardFind"><span data-i18n="findward">Find my ward</span>:
+     <select id="navWardFind" aria-label="Find my ward">
+      <option value="">Ward…</option>
+    <option value="1">Ward 1</option>
+    <option value="2">Ward 2</option>
+    <option value="3">Ward 3</option>
+    <option value="4">Ward 4</option>
+    <option value="5">Ward 5</option>
+    <option value="6">Ward 6</option>
+    <option value="7">Ward 7</option>
+    <option value="8">Ward 8</option>
+    <option value="9">Ward 9</option>
+    <option value="10">Ward 10</option>
+    <option value="11">Ward 11</option>
+    <option value="12">Ward 12</option>
+    <option value="13">Ward 13</option>
+    <option value="14">Ward 14</option>
+     </select>
+    </label>
+    <a class="util-link" href="complaints.html#official" data-i18n="helpline">Helpline · Ward offices</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langlabel" aria-label="Switch language">EN / नेपाली</button>
+   </div>
+  </div>
  </div>
- </div>
- <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
- <a href="complaints.html" data-link="complaints.html">Complaints</a>
- <a href="gallery.html">Gallery</a>
- </nav>
+ <div class="topbar-main">
+  <div class="wrap">
+  <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav class="navlinks" aria-label="Primary">
+  <div class="nav-item">
+  <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
+  <div class="dropdown">
+  <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+  <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+  <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+  <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+  <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+  <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+  <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+  </div>
+  </div>
+  <a href="agriculture.html" data-link="agriculture.html" data-i18n="kisan">Kisan Guide</a>
+  <a href="complaints.html" data-link="complaints.html" data-i18n="complaints">Complaints</a>
+  <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
+  <a href="gallery.html" data-i18n="gallery">Gallery</a>
+  </nav>
+  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
+  </div>
  </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the plan" hidden>
+ <div class="sm-shell">
+  <div class="sm-head">
+   <span class="sbi">⌕</span>
+   <input id="searchInput" type="search" placeholder="Search the plan… खोज्नुहोस्" autocomplete="off" aria-label="Search the plan">
+   <button type="button" class="sm-close" id="searchClose" aria-label="Close search">✕</button>
+  </div>
+  <div class="sm-hint"><b>⌕</b> type to search every page · <b>↑↓</b> move · <b>↵</b> open · <b>Esc</b> or <b>Ctrl K</b> to close</div>
+  <ul class="sm-results" id="searchResults"></ul>
+  <div class="sm-none" id="searchNone" hidden></div>
+ </div>
+</div>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.4) 0%,rgba(12,16,12,0.78) 100%),url('assets/photos/baglung_lake.jpg')">
  <div class="wrap">
@@ -187,7 +231,7 @@
  </ul>
  <h4>Citizen</h4>
  <ul>
- <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="services.html">Services</a> · <a href="complaints.html">Complaints</a></li>
  <li><a href="gallery.html">Visual Gallery</a></li>
  </ul>
  <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
@@ -201,6 +245,8 @@
 
 
 
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

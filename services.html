@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ward 10 Homestay Cluster · Baglung IUDP</title>
-<meta name="description" content="Ward 10 Homestay Cluster — detailed presentation, from Ward10 DPR. Source hierarchy preserved.">
+<title>Service Guide · Baglung IUDP 2026–2041</title>
+<meta name="description" content="Every municipal service with the exact documents you need — birth, death, marriage, citizenship recommendation, building permit, business registration, land tax. Bilingual checklists. Part of the M.Sc. Urban Planning Studio II IUDP web atlas.">
 <link rel="icon" href="assets/logos/baglung-municipality-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/services.css">
 </head>
 <body>
 <header class="topbar">
@@ -80,37 +81,28 @@
  </div>
 </div>
 
-<section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.74) 100%),url('assets/photos/kali_gandaki_gorge.jpg')">
- <div class="wrap">
- <div class="crumb"><a href="index.html">Home</a> / <a href="projects.html">Projects</a> / Ward 10 Homestay Cluster</div>
- <h1>Ward 10 Homestay Cluster<br><em>Ward10 DPR</em></h1>
- <p class="lede">From report on homestay.docx — Existing Ch1, Flow Ch2, Activity mapping Ch3, 1D/1N route Ch4, Cluster location Ch5.1–5.4, Area calc Ch6, Architectural concept Ch7, Phase 1–4 Ch9. Ward 10.</p>
- <div class="hero-meta">
- <span class="chip">📁 tourism</span><span class="chip">🆔 homestay-ward10</span><span class="chip">📄 Source: Field surveys</span>
- </div>
- </div>
-</section>
+<noscript>
+ <section class="serv-ns" style="background:var(--cream);padding:40px 0">
+  <div class="wrap" style="background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px">
+   <b>JavaScript is off · जाभास्क्रिप्ट बन्द छ</b>
+   <p>The service checklists need JavaScript. Contact your ward office (1–14) for document requirements.</p>
+  </div>
+ </section>
+</noscript>
 
-<section class="section section--paper">
+<!-- React renders: search → category chips → checklist cards -->
+<div id="srv-root"></div>
+
+<section class="cp-official" id="official">
  <div class="wrap">
- <div class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Project detail · §31</div>
- <h2 style="margin-top:14px">Concept & strategic rationale</h2>
- <p style="color:rgba(27,30,36,0.78)">Ward 10 holds 11 registered homestays but only 4 operate, while Baraha Lake draws 150–300 visitors/day in peak. The product is a homestay revival programme, trail signage, a central booking desk and a quality standard, linked to the orange orchards and ridge walks — Sirubari and Ghalegaun reach 60–80% occupancy in season when the booking system works.</p>
- <div class="grid grid--2" style="margin-top:18px">
- <div class="chart-figure"><span class="fignum">Location</span><div class="figtitle">Where</div><p style="font-size:0.92rem">Ward 10 (Bhakunde) — Baraha Lake eco-homestay circuit; cluster siting per report on homestay.docx Ch5; 1D/1N route (Ch4); 11 registered homestays, 4 operating.</p></div>
- <div class="chart-figure"><span class="fignum">Investment</span><div class="figtitle">Cost & phasing</div><p style="font-size:0.92rem">Cost/phasing from <b>Financial doc</b> numeric authority. If conflict with narrative, finance wins.</p></div>
+ <div class="ch-strip">
+ <b>Official desks · आधिकारिक काउन्टर:</b>
+ <span>Ward offices (1–14) issue recommendations &amp; attestations</span>
+ <span class="pip">·</span>
+ <span>Central counters at <a href="https://baglungmun.gov.np" rel="noopener" target="_blank">baglungmun.gov.np</a></span>
+ <span class="pip">·</span>
+ <span class="np" lang="ne">LGO 2073 — services within 15 working days</span>
  </div>
- <h3 style="margin-top:24px">Components / sub-projects</h3>
- <p style="color:rgba(27,30,36,0.7)">Components (report on homestay.docx): existing situation (Ch1) · visitor flow (Ch2) · activity mapping (Ch3) · 1D/1N route (Ch4) · cluster siting (Ch5) · area calculation (Ch6) · architectural concept (Ch7) · Phase 1–4 actions (Ch9) + booking desk + quality standard — budget <b>NPR 2.25 cr</b> (0.75 + 1.00 + 0.50).</p>
- <div class="note">Provenance: <code>From report on homestay.docx — Existing Ch1, Flow Ch2, Activity mapping Ch3, 1D/1N route Ch4, Cluster location Ch5.1–5.4, Area calc Ch6, Architectural concept Ch7, Phase 1–4 Ch9. Ward 10.</code> Full section list in template §31: concept, location, rationale, components, investment, appraisal, implementation, risks, outcomes, related sectors/objectives.</div>
- <h3>Related</h3>
- <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
- <a class="btn btn-dark" href="projects.html">Back to explorer →</a>
- <a class="btn btn-outline" href="sector-tourism.html">Tourism plan →</a>
- <a class="btn btn-outline" href="wards.html">Wards →</a>
- <a class="btn btn-outline" href="investment.html">MSIP →</a>
- </div>
- <div class="note" style="margin-top:16px">Tracing: <code>Objective → Strategy → Programme → Project → Investment → Implementation → Monitoring</code> (§61). Every field shows source + section/page where practical.</div>
  </div>
 </section>
 
@@ -189,7 +181,9 @@
  </div>
 </footer>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="js/services.js"></script>
 <script src="js/search-index.js"></script>
 <script src="js/search.js"></script>
 <script src="js/nav.js"></script>

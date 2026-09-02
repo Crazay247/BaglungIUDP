@@ -9,32 +9,114 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+.ward-card{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(27,30,36,.08);box-shadow:0 1px 3px rgba(12,16,12,.05),0 8px 24px rgba(12,16,12,.05);transition:transform .18s ease,box-shadow .18s ease;scroll-margin-top:96px}
+.ward-card:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(12,16,12,.08),0 16px 36px rgba(12,16,12,.10)}
+.ward-card__head{display:flex;align-items:center;gap:12px;padding:16px 18px 14px;color:#fff}
+.wc-core{background:linear-gradient(135deg,#2D6A4F 0%,#12392A 100%)}
+.wc-corridor{background:linear-gradient(135deg,#F2A900 0%,#B87B00 100%);color:#3A2C00}
+.wc-hills{background:linear-gradient(135deg,#7A8450 0%,#4E5734 100%)}
+.ward-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1;min-width:44px;text-align:center}
+.ward-num::after{content:"";display:block;width:22px;height:2px;margin:6px auto 0;border-radius:2px;background:rgba(255,255,255,.55)}
+.wc-title{flex:1}
+.wc-zone{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.wc-poptitle{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.02rem;line-height:1.2}
+.wc-badge{font-size:.72rem;font-weight:800;padding:4px 9px;border-radius:100px;background:rgba(255,255,255,.92);color:var(--ink);white-space:nowrap}
+.ward-card__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(27,30,36,.08);border-bottom:1px solid rgba(27,30,36,.08)}
+.wc-stat{background:#fff;padding:10px 8px 8px;text-align:center}
+.wc-stat b{display:block;font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:800;color:var(--moss2,#2d6a4f);line-height:1.1}
+.wc-stat span{font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;opacity:.58;font-weight:600}
+.ward-card__body{padding:14px 18px 16px;flex:1;display:flex;flex-direction:column;gap:10px}
+.wc-row{display:flex;gap:10px;align-items:flex-start}
+.wc-ic{flex:none;width:22px;height:22px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;margin-top:1px}
+.wc-str .wc-ic{background:rgba(45,106,79,.12);color:#1C4F3A}
+.wc-wkn .wc-ic{background:rgba(193,80,46,.12);color:#C1502E}
+.wc-row label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+.wc-row p{margin:0;font-size:.82rem;line-height:1.45;color:rgba(27,30,36,.82)}
+.wc-pills{display:flex;gap:6px;flex-wrap:wrap}
+.wc-pill{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid rgba(28,79,58,.25);color:#1C4F3A;background:rgba(28,79,58,.07)}
+.wc-projects{border-top:1px dashed rgba(27,30,36,.14);padding-top:9px;display:flex;flex-direction:column;gap:5px}
+.wc-projects label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
+.wc-projects span{font-size:.8rem;color:rgba(27,30,36,.85);line-height:1.4}
+.wc-projects i{font-style:normal;color:var(--gold,#F2A900);font-weight:800;margin-right:5px}
+.wc-foot{margin-top:auto;display:flex;justify-content:space-between;gap:8px;font-size:.7rem;opacity:.55}
+.ward-card__strategy{padding:9px 18px;font-size:.78rem;font-weight:700;line-height:1.4}
+.ward-card__strategy.wc-core{background:#E9F1EC;color:#1C4F3A}
+.ward-card__strategy.wc-corridor{background:#FBF3DE;color:#8A5E00}
+.ward-card__strategy.wc-hills{background:#F0F2E6;color:#4E5734}
+.ward-card__actions{display:flex;gap:8px;padding:12px 18px 14px;border-top:1px solid rgba(27,30,36,.06);background:rgba(255,253,249,.6)}
+.ward-card__actions .btn{flex:1;text-align:center}
+</style>
 </head>
 <body>
 <header class="topbar">
- <div class="wrap">
- <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><b>Baglung</b> IUDP <span>Planning Studio · 3rd Sem</span></a>
- <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
- <nav class="navlinks" aria-label="Primary">
- <div class="nav-item">
- <button type="button" class="nav-trigger" data-link="" aria-expanded="false">The Atlas <span class="caret">▼</span></button>
- <div class="dropdown">
- <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
- <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
- <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
- <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
- <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
- <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
- <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+ <div class="top-util" aria-label="Official municipal services">
+  <div class="wrap">
+   <span class="util-left"><b>बागलुङ नगरपालिका · Baglung Municipality</b> — Official Portal</span>
+   <div class="util-right">
+    <label class="util-ward" for="navWardFind"><span data-i18n="findward">Find my ward</span>:
+     <select id="navWardFind" aria-label="Find my ward">
+      <option value="">Ward…</option>
+    <option value="1">Ward 1</option>
+    <option value="2">Ward 2</option>
+    <option value="3">Ward 3</option>
+    <option value="4">Ward 4</option>
+    <option value="5">Ward 5</option>
+    <option value="6">Ward 6</option>
+    <option value="7">Ward 7</option>
+    <option value="8">Ward 8</option>
+    <option value="9">Ward 9</option>
+    <option value="10">Ward 10</option>
+    <option value="11">Ward 11</option>
+    <option value="12">Ward 12</option>
+    <option value="13">Ward 13</option>
+    <option value="14">Ward 14</option>
+     </select>
+    </label>
+    <a class="util-link" href="complaints.html#official" data-i18n="helpline">Helpline · Ward offices</a>
+    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langlabel" aria-label="Switch language">EN / नेपाली</button>
+   </div>
+  </div>
  </div>
- </div>
- <a href="agriculture.html" data-link="agriculture.html">Kisan Guide</a>
- <a href="complaints.html" data-link="complaints.html">Complaints</a>
- <a href="gallery.html">Gallery</a>
- </nav>
+ <div class="topbar-main">
+  <div class="wrap">
+  <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav class="navlinks" aria-label="Primary">
+  <div class="nav-item">
+  <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
+  <div class="dropdown">
+  <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
+  <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
+  <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
+  <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
+  <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
+  <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
+  <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
+  </div>
+  </div>
+  <a href="agriculture.html" data-link="agriculture.html" data-i18n="kisan">Kisan Guide</a>
+  <a href="complaints.html" data-link="complaints.html" data-i18n="complaints">Complaints</a>
+  <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
+  <a href="gallery.html" data-i18n="gallery">Gallery</a>
+  </nav>
+  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
+  </div>
  </div>
 </header>
 <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the plan" hidden>
+ <div class="sm-shell">
+  <div class="sm-head">
+   <span class="sbi">⌕</span>
+   <input id="searchInput" type="search" placeholder="Search the plan… खोज्नुहोस्" autocomplete="off" aria-label="Search the plan">
+   <button type="button" class="sm-close" id="searchClose" aria-label="Close search">✕</button>
+  </div>
+  <div class="sm-hint"><b>⌕</b> type to search every page · <b>↑↓</b> move · <b>↵</b> open · <b>Esc</b> or <b>Ctrl K</b> to close</div>
+  <ul class="sm-results" id="searchResults"></ul>
+  <div class="sm-none" id="searchNone" hidden></div>
+ </div>
+</div>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
  <div class="wrap">
@@ -72,40 +154,79 @@
 </section>
 <script>
   let wardsData=[];
-  fetch('data/wards.json').then(r=>r.json()).then(j=>{
-    wardsData=j.wards;
-    renderWards('all');
-  });
   function fmt(v){ return typeof v==='number' ? v.toLocaleString() : (v||'Data not available…'); }
+  const zoneLabel={core:'Core',corridor:'Corridor',hills:'Hills'};
+  function trend(str){ return (str||'').indexOf('-')===0 ? 'down' : ((str||'').indexOf('+')===0 ? 'up' : 'flat'); }
+  function trendMark(str){
+    const t=trend(str);
+    if(t==='up') return '▲';
+    if(t==='down') return '▼';
+    return '▬';
+  }
   function renderWards(filter){
     const g=document.getElementById('wardGrid');
     const f = wardsData.filter(w=> filter==='all' || w.zone===filter);
-    g.innerHTML=f.map(w=>`
-      <div class="card" id="ward-${w.ward}" style="padding:16px 18px">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div class="ic" style="width:38px;height:38px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800">${w.ward}</div>
-          <div>
-            <b>Ward ${w.ward}</b> — <span style="text-transform:capitalize;font-weight:700;color:var(--moss)">${w.zone}</span> · ${fmt(w.population_2021)} (2021)
-            <div style="font-size:0.78rem;opacity:.6">Households ${fmt(w.households_2021)} · Area ${fmt(w.area_sq_km)} km² (Table 3.1; Appx ${w.area_appendix_b} km²) · Density ${fmt(w.density_per_sq_km)}/km²</div>
+    g.innerHTML=f.map(w=>{
+      const pills=(w.priority_sector||'').split(',').map(s=>`<span class="wc-pill">${s.trim()}</span>`).join('');
+      const zone=w.zone||'hills';
+      return `
+      <div class="ward-card" id="ward-${w.ward}">
+        <div class="ward-card__head wc-${zone}">
+          <div class="ward-num">${w.ward}</div>
+          <div class="wc-title">
+            <div class="wc-zone">${zoneLabel[zone]||zone} zone</div>
+            <div class="wc-poptitle">${fmt(w.population_2021)} people</div>
           </div>
+          <div class="wc-badge" title="Population change 2011 → 2021">${trendMark(w.change_2011_2021)} ${w.change_2011_2021||''}</div>
         </div>
-        <p style="font-size:0.88rem;line-height:1.55"><b>Strength:</b> ${w.key_strength} <span style="opacity:.6">| <b>Weakness:</b> ${w.key_weakness}</span></p>
-        <p style="font-size:0.84rem"><span style="background:rgba(28,79,58,0.08);border:1px solid rgba(28,79,58,0.16);padding:2px 8px;border-radius:100px;font-weight:700;color:var(--moss)">${w.priority_sector}</span> <span style="font-size:0.78rem;opacity:.6">Priority</span></p>
-        <p style="font-size:0.82rem;margin-top:6px"><b>Key projects:</b> ${w.key_project_1} · ${w.key_project_2}</p>
-        <p style="font-size:0.76rem;opacity:.55;margin-top:8px">2011 ${fmt(w.population_2011)} (${w.change_2011_2021}) · Firms ${w.registered_firms}<br>Strategy: ${w.strategy}</p>
-        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn btn-dark" href="spatial.html" style="padding:6px 12px;font-size:0.78rem">Map →</a>
-          <a class="btn btn-outline" href="projects.html" style="padding:6px 12px;font-size:0.78rem">Projects →</a>
-          <a class="btn btn-outline" href="sector-${w.priority_sector.split(',')[0].trim().toLowerCase().replace(' ','-')}.html" style="padding:6px 12px;font-size:0.78rem" onerror="this.style.display='none'">Sector →</a>
+        <div class="ward-card__stats">
+          <div class="wc-stat"><b>${fmt(w.population_2021)}</b><span>Pop 2021</span></div>
+          <div class="wc-stat"><b>${fmt(w.households_2021)}</b><span>Households</span></div>
+          <div class="wc-stat"><b>${fmt(w.density_per_sq_km)}</b><span>Density /km²</span></div>
+        </div>
+        <div class="ward-card__body">
+          <div class="wc-row wc-str"><span class="wc-ic">+</span><div><label>Strength</label><p>${w.key_strength}</p></div></div>
+          <div class="wc-row wc-wkn"><span class="wc-ic">−</span><div><label>Weakness</label><p>${w.key_weakness}</p></div></div>
+          <div class="wc-pills">${pills}</div>
+          <div class="wc-projects">
+            <label>Key projects</label>
+            <span><i>›</i>${w.key_project_1}</span>
+            <span><i>›</i>${w.key_project_2}</span>
+          </div>
+          <div class="wc-foot"><span>2011 ${fmt(w.population_2011)}</span><span>${fmt(w.area_sq_km)} km² · ${w.registered_firms||''} firms</span></div>
+        </div>
+        <div class="ward-card__strategy wc-${zone}">Strategy — ${w.strategy}</div>
+        <div class="ward-card__actions">
+          <a class="btn btn-dark" href="spatial.html">Map →</a>
+          <a class="btn btn-outline" href="projects.html">Projects →</a>
+          <a class="btn btn-outline" href="sector-${w.priority_sector.split(',')[0].trim().toLowerCase().replace(/\s+/g,'-')}.html" onerror="this.style.display='none'">Sector →</a>
         </div>
       </div>
-    `).join('');
+    `}).join('');
   }
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
     renderWards(t.dataset.filter);
   }));
+  function scrollToWardHash(instant){
+    const m=(location.hash||'').match(/^#ward-(\d+)$/);
+    if(!m) return;
+    const el=document.getElementById('ward-'+m[1]);
+    if(!el) return;
+    if(instant){
+      const top=el.getBoundingClientRect().top+window.pageYOffset-90;
+      window.scrollTo(0, Math.max(top,0));
+    } else {
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  window.addEventListener('hashchange',()=>scrollToWardHash(false));
+  fetch('data/wards.json').then(r=>r.json()).then(j=>{
+    wardsData=j.wards;
+    renderWards('all');
+    scrollToWardHash(true);
+  });
 </script>
 
 
@@ -172,7 +293,7 @@
  </ul>
  <h4>Citizen</h4>
  <ul>
- <li><a href="agriculture.html">Kisan Guide</a> · <a href="complaints.html">Complaints</a></li>
+ <li><a href="agriculture.html">Kisan Guide</a> · <a href="services.html">Services</a> · <a href="complaints.html">Complaints</a></li>
  <li><a href="gallery.html">Visual Gallery</a></li>
  </ul>
  <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
@@ -185,6 +306,8 @@
 </footer>
 
 
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
 <script src="js/nav.js"></script>
 </body>
 </html>

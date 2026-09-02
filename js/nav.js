@@ -1,4 +1,4 @@
-// Shared site JS: nav, dropdowns, mobile menu, scroll progress, reveal animations
+// Shared site JS: nav, dropdowns, mobile menu, scroll progress, reveal animations, lang toggle, ward finder
 (function(){
   // Active nav link highlight (top-level links + brand)
   var path = window.location.pathname.split('/').pop() || 'index.html';
@@ -61,7 +61,7 @@
     });
   }
 
-  // Scroll progress bar
+  // Scroll progress bar + topbar shadow
   var bar = document.getElementById('progress');
   var ticking = false;
   function updateProgress(){
@@ -69,10 +69,55 @@
     var max = h.scrollHeight - window.innerHeight;
     var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
     if(bar) bar.style.setProperty('--p', p);
+    document.body.classList.toggle('nav-scrolled', window.scrollY > 6);
     ticking = false;
   }
   window.addEventListener('scroll', function(){ if(!ticking){ requestAnimationFrame(updateProgress); ticking=true; } }, {passive:true});
   updateProgress();
+
+  // Utility-strip ward finder → deep-link to ward profile
+  var wardFind = document.getElementById('navWardFind');
+  if(wardFind){
+    wardFind.addEventListener('change', function(){
+      var v = wardFind.value;
+      if(v) location.href = 'wards.html#ward-' + v;
+    });
+  }
+
+  // Language toggle (nav + utility labels only; full page translation later)
+  var I18N = {
+    findward:   { en:'Find my ward',                ne:'मेरो वडा' },
+    helpline:   { en:'Helpline · Ward offices',     ne:'हेल्पलाइन · वडा कार्यालय' },
+    brandsub:   { en:'IUDP 2026–2041 · Official Plan Portal', ne:'आयुडिपी २०२६–२०४१ · आधिकारिक योजना पोर्टल' },
+    atlas:      { en:'The Atlas',                   ne:'योजना एटलस' },
+    kisan:      { en:'Kisan Guide',                 ne:'किसान मार्गदर्शन' },
+    complaints: { en:'Complaints',                  ne:'उजुरी' },
+    services:   { en:'Services',                    ne:'सेवाहरू' },
+    gallery:    { en:'Gallery',                     ne:'ग्यालरी' },
+    search:     { en:'Search',                      ne:'खोज' }
+  };
+  var LANG_KEY = 'bgl_lang';
+  var langToggle = document.getElementById('langToggle');
+  function applyLang(lang){
+    var isNe = lang === 'ne';
+    document.documentElement.lang = isNe ? 'ne' : 'en';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      var t = I18N[k];
+      if(t) el.textContent = t[isNe ? 'ne' : 'en'];
+    });
+    if(langToggle) langToggle.setAttribute('aria-pressed', isNe ? 'true' : 'false');
+  }
+  var savedLang = 'en';
+  try{ savedLang = localStorage.getItem(LANG_KEY) || 'en'; }catch(e){}
+  applyLang(savedLang);
+  if(langToggle){
+    langToggle.addEventListener('click', function(){
+      var next = (document.documentElement.lang === 'ne') ? 'en' : 'ne';
+      try{ localStorage.setItem(LANG_KEY, next); }catch(e){}
+      applyLang(next);
+    });
+  }
 
   // Reveal on scroll
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

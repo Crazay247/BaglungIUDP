@@ -36,7 +36,7 @@
   var SEEDS = [
     { id: 'BGL-2026-0049', name: 'Sabita Thapa Magar', anon: false, ward: '3', cat: 'light', desc: 'Street lights out near the school — kids walk before sunrise.', tole: 'Khalanga', ts: daysAgo(1), status: ST.InProgress },
     { id: 'BGL-2026-0048', name: '', anon: true, ward: '7', cat: 'water', desc: 'Tap runs only every third day and stays brown after rain.', tole: 'Damek', ts: daysAgo(3), status: ST.UnderReview },
-    { id: 'BGL-2026-0047', name: 'Gopal Kunwar', anon: false, ward: '11', cat: 'waste', desc: 'Market skip container overflows every evening, drain blocked.', tole: 'Kusma bazaar', ts: daysAgo(5), status: ST.Resolved },
+    { id: 'BGL-2026-0047', name: 'Gopal Kunwar', anon: false, ward: '11', cat: 'waste', desc: 'Market skip container overflows every evening, drain blocked.', tole: 'Kusma bazaar', ts: daysAgo(5), status: ST.Resolved, rating: 'fixed' },
     { id: 'BGL-2026-0046', name: '', anon: true, ward: '2', cat: 'roads', desc: 'Culvert collapsed on the lane — pit is a danger at night.', tole: 'Kharpan Tole', ts: daysAgo(7), status: ST.Submitted },
     { id: 'BGL-2026-0045', name: 'Mina Gurung', anon: false, ward: '9', cat: 'drain', desc: 'No drain along the footpath; monsoon water pours into two houses.', tole: 'Kande hill', ts: daysAgo(9), status: ST.InProgress }
   ];
@@ -113,6 +113,19 @@
   var WARD_OPTS = [];
   (function () { var i; for (i = 1; i <= 14; i++) WARD_OPTS.push(h('option', { key: i, value: String(i) }, 'Ward ' + i + ' · वडा ' + i)); })();
 
+  var RATES = [
+    { k: 'fixed', en: 'Fixed',   np: 'समाधान',   emj: '✅' },
+    { k: 'partly', en: 'Partly', np: 'आंशिक',    emj: '🟡' },
+    { k: 'no',    en: 'Not fixed', np: 'भएन',    emj: '❌' }
+  ];
+  var RATE_CHIP = function (r, on, pick) {
+    return h('button', { type: 'button', className: 'rate' + (on ? ' on' : ''), key: r.k,
+      onClick: function () { pick(r.k); }, 'aria-pressed': on, title: 'Rate this complaint' },
+      h('span', { 'aria-hidden': 'true' }, r.emj, ' '),
+      r.en, ' ',
+      h('span', { className: 'cnp', lang: 'ne' }, r.np));
+  };
+
   function App() {
     var listS = React.useState(null);
     var list = listS[0], setList = listS[1];
@@ -187,6 +200,18 @@
       });
       setList(next); saveStore(next);
     }
+    function rate(id, r) {
+      var next = (list || []).map(function (c) {
+        if (c.id !== id) return c;
+        var n = Object.assign({}, c, { rating: r });
+        if (c.status === ST.Resolved && r === 'no') {
+          n.status = ST.InProgress;
+          n.reopened = true;
+        }
+        return n;
+      });
+      setList(next); saveStore(next);
+    }
     function onFile(ev) {
       var file = ev.target.files && ev.target.files[0];
       if (!file) { setK('photo', null); return; }
@@ -199,6 +224,10 @@
       return true;
     });
     var len = form.detail.trim().length;
+
+    var rated = (list || []).filter(function (c) { return c.rating && c.status === ST.Resolved; });
+    var fixedN = rated.filter(function (c) { return c.rating === 'fixed'; }).length;
+    var fixPct = rated.length ? Math.round(fixedN / rated.length * 100) : 0;
 
     return h('div', { className: 'cp' },
 
@@ -264,6 +293,13 @@
             h('div', { className: 'empty-wall' }, 'Your browser blocks local storage, so this wall shows the example set only. Use the strip at the bottom to file a real complaint.') :
             !shown.length ?
               h('div', { className: 'empty-wall' }, 'Nothing here yet — send the first complaint above and it will appear right here.') : null,
+          rated.length ?
+            h('div', { className: 'fixbar' },
+              h('div', { className: 'fb-label' }, 'Fix-rate · समाधान दर'),
+              h('div', { className: 'fb-meters' },
+                h('div', { className: 'fb-track' }, h('div', { className: 'fb-fill', style: { width: fixPct + '%' } })),
+                h('span', { className: 'fb-num' }, String(fixPct) + '%')),
+              h('div', { className: 'fb-sub' }, String(fixedN), ' of ', String(rated.length), ' rated complaints fixed · ', h('b', null, 'प्रतिक्रिया दिइएका उजुरीहरूमध्ये समाधान')) ) : null,
           h('div', { className: 'wall' },
             shown.slice(0, 12).map(function (c) {
               var cat = catByKey[c.cat] || { en: 'General', np: '', emj: '📋' };
@@ -273,15 +309,22 @@
                   h('div', { className: 'cmp-top' },
                     h('span', { className: 'cmp-id' }, c.id),
                     ST_CHIP(c, c.status, function () { advance(c.id); }),
-                    h('span', { className: 'ward-chip' }, 'Ward ' + c.ward)),
+                    h('span', { className: 'ward-chip' }, 'Ward ' + c.ward),
+                    c.reopened ? h('span', { className: 're-open' }, '↺ Reopened · पुनः खोलियो') : null),
                   h('p', { className: 'cmp-desc' }, c.desc),
                   c.photo ? h('div', { className: 'cmp-photo' }, h('img', { src: c.photo, alt: 'Complaint photo' })) : null,
                   h('div', { className: 'cmp-meta' },
                     c.anon ? null : h('span', { className: 'who' }, '👤 ' + c.name),
                     c.tole ? h('span', { className: 'who' }, '📍 ' + c.tole) : null,
-                    h('span', { className: 'cmp-time' }, timeAgo(c.ts))))
-              );
-            }))
+                    h('span', { className: 'cmp-time' }, timeAgo(c.ts))),
+                  c.status === ST.Resolved ?
+                    h('div', { className: 'cmp-rate' },
+                      h('span', { className: 'rate-q' }, 'Was it fixed? · समाधान भयो?'),
+                      h('div', { className: 'rates' }, RATES.map(function (r) { return RATE_CHIP(r, c.rating === r.k, function () { rate(c.id, r.k); }); })),
+                      c.rating ? h('span', { className: 'rate-done' }, '✓ Rated · प्रतिक्रिया दिनुभयो') : null)
+                      : null)
+                    );
+                  }))
         )
       )
     );

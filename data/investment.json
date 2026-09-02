@@ -10,9 +10,20 @@
     "note": "Working IUDP envelope pending final cross-sector cost consolidation; Finance doc 1,040.00 is locked numeric authority."
   },
   "by_sector": {
-    "_note": "No dedicated numeric table for investment by sector (cr) found in Financial doc (15 tables) or For addition (53 tables) — closest T14 Col4 maps financing to sectors qualitatively only. Do not invent; show disclaimer.",
-    "value": "Data not available in current IUDP documentation.",
-    "provenance": "Searched HDR Sector|Cost — negative; T14 qualitative mapping only"
+    "_note": "v3 Ch6 Table 6.1 'MSIP summary by sector, NPR crore' is the numeric authority for sector splits (unit-rate, ±30%). Its row total is 1,039.4 — the tile uses the locked working envelope 1,040.00 (Finance doc T14); the 0.6 difference is rounding of the sector tables. Financial sector carries no capital line.",
+    "value": "Table 6.1 by sector: Physical 551.3 (226.0+180.0+145.3) · Social 66.9 (32.0+21.0+13.9) · Environment 32.3 (18.0+9.0+5.3) · DRR 22.6 (14.0+6.0+2.6) · Tourism 238.0 (78.0+105.0+55.0) · Economic 120.0 (55.0+45.0+20.0) · Financial 0.0 · Institutional 8.3 (8.3+0.0+0.0) — Total 1,039.4. Physical 53%, Tourism 23%.",
+    "provenance": "v3 Ch6 Table 6.1 (8 rows + source note 'Baglung IUDP team MSIP tables, ±30%'); Finance doc T14 for the locked 1,040.00 envelope — see _conflict_log",
+    "rows": [
+      {"sector": "5.1 Physical", "phase_1": "226.0", "phase_2": "180.0", "phase_3": "145.3", "total": "551.3"},
+      {"sector": "5.2 Social", "phase_1": "32.0", "phase_2": "21.0", "phase_3": "13.9", "total": "66.9"},
+      {"sector": "5.3 Environment", "phase_1": "18.0", "phase_2": "9.0", "phase_3": "5.3", "total": "32.3"},
+      {"sector": "5.4 Disaster risk reduction", "phase_1": "14.0", "phase_2": "6.0", "phase_3": "2.6", "total": "22.6"},
+      {"sector": "5.5 Tourism", "phase_1": "78.0", "phase_2": "105.0", "phase_3": "55.0", "total": "238.0"},
+      {"sector": "5.6 Economic", "phase_1": "55.0", "phase_2": "45.0", "phase_3": "20.0", "total": "120.0"},
+      {"sector": "5.7 Financial", "phase_1": "0.0", "phase_2": "0.0", "phase_3": "0.0", "total": "0.0"},
+      {"sector": "5.8 Institutional", "phase_1": "8.3", "phase_2": "0.0", "phase_3": "0.0", "total": "8.3"},
+      {"sector": "Total", "phase_1": "431.3", "phase_2": "366.0", "phase_3": "242.1", "total": "1,039.4"}
+    ]
   },
   "by_phase": [
     {
