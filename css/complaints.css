@@ -287,7 +287,7 @@
 
 @media(max-width:900px){
   .steps::before{left:12%;right:12%}
-  .step-time{margin-left:0}
+  .step-time{margin-left:0;white-space:normal}
 }
 @media(max-width:760px){
   .giant{padding:56px 0 66px}

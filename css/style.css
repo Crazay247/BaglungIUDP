@@ -82,8 +82,8 @@ body.nav-scrolled .topbar-main{box-shadow:0 6px 24px rgba(27,30,36,0.10)}
 .dropdown{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);padding:10px;min-width:230px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s,visibility .18s}
 .nav-item.open .dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .dropdown a{display:block;padding:10px 14px;border-radius:10px}
-.dropdown a .dd-title{font-weight:700;font-size:var(--fs-sm);color:var(--ink)}
-.dropdown a .dd-sub{font-size:0.72rem;opacity:0.6;font-weight:500;margin-top:1px}
+.dropdown a .dd-title{display:block;font-weight:700;font-size:var(--fs-sm);color:var(--ink)}
+.dropdown a .dd-sub{display:block;font-size:0.72rem;opacity:0.6;font-weight:500;margin-top:1px}
 .dropdown a:hover{background:var(--line2)}
 .dropdown a.active{background:rgba(28,79,58,0.08);color:var(--moss)}
 .dropdown a.active .dd-title{color:var(--moss)}
