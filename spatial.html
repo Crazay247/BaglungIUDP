@@ -55,11 +55,11 @@
  <div class="wrap">
   <span class="kicker" style="background:rgba(28,79,58,0.1);color:var(--moss);border-color:rgba(28,79,58,0.12)">Interactive map</span>
   <h2 style="margin-top:14px">Fixed view — toggle and compare</h2>
-  <p class="lede">The map stays fixed on Baglung — it cannot be dragged or zoomed out of view. Switch the map style, toggle overlays with the chips below, and click any feature for details. Base imagery via OSM, Esri and CARTO.</p>
+  <p class="lede">The map stays fixed on the whole of Baglung — it cannot be dragged or zoomed out of view. Switch the map style, toggle overlays with the chips below, and click a ward to zoom to it (⤢ Full Baglung zooms back out). Base imagery via OSM, Esri and CARTO.</p>
   <div class="map-shell reveal" style="margin-top:20px">
   <div id="map" role="application" aria-label="Map of Baglung Municipality (fixed view)" tabindex="0" style="width:100%;height:100%"></div>
   <div class="legend-overlay" id="mapLegend"><h5>Legend</h5><div class="row"><span class="sw" style="background:#f2a900"></span> Ward pop: 1 875–9 829</div></div>
-  <div class="map-caption"><span>Fixed view · click features · toggle layers · compare overlays</span></div>
+  <div class="map-caption"><span>Full municipality in view · click a ward to zoom · ⤢ resets · toggle layers</span></div>
   <button class="map-toggle" id="fsBtn" aria-label="Toggle fullscreen map">⛶ Fullscreen</button>
   </div>
   <div class="map-toolbar">
@@ -67,6 +67,7 @@
   <label class="layer-chip base-chip"><input type="radio" name="basemap" data-base value="osm" checked> Streets</label>
   <label class="layer-chip base-chip"><input type="radio" name="basemap" data-base value="esri"> Satellite</label>
   <label class="layer-chip base-chip"><input type="radio" name="basemap" data-base value="carto"> Light</label>
+  <button class="layer-chip" id="resetView" type="button" title="Zoom back out to the full municipality">⤢ Full Baglung</button>
   <span class="map-style-lbl" style="margin-left:8px">Overlays:</span>
  <button class="layer-chip" data-layer="dem">Terrain (DEM)</button>
  <button class="layer-chip" data-layer="hillshade">Hillshade</button>

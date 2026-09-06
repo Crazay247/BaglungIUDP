@@ -222,30 +222,14 @@
        app layouts that manage their own top spacing — skip the bar there */
   }
 
-  /* Count-up for [data-countup] (attribute = final display string; numeric part animates) */
+  /* [data-countup] (attribute = final display string). Previously animated 0→N,
+     which made the hero chips jitter/shift width on every page open — now renders
+     the final value statically, no animation, no layout shift. */
   function initCountUp() {
     var els = document.querySelectorAll('[data-countup]');
     if (!els.length) return;
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     Array.prototype.forEach.call(els, function (el) {
-      var raw = el.getAttribute('data-countup');
-      var num = parseFloat(String(raw).replace(/[,s]/g, ''));
-      if (isNaN(num) || reduce) { el.textContent = raw; return; }
-      var decimals = (String(raw).split('.')[1] || '').length;
-      var t0 = null, DUR = 1200;
-      function step(ts) {
-        if (t0 === null) t0 = ts;
-        var p = Math.min(1, (ts - t0) / DUR);
-        var eased = 1 - Math.pow(1 - p, 3);
-        var v = (num * eased).toFixed(decimals);
-        el.textContent = Number(v).toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
-        if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
-      }
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(el); requestAnimationFrame(step); } });
-      }, { threshold: 0.4 });
-      io.observe(el);
-      el.textContent = raw; // fallback text until animated
+      el.textContent = el.getAttribute('data-countup');
     });
   }
 

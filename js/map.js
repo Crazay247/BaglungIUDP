@@ -24,6 +24,7 @@ const OVERLAYS = {
 };
 let map, baseLayers={}, imageLayers={}, vectorLayers={}, wardLayer, wardData, conceptsData=null;
 let highlightedWard=null;
+let FULL_BOUNDS=null; // full municipal extent — initial view + reset target
 const RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 // Fetch concepts for zone lookup (core 1-4, corridor 13-14, hills 5-12)
 fetch('data/concepts.json').then(r=>r.json()).then(j=>{ conceptsData=j; }).catch(()=>{});
@@ -61,7 +62,7 @@ async function initMap(){
   // Fixed-view map: every gesture that moves the view is off, so the map can
   // never be dragged or zoomed out of sight. Users switch the basemap + layers
   // via the toolbar chips; programmatic moves (ward-click fitBounds) still work.
-  const mapOpts = {center:CENTER,zoom:13,zoomControl:false,attributionControl:true,
+  const mapOpts = {center:CENTER,zoom:12,zoomControl:false,attributionControl:true,
     dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,
     keyboard:false,tap:false,touchZoom:false};
   map = L.map('map', mapOpts);
@@ -89,6 +90,9 @@ async function initMap(){
   ]);
   wardData=wards;
   vectorLayers.boundary = L.geoJSON(boundary,{pane:'vectorPane',style:{color:'#1c4f3a',weight:2.2,fill:false,opacity:0.9,lineCap:'round'}}).addTo(map);
+  // Entire municipality visible on load: fit the fixed view to the boundary
+  FULL_BOUNDS = vectorLayers.boundary.getBounds();
+  map.fitBounds(FULL_BOUNDS,{padding:[14,14]});
   wardLayer = L.geoJSON(wards,{
     pane:'vectorPane',
     style:f=>({fillColor:wardColor(f.properties.POPULATION),fillOpacity:0.62,color:'#fff',weight:1,opacity:0.9}),
@@ -239,6 +243,8 @@ function wireControls(){
     f.dispatchEvent(new Event('change')); l.dispatchEvent(new Event('change'));
     buildLegend();
   });
+  // reset view → back to the full municipality (the only way back after a ward zoom)
+  document.getElementById('resetView')?.addEventListener('click', resetView);
   // fullscreen (both UIs use #fsBtn)
   const fsBtn=document.getElementById('fsBtn');
   if(fsBtn){
@@ -259,8 +265,13 @@ function wireControls(){
   });
 }
 
-function highlightWard(w){
-  highlightedWard = String(w);
+function resetView(){
+  if(!map) return;
+  if(FULL_BOUNDS) map.fitBounds(FULL_BOUNDS,{padding:[14,14]});
+  else map.setView(CENTER,12);
+  map.closePopup();
+}
+function highlightWard(w){  highlightedWard = String(w);
   if(!wardLayer) return;
   wardLayer.eachLayer(l=>{
     const is = String(l.feature.properties.WARD)===String(w);

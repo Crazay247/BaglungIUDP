@@ -67,7 +67,7 @@ index.html       ── data/wards.json (hero ward-finder)
 3. Scripts at body end: `search-index.js → search.js → nav.js → toc.js → glossary.js` (+ page-specific React/Leaflet before those).
 4. `js/toc.js` auto-adds a floating "Sections" jump button + panel (pages with ≥3 content h2s + a hero), converts `.note` blocks into `<details class="note acc">` collapsibles, and appends a back-to-top button. Tool-app pages skip notes/TOC but keep back-to-top.
 5. `js/glossary.js` auto-links jargon (data/glossary.json, ~21 terms: MSIP, LFA, DUDBC, ROW, DPR, BOQ, PPP, IRR, tukra…) to a tooltip / mobile bottom-sheet. Add terms by editing the JSON — no code changes.
-6. Count-up numbers: wrap in `<span data-countup="56,102">56,102</span>` (partials.js animates on scroll-into-view, respects prefers-reduced-motion).
+6. Static hero numbers: wrap in `<span data-countup="56,102">56,102</span>` (partials.js renders the final value as-is; the old 0→N animation was removed because it made chips jitter on load).
 7. English/Nepali: `data-i18n="key"` attributes resolve against the `I18N` dict hardcoded in nav.js:88–98 (nav/utility labels only).
 
 ## Data layer shapes
@@ -102,7 +102,7 @@ index.html       ── data/wards.json (hero ward-finder)
 | Collapsible provenance notes | every `.note` block (43 site-wide) | js/toc.js converts to `<details class="note acc">` |
 | Glossary tooltips | all pages, ~21 planning terms | js/glossary.js + data/glossary.json; dotted underline, mobile bottom sheet |
 | Back-to-top | all pages | js/toc.js; appears after 600px scroll |
-| Count-up hero stats | index.html hero chips | `[data-countup]` via partials.js |
+| Static hero stats | index.html hero chips | `[data-countup]` via partials.js |
 | Lazy images | all static `<img>` (gallery JS images already lazy) | `loading="lazy" decoding="async"` added site-wide |
 | Mobile search prominence | ≤768px | search button becomes solid moss-green tap target |
 | Search index generator | dev tool | `node js/gen-search-index.js` → regenerates js/search-index.js (80 KB, 36 pages) |
