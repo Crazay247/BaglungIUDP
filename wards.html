@@ -10,23 +10,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-.ward-card{display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:#fff;border:1px solid rgba(27,30,36,.08);box-shadow:0 1px 3px rgba(12,16,12,.05),0 8px 24px rgba(12,16,12,.05);transition:transform .18s ease,box-shadow .18s ease;scroll-margin-top:96px}
-.ward-card:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(12,16,12,.08),0 16px 36px rgba(12,16,12,.10)}
-.ward-card__head{display:flex;align-items:center;gap:12px;padding:16px 18px 14px;color:#fff}
-.wc-core{background:linear-gradient(135deg,#2D6A4F 0%,#12392A 100%)}
-.wc-corridor{background:linear-gradient(135deg,#F2A900 0%,#B87B00 100%);color:#3A2C00}
-.wc-hills{background:linear-gradient(135deg,#7A8450 0%,#4E5734 100%)}
-.ward-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;line-height:1;min-width:44px;text-align:center}
-.ward-num::after{content:"";display:block;width:22px;height:2px;margin:6px auto 0;border-radius:2px;background:rgba(255,255,255,.55)}
-.wc-title{flex:1}
-.wc-zone{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
-.wc-poptitle{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.02rem;line-height:1.2}
-.wc-badge{font-size:.72rem;font-weight:800;padding:4px 9px;border-radius:100px;background:rgba(255,255,255,.92);color:var(--ink);white-space:nowrap}
-.ward-card__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(27,30,36,.08);border-bottom:1px solid rgba(27,30,36,.08)}
+/* ===== one-per-row interactive ward cards ===== */
+#wardGrid.grid{grid-template-columns:1fr;gap:18px}
+#wardCount{margin:10px 2px 0;font-size:.82rem;font-weight:700;color:rgba(27,30,36,.6)}
+.ward-card{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);border-radius:18px;overflow:hidden;background:#fff;border:1px solid rgba(27,30,36,.08);border-left:6px solid #2D6A4F;box-shadow:0 1px 3px rgba(12,16,12,.05),0 8px 24px rgba(12,16,12,.05);transition:transform .18s ease,box-shadow .18s ease;scroll-margin-top:96px}
+.ward-card[data-zone="corridor"]{border-left-color:#B87B00}
+.ward-card[data-zone="hills"]{border-left-color:#6B7245}
+.ward-card:hover{transform:translateY(-3px);box-shadow:0 4px 10px rgba(12,16,12,.08),0 18px 40px rgba(12,16,12,.12)}
+.ward-card.flash{box-shadow:0 0 0 3px var(--gold,#F2A900),0 18px 40px rgba(12,16,12,.12)}
+.ward-card__media{position:relative;border:0;padding:0;margin:0;cursor:pointer;min-height:240px;background:#1c2420;color:#fff;font:inherit;text-align:left;overflow:hidden;display:block;width:100%}
+.ward-card__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.ward-card:hover .ward-card__media img,.ward-card__media:hover img{transform:scale(1.06)}
+.ward-card__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,16,12,0) 42%,rgba(12,16,12,.58) 100%);pointer-events:none}
+.ward-num{position:absolute;left:14px;bottom:10px;z-index:2;font-family:'Poppins',sans-serif;font-weight:800;font-size:34px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.wc-zonechip{position:absolute;top:12px;left:12px;z-index:2;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:100px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.wc-core-chip{background:#12392A}.wc-corridor-chip{background:#8A5E00}.wc-hills-chip{background:#4E5734}
+.wc-photo-tag{position:absolute;right:12px;bottom:12px;z-index:2;font-size:.62rem;font-weight:700;color:rgba(255,255,255,.9);background:rgba(12,16,12,.5);padding:3px 9px;border-radius:100px}
+.ward-card__main{display:flex;flex-direction:column;min-width:0}
+.ward-card__head{display:flex;align-items:center;gap:10px;padding:14px 18px 10px}
+.wc-poptitle{flex:1;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.05rem;line-height:1.25;min-width:0}
+.wc-badge{font-size:.72rem;font-weight:800;padding:4px 9px;border-radius:100px;background:rgba(28,79,58,.1);color:#1C4F3A;white-space:nowrap}
+.ward-card__stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(27,30,36,.08);border-top:1px solid rgba(27,30,36,.08);border-bottom:1px solid rgba(27,30,36,.08)}
 .wc-stat{background:#fff;padding:10px 8px 8px;text-align:center}
 .wc-stat b{display:block;font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:800;color:var(--moss2,#2d6a4f);line-height:1.1}
 .wc-stat span{font-size:.62rem;letter-spacing:.04em;text-transform:uppercase;opacity:.58;font-weight:600}
-.ward-card__body{padding:14px 18px 16px;flex:1;display:flex;flex-direction:column;gap:10px}
+.ward-card__body{padding:12px 18px 6px;display:flex;flex-direction:column;gap:10px}
 .wc-row{display:flex;gap:10px;align-items:flex-start}
 .wc-ic{flex:none;width:22px;height:22px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;margin-top:1px}
 .wc-str .wc-ic{background:rgba(45,106,79,.12);color:#1C4F3A}
@@ -35,17 +43,29 @@
 .wc-row p{margin:0;font-size:.82rem;line-height:1.45;color:rgba(27,30,36,.82)}
 .wc-pills{display:flex;gap:6px;flex-wrap:wrap}
 .wc-pill{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:100px;border:1px solid rgba(28,79,58,.25);color:#1C4F3A;background:rgba(28,79,58,.07)}
-.wc-projects{border-top:1px dashed rgba(27,30,36,.14);padding-top:9px;display:flex;flex-direction:column;gap:5px}
+.ward-more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+.ward-more>div{overflow:hidden;visibility:hidden;min-height:0}
+.ward-card.open .ward-more{grid-template-rows:1fr}
+.ward-card.open .ward-more>div{visibility:visible}
+.wc-projects{border-top:1px dashed rgba(27,30,36,.14);padding-top:9px;margin-top:10px;display:flex;flex-direction:column;gap:5px}
 .wc-projects label{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.55}
 .wc-projects span{font-size:.8rem;color:rgba(27,30,36,.85);line-height:1.4}
 .wc-projects i{font-style:normal;color:var(--gold,#F2A900);font-weight:800;margin-right:5px}
-.wc-foot{margin-top:auto;display:flex;justify-content:space-between;gap:8px;font-size:.7rem;opacity:.55}
-.ward-card__strategy{padding:9px 18px;font-size:.78rem;font-weight:700;line-height:1.4}
+.wc-foot{display:flex;justify-content:space-between;gap:8px;font-size:.7rem;opacity:.55;margin-top:8px;flex-wrap:wrap}
+.ward-card__strategy{padding:9px 14px;font-size:.78rem;font-weight:700;line-height:1.4;margin-top:10px;border-radius:12px}
 .ward-card__strategy.wc-core{background:#E9F1EC;color:#1C4F3A}
 .ward-card__strategy.wc-corridor{background:#FBF3DE;color:#8A5E00}
 .ward-card__strategy.wc-hills{background:#F0F2E6;color:#4E5734}
-.ward-card__actions{display:flex;gap:8px;padding:12px 18px 14px;border-top:1px solid rgba(27,30,36,.06);background:rgba(255,253,249,.6)}
-.ward-card__actions .btn{flex:1;text-align:center}
+.ward-card__actions{display:flex;gap:8px;padding:12px 18px 14px;border-top:1px solid rgba(27,30,36,.06);background:rgba(255,253,249,.6);flex-wrap:wrap;margin-top:auto}
+.ward-card__actions .btn{flex:1;text-align:center;white-space:nowrap}
+.wc-chev{display:inline-block;transition:transform .25s ease;margin-right:6px;font-weight:800}
+.ward-card.open .wc-chev{transform:rotate(45deg)}
+.ward-card :focus-visible{outline:3px solid var(--moss,#2D6A4F);outline-offset:2px;border-radius:8px}
+@media(max-width:720px){
+  .ward-card{grid-template-columns:1fr}
+  .ward-card__media{min-height:190px}
+  .ward-card__actions .btn{flex:1 1 100%}
+}
 </style>
 </head>
 <body>
@@ -67,13 +87,14 @@
  <div class="wrap">
  <span class="kicker" style="background:rgba(28,79,58,0.08);color:var(--moss);border:1px solid rgba(28,79,58,0.16)">Ward profiles</span>
  <h2 style="margin-top:14px">Ward profiles</h2>
- <p class="lede">In Brief: Core (1–4) — consolidate; Corridor (13–14) — planned growth; Hills (5–12) — hold, with Ward 10 homestay cluster at Baraha Lake. Click a ward to trace → sector → project → investment.</p>
- <div class="tabs" style="margin-top:18px">
- <button class="tab active" data-filter="all">All 14</button>
- <button class="tab" data-filter="core">Core 1–4</button>
- <button class="tab" data-filter="corridor">Corridor 13–14</button>
- <button class="tab" data-filter="hills">Hills 5–12</button>
- </div>
+  <p class="lede">In Brief: Core (1–4) — consolidate; Corridor (13–14) — planned growth; Hills (5–12) — hold, with Ward 10 homestay cluster at Baraha Lake. Tap a card's photo or <b>Details</b> to expand its full profile, then trace ward → sector → project → investment.</p>
+  <div class="tabs" style="margin-top:18px">
+  <button class="tab active" data-filter="all">All 14</button>
+  <button class="tab" data-filter="core">Core 1–4</button>
+  <button class="tab" data-filter="corridor">Corridor 13–14</button>
+  <button class="tab" data-filter="hills">Hills 5–12</button>
+  </div>
+  <p id="wardCount" role="status"></p>
  <div id="wardGrid" class="grid" style="margin-top:16px"></div>
  <div class="note" style="margin-top:16px">Population, area and household figures come from the 2021 Census, municipal records and 2025–26 field surveys, together summing to 98.01 km² and 56,102 residents across 14 wards. Ward 10's homestay cluster follows the homestay development plan. Where 2011 and current figures differ, the newer survey data is used.</div>
  </div>
@@ -87,6 +108,28 @@
 </section>
 <script>
   let wardsData=[];
+  const openWards=new Set();
+  /* Thematic local photos matched to each ward's key strength (no ward-level
+     photo archive exists yet) — each card is labelled "representative photo". */
+  const WARD_IMG={
+    1:{src:'assets/photos/kali_gandaki_gorge.jpg',alt:'Kali Gandaki gorge — representative photo for Ward 1'},
+    2:{src:'assets/photos/baglung_bazaar.jpg',alt:'Baglung bazaar trade street — representative photo for Ward 2'},
+    3:{src:'assets/photos/stock/market.jpg',alt:'Local market — representative photo for Ward 3'},
+    4:{src:'assets/photos/stock/bus.jpg',alt:'Highway bus — representative photo for Ward 4'},
+    5:{src:'assets/photos/stock/forest.jpg',alt:'Community forest — representative photo for Ward 5'},
+    6:{src:'assets/photos/stock/farmers.jpg',alt:'Farmers at work — representative photo for Ward 6'},
+    7:{src:'assets/photos/stock/field.jpg',alt:'Cultivated fields — representative photo for Ward 7'},
+    8:{src:'assets/photos/stock/terrace.jpg',alt:'Hill terraces — representative photo for Ward 8'},
+    9:{src:'assets/photos/stock/foghills.jpg',alt:'Misty hills — representative photo for Ward 9'},
+    10:{src:'assets/photos/baglung_lake.jpg',alt:'Baraha Lake — representative photo for Ward 10'},
+    11:{src:'assets/photos/stock/portrait.jpg',alt:'Community member — representative photo for Ward 11'},
+    12:{src:'assets/photos/stock/mountain.jpg',alt:'High hills — representative photo for Ward 12'},
+    13:{src:'assets/photos/stock/handshake.jpg',alt:'Agro business partnership — representative photo for Ward 13'},
+    14:{src:'assets/photos/dhaulagiri_panorama.jpg',alt:'Dhaulagiri range — representative photo for Ward 14'}
+  };
+  function wardImg(n){
+    return WARD_IMG[n]||{src:'assets/photos/baglung_bazaar.jpg',alt:'Baglung — representative photo for Ward '+n};
+  }
   function fmt(v){ return typeof v==='number' ? v.toLocaleString() : (v||'Data not available…'); }
   const zoneLabel={core:'Core',corridor:'Corridor',hills:'Hills'};
   function trend(str){ return (str||'').indexOf('-')===0 ? 'down' : ((str||'').indexOf('+')===0 ? 'up' : 'flat'); }
@@ -102,14 +145,19 @@
     g.innerHTML=f.map(w=>{
       const pills=(w.priority_sector||'').split(',').map(s=>`<span class="wc-pill">${s.trim()}</span>`).join('');
       const zone=w.zone||'hills';
+      const img=wardImg(w.ward);
+      const open=openWards.has(String(w.ward));
       return `
-      <div class="ward-card" id="ward-${w.ward}">
-        <div class="ward-card__head wc-${zone}">
-          <div class="ward-num">${w.ward}</div>
-          <div class="wc-title">
-            <div class="wc-zone">${zoneLabel[zone]||zone} zone</div>
-            <div class="wc-poptitle">${fmt(w.population_2021)} people</div>
-          </div>
+      <article class="ward-card${open?' open':''}" id="ward-${w.ward}" data-zone="${zone}">
+        <button type="button" class="ward-card__media js-ward-toggle" aria-expanded="${open}" aria-controls="wardmore-${w.ward}" aria-label="Ward ${w.ward} — toggle full profile">
+          <img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async">
+          <span class="wc-zonechip wc-${zone}-chip">${zoneLabel[zone]||zone}</span>
+          <span class="ward-num" aria-hidden="true">${w.ward}</span>
+          <span class="wc-photo-tag">📷 Representative photo</span>
+        </button>
+        <div class="ward-card__main">
+        <div class="ward-card__head">
+          <div class="wc-poptitle">${fmt(w.population_2021)} people · Ward ${w.ward}</div>
           <div class="wc-badge" title="Population change 2011 → 2021">${trendMark(w.change_2011_2021)} ${w.change_2011_2021||''}</div>
         </div>
         <div class="ward-card__stats">
@@ -119,24 +167,41 @@
         </div>
         <div class="ward-card__body">
           <div class="wc-row wc-str"><span class="wc-ic">+</span><div><label>Strength</label><p>${w.key_strength}</p></div></div>
-          <div class="wc-row wc-wkn"><span class="wc-ic">−</span><div><label>Weakness</label><p>${w.key_weakness}</p></div></div>
           <div class="wc-pills">${pills}</div>
+          <div class="ward-more" id="wardmore-${w.ward}"><div>
+          <div class="wc-row wc-wkn"><span class="wc-ic">−</span><div><label>Weakness</label><p>${w.key_weakness}</p></div></div>
           <div class="wc-projects">
             <label>Key projects</label>
             <span><i>›</i>${w.key_project_1}</span>
             <span><i>›</i>${w.key_project_2}</span>
           </div>
           <div class="wc-foot"><span>2011 ${fmt(w.population_2011)}</span><span>${fmt(w.area_sq_km)} km² · ${w.registered_firms||''} firms</span></div>
+          <div class="ward-card__strategy wc-${zone}">Strategy — ${w.strategy}</div>
+          </div></div>
         </div>
-        <div class="ward-card__strategy wc-${zone}">Strategy — ${w.strategy}</div>
         <div class="ward-card__actions">
+          <button type="button" class="btn btn-outline js-ward-toggle" aria-expanded="${open}" aria-controls="wardmore-${w.ward}"><span class="wc-chev" aria-hidden="true">+</span><span class="wc-toggle-label">${open?'Hide · लुकाउनुहोस्':'Details · विवरण'}</span></button>
           <a class="btn btn-dark" href="spatial.html">Map →</a>
           <a class="btn btn-outline" href="projects.html">Projects →</a>
-          <a class="btn btn-outline" href="sector-${w.priority_sector.split(',')[0].trim().toLowerCase().replace(/\s+/g,'-')}.html" onerror="this.style.display='none'">Sector →</a>
         </div>
-      </div>
+        </div>
+      </article>
     `}).join('');
+    const c=document.getElementById('wardCount');
+    if(c) c.textContent=`Showing ${f.length} of ${wardsData.length} wards`;
   }
+  document.getElementById('wardGrid').addEventListener('click',e=>{
+    const t=e.target.closest('.js-ward-toggle');
+    if(!t) return;
+    const card=t.closest('.ward-card');
+    if(!card) return;
+    const isOpen=card.classList.toggle('open');
+    const id=String(card.id.replace('ward-',''));
+    if(isOpen) openWards.add(id); else openWards.delete(id);
+    card.querySelectorAll('.js-ward-toggle').forEach(b=>b.setAttribute('aria-expanded',isOpen?'true':'false'));
+    const lbl=card.querySelector('.wc-toggle-label');
+    if(lbl) lbl.textContent=isOpen?'Hide · लुकाउनुहोस्':'Details · विवरण';
+  });
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
     t.classList.add('active');
@@ -147,6 +212,8 @@
     if(!m) return;
     const el=document.getElementById('ward-'+m[1]);
     if(!el) return;
+    el.classList.add('flash');
+    setTimeout(()=>el.classList.remove('flash'),1800);
     if(instant){
       const top=el.getBoundingClientRect().top+window.pageYOffset-90;
       window.scrollTo(0, Math.max(top,0));

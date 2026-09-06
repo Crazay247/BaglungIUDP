@@ -332,7 +332,7 @@
           <h3>${p.name}</h3>
           <p class="pcard__desc">${cleanDesc(p)}</p>
           <div class="pcard__chips">
-            <span class="pcard__chip"><b>Ward</b> ${wardLabel(p).replace(/^Wards?\s+/i,'')}</span>
+            <span class="pcard__chip">${(()=>{const wl=wardLabel(p);return /^Wards?\s*\d/i.test(wl)?'<b>Ward</b> '+wl.replace(/^Wards?\s+/i,''):wl})()}</span>
             ${p.start_year?`<span class="pcard__chip pcard__chip--gold">${p.start_year}${p.end_year?'–'+p.end_year:''}</span>`:''}
             ${p.status==='proposed'?`<span class="pcard__chip">Proposed</span>`:''}
           </div>

@@ -465,7 +465,7 @@ details.note.acc[open] summary{margin-bottom:8px}
 #gl-pop p{margin:0}
 #gl-pop .gl-x{position:absolute;top:8px;right:10px;opacity:0.5;font-size:0.8rem}
 @media(max-width:640px){
-  #gl-pop{left:12px!important;right:12px!important;top:auto!important;bottom:12px!important;width:auto!important;max-width:none}
+  #gl-pop{position:fixed;left:12px!important;right:12px!important;top:auto!important;bottom:12px!important;width:auto!important;max-width:none}
 }
 
 /* Back to top (js/toc.js) */
