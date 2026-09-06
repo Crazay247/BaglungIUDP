@@ -46,13 +46,13 @@
 
 /* ---------- hero ---------- */
 .mh-hero{
-  background:
-    radial-gradient(820px 420px at 85% -10%, rgba(233,161,59,.18), transparent 60%),
-    radial-gradient(700px 460px at -12% 110%, rgba(62,142,126,.35), transparent 60%),
-    linear-gradient(160deg,#0F3B38 0%,#14504C 55%,#0D2E2C 100%);
+  background:linear-gradient(160deg,#0F3B38 0%,#14504C 55%,#0D2E2C 100%);
   color:#fff;padding:64px 0 78px;position:relative;overflow:hidden;
 }
-.mh-hero .wrap{position:relative}
+.mh-hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.mh-hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(13,46,44,.93) 0%,rgba(15,59,56,.86) 48%,rgba(20,80,76,.62) 100%)}
+.mh-hero .wrap{position:relative;z-index:1}
 .mh-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:7px 14px;
   font-weight:800;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase}
@@ -82,14 +82,18 @@
 .mh-sec h2 .np{font-size:.62em}
 .mh-sub{margin-top:10px;color:var(--mh-soft);font-size:1rem;line-height:1.7;max-width:640px}
 
+/* big relatable photo inside a section */
+.mh-sec-photo{display:block;width:100%;height:clamp(180px,26vw,300px);object-fit:cover;
+  border-radius:22px;margin:22px 0 6px;box-shadow:0 10px 28px rgba(23,33,31,.12)}
+
 /* ---------- self-check ---------- */
 .mh-quiz{display:grid;gap:16px;margin-top:26px;max-width:760px}
 .mh-q{background:#fff;border:1px solid rgba(23,33,31,.09);border-radius:20px;padding:20px 22px;
   box-shadow:0 6px 20px rgba(23,33,31,.05)}
-.mh-q legend,.mh-q .q-label{font-weight:700;font-size:1rem;line-height:1.5;color:var(--mh-ink)}
-.mh-q .q-label small{display:block;font-weight:600;color:var(--mh-soft);font-size:.84rem;margin-top:2px}
-.mh-q input[type=range]{width:100%;margin-top:14px;accent-color:var(--mh-teal);min-height:44px}
-.mh-scale-lbl{display:flex;justify-content:space-between;font-size:.78rem;font-weight:700;color:var(--mh-soft);margin-top:2px}
+.mh-q legend,.mh-q .q-label{font-weight:700;font-size:1.26rem;line-height:1.45;color:var(--mh-ink)}
+.mh-q .q-label small{display:block;font-weight:700;color:var(--mh-teal);font-size:1.06rem;margin-top:6px;line-height:1.5}
+.mh-q input[type=range]{width:100%;margin-top:16px;accent-color:var(--mh-teal);min-height:44px}
+.mh-scale-lbl{display:flex;justify-content:space-between;font-size:.86rem;font-weight:700;color:var(--mh-soft);margin-top:4px}
 .mh-quiz-foot{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:6px}
 .mh-result{margin-top:22px;max-width:760px;background:var(--mh-mist);border:1px solid rgba(30,110,104,.25);
   border-left:6px solid var(--mh-teal);border-radius:0 18px 18px 0;padding:20px 22px;line-height:1.7}
@@ -102,8 +106,8 @@
 .mh-docs{display:grid;gap:16px;margin-top:28px}
 .mh-doc{display:flex;gap:16px;background:#fff;border:1px solid rgba(23,33,31,.09);border-radius:22px;
   padding:20px;box-shadow:0 8px 24px rgba(23,33,31,.06);flex-direction:column}
-.mh-doc-ava{width:58px;height:58px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:1.7rem;background:var(--mh-mist);border:1px solid rgba(30,110,104,.25)}
+.mh-doc-ava{width:66px;height:66px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;background:var(--mh-mist);border:1px solid rgba(30,110,104,.25);overflow:hidden}
 .mh-doc-top{display:flex;gap:14px;align-items:flex-start}
 .mh-doc h3{font-family:Poppins,sans-serif;font-weight:800;font-size:1.1rem;color:var(--mh-ink)}
 .mh-doc .doc-role{color:var(--mh-teal);font-weight:700;font-size:.88rem;margin-top:2px}
@@ -253,7 +257,11 @@
 .mh-faq .faq-body b{color:var(--mh-deep)}
 
 /* ---------- helpline strip + footer note ---------- */
-.mh-lines{background:var(--mh-deep);color:#fff;padding:56px 0 62px}
+.mh-lines{background:var(--mh-deep);color:#fff;padding:56px 0 62px;position:relative;overflow:hidden}
+.mh-lines-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16}
+.mh-lines::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,59,56,.35) 0%,rgba(13,46,44,.75) 100%);pointer-events:none}
+.mh-lines .wrap{position:relative;z-index:1}
 .mh-lines h2{color:#fff}
 .mh-lines .mh-sub{color:rgba(255,255,255,.78)}
 .mh-line-grid{display:grid;gap:12px;margin-top:26px}
