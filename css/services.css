@@ -11,8 +11,9 @@
     linear-gradient(162deg, #16432f 0%, #0f2e21 58%, #0a2017 100%);
   color:#fff; padding:74px 0 64px; position:relative; overflow:hidden;
 }
+.srv-hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .srv-hero::after{content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(1100px 240px at 50% -4%, rgba(255,255,255,0.06), transparent 60%)}
+  background:linear-gradient(162deg,rgba(15,46,33,.93) 0%,rgba(10,32,23,.88) 55%,rgba(8,22,16,.9) 100%)}
 .srv-hero .wrap{position:relative;z-index:1}
 .srv-seal{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .srv-seal img{width:42px;height:42px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;box-shadow:0 6px 18px rgba(0,0,0,0.3)}
@@ -39,52 +40,74 @@
 /* ---------- card grid ---------- */
 .srv-grid{background:var(--cream);padding:56px 0 80px}
 .srv-note{display:flex;gap:12px;align-items:flex-start;background:rgba(242,169,0,0.12);border:1px solid rgba(242,169,0,0.45);
-  color:#7a5a00;border-radius:14px;padding:14px 18px;font-size:0.92rem;font-weight:600;line-height:1.65;margin-bottom:26px}
+  color:#7a5a00;border-radius:14px;padding:14px 18px;font-size:1rem;font-weight:600;line-height:1.65;margin-bottom:26px}
 .srv-note b{color:#5c4400}
-.srv-stats{font-size:0.9rem;font-weight:800;color:rgba(27,30,36,0.6);margin-bottom:20px;letter-spacing:.02em}
+.srv-stats{font-size:0.95rem;font-weight:800;color:rgba(27,30,36,0.6);margin-bottom:20px;letter-spacing:.02em}
 .srv-stats b{color:var(--moss)}
-.srv-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+/* one wide card per row */
+.srv-cards{display:grid;gap:22px}
 .srv-empty{padding:50px 20px;text-align:center;color:rgba(27,30,36,0.6);font-weight:600;font-size:1.05rem;line-height:1.7}
 
-.srv-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:22px 24px;box-shadow:0 8px 26px rgba(27,30,36,0.08);
-  display:flex;flex-direction:column;animation:rise .35s ease both}
+.srv-card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:24px 26px;box-shadow:0 8px 26px rgba(27,30,36,0.08);
+  display:flex;flex-direction:column;animation:rise .35s ease both;transition:transform .18s ease,box-shadow .18s ease}
+.srv-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(27,30,36,0.14)}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .srv-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .srv-head .ce{width:44px;height:44px;border-radius:50%;background:rgba(28,79,58,0.1);border:1px solid rgba(28,79,58,0.22);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.srv-head h3{font-family:Poppins,sans-serif;font-weight:800;font-size:1.1rem;line-height:1.25;margin:0}
-.srv-head h3 .np{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:0.85rem}
-.srv-cat{margin-left:auto;flex-shrink:0;background:var(--moss);color:#fff;border-radius:100px;padding:5px 12px;font-size:0.7rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
-.srv-desc{font-size:0.95rem;line-height:1.6;color:rgba(27,30,36,0.78);margin:0 0 4px}
-.srv-tagline{font-family:Poppins,sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--moss);margin:14px 0 8px}
+.srv-head h3{font-family:Poppins,sans-serif;font-weight:800;font-size:1.35rem;line-height:1.25;margin:0}
+.srv-head h3 .np{display:block;font-family:Inter,sans-serif;font-weight:700;font-size:0.95rem}
+.srv-cat{margin-left:auto;flex-shrink:0;background:var(--moss);color:#fff;border-radius:100px;padding:6px 14px;font-size:0.75rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+.srv-desc{font-size:1.05rem;line-height:1.7;color:rgba(27,30,36,0.78);margin:0 0 4px}
+.srv-tagline{font-family:Poppins,sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:.04em;text-transform:uppercase;color:var(--moss);margin:14px 0 8px}
+
+/* photo banner across the top of every card */
+.srv-photo{width:100%;height:190px;object-fit:cover;border-radius:14px;display:block;margin-bottom:14px}
 
 /* checklist progress */
 .prog{margin-bottom:12px}
-.prog-top{display:flex;justify-content:space-between;align-items:baseline;font-size:0.82rem;font-weight:800;color:rgba(27,30,36,0.62);margin-bottom:6px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;font-size:0.9rem;font-weight:800;color:rgba(27,30,36,0.62);margin-bottom:8px}
 .prog-top b{color:var(--moss)}
 .prog > div:last-child{height:8px;border-radius:100px;background:rgba(27,30,36,0.1);overflow:hidden}
 .prog-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--moss),var(--gold));width:0;transition:width .3s ease}
 
-.docs{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:8px}
+.docs{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:10px}
 .docs li{margin:0}
-.doc-toggle{width:100%;display:flex;align-items:flex-start;gap:10px;text-align:left;background:none;border:none;cursor:pointer;padding:9px 12px;border-radius:12px;font:inherit;transition:background .15s}
+.doc-toggle{width:100%;display:flex;align-items:flex-start;gap:12px;text-align:left;background:none;border:none;cursor:pointer;padding:13px 14px;border-radius:12px;font:inherit;transition:background .15s;min-height:56px}
 .doc-toggle:hover{background:rgba(28,79,58,0.06)}
-.doc-toggle .box{width:20px;height:20px;border-radius:6px;border:2px solid rgba(27,30,36,0.3);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#fff;flex-shrink:0;margin-top:1px;transition:background .15s,border-color .15s}
-.doc-toggle .dt{font-weight:600;font-size:0.92rem;line-height:1.45;color:rgba(27,30,36,0.85)}
-.doc-toggle .dt em{font-style:normal;font-size:0.82rem;font-weight:600;color:var(--moss);display:block}
+.doc-toggle:focus-visible,.srv-chip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.doc-toggle .box{width:24px;height:24px;border-radius:7px;border:2px solid rgba(27,30,36,0.3);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:#fff;flex-shrink:0;margin-top:1px;transition:background .15s,border-color .15s}
+.doc-toggle .dt{font-weight:600;font-size:1.02rem;line-height:1.5;color:rgba(27,30,36,0.85)}
+.doc-toggle .dt em{font-style:normal;font-size:0.9rem;font-weight:600;color:var(--moss);display:block}
 .doc-toggle.done .box{background:var(--moss);border-color:var(--moss)}
 .doc-toggle.done .dt{color:rgba(27,30,36,0.45);text-decoration:line-through}
 
-.srv-meta{display:grid;gap:7px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
-.srv-meta div{display:flex;gap:9px;align-items:flex-start;font-size:0.88rem;color:rgba(27,30,36,0.78);line-height:1.5}
+.srv-meta{display:grid;gap:9px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.srv-meta div{display:flex;gap:9px;align-items:flex-start;font-size:0.95rem;color:rgba(27,30,36,0.78);line-height:1.55}
 .srv-meta .mk{flex-shrink:0;opacity:.7}
 .srv-meta b{color:var(--ink)}
-.srv-ready{margin-top:auto;display:block;text-align:center;padding-top:14px;font-weight:800;font-size:0.9rem;color:var(--moss)}
+.srv-ready{margin-top:auto;display:block;text-align:center;padding-top:16px;font-weight:800;font-size:1rem;color:var(--moss)}
 .srv-ready.go{color:#0e7a3d}
+
+@media(min-width:860px){
+  /* wide two-pane card: photo banner on top, info left, checklist right */
+  .srv-card{display:grid;grid-template-columns:minmax(260px,360px) 1fr;column-gap:34px;align-items:start;padding:28px 32px}
+  .srv-photo{grid-column:1/-1;grid-row:1;height:230px;margin-bottom:8px}
+  .srv-card::before{content:'';grid-column:2;grid-row:2/span 10;justify-self:start;align-self:stretch;
+    width:1px;background:var(--line);margin-left:-17px}
+  .srv-head{grid-column:1;grid-row:2;margin-bottom:0}
+  .srv-desc{grid-column:1;grid-row:3;margin-top:12px}
+  .srv-meta{grid-column:1;grid-row:4;align-self:start}
+  .srv-tagline{grid-column:2;grid-row:2;margin:0 0 10px;align-self:end}
+  .prog{grid-column:2;grid-row:3}
+  .docs{grid-column:2;grid-row:4}
+  .srv-ready{grid-column:2;grid-row:5}
+}
 
 @media(max-width:760px){
   .srv-hero{padding:52px 0 46px}
   .srv-cards{grid-template-columns:1fr}
   .srv-card{padding:20px 18px}
+  .srv-photo{height:160px}
   .srv-cat{display:none}
 }
 

@@ -165,6 +165,23 @@
 .wh-err-summary a{color:#A63A31;font-weight:700}
 .wh-wizard :focus-visible{outline:3px solid var(--wh-purple);outline-offset:2px;border-radius:6px}
 
+/* ---------- dedicated-form view: picked-category chip, extra questions ---------- */
+.wh-pick{display:flex;align-items:center;gap:12px;background:var(--wh-mist);
+  border:1px solid rgba(110,59,126,.25);border-radius:16px;padding:10px 14px;margin-bottom:6px;flex-wrap:wrap}
+.wh-pick img{width:56px;height:56px;object-fit:cover;border-radius:12px;flex-shrink:0}
+.wh-pick-t{flex:1;display:flex;flex-direction:column;line-height:1.4;min-width:0}
+.wh-pick-t b{color:var(--wh-ink)}
+.wh-pick-t span{font-size:.82rem;color:var(--wh-soft);font-weight:700}
+.wh-pick .wh-back{flex-shrink:0;white-space:nowrap}
+@media (max-width:520px){
+  .wh-pick-t{flex:1 1 calc(100% - 68px)}
+  .wh-pick .wh-back{margin:2px 0 0 68px}
+}
+.wh-q{font-weight:800;margin:16px 0 8px;color:var(--wh-ink);font-size:.95rem}
+.wh-note-info{margin-top:10px;background:rgba(110,59,126,.08);border:1px solid rgba(110,59,126,.35);
+  border-left:6px solid var(--wh-purple);border-radius:0 12px 12px 0;padding:12px 14px;
+  font-size:.85rem;font-weight:600;line-height:1.65;color:var(--wh-deep)}
+
 /* ---------- confirmation ---------- */
 .wh-confirm{background:var(--wh-mist);border:1px solid rgba(110,59,126,.3);border-radius:16px;padding:18px 20px;line-height:1.7}
 .wh-confirm dl{margin:0;display:grid;gap:6px}

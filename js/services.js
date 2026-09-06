@@ -21,6 +21,7 @@
     {
       id: 'birth', cat: 'vital',
       en: 'Birth Certificate', np: 'जन्मदर्ता', emj: '👶',
+      img: 'assets/photos/srv/birth.jpg', imgAlt: 'Smiling baby — birth registration',
       desc: 'Registration of a birth — needed for citizenship, school admission and every document later in life.',
       docs: [
         { en: 'Hospital discharge / birth notice', np: 'अस्पताल डिस्चार्ज वा जन्म सूचना' },
@@ -35,6 +36,7 @@
     {
       id: 'death', cat: 'vital',
       en: 'Death Registration', np: 'मृत्युदर्ता', emj: '🕊️',
+      img: 'assets/photos/srv/death.jpg', imgAlt: 'Yellow flowers — remembering with care',
       desc: 'Registration of a death — settles records, pensions and property succession.',
       docs: [
         { en: 'Death notice (hospital / house statement)', np: 'मृत्युको जानकारी पत्र' },
@@ -49,6 +51,7 @@
     {
       id: 'marriage', cat: 'vital',
       en: 'Marriage Registration', np: 'विवाह दर्ता', emj: '💍',
+      img: 'assets/photos/srv/marriage.jpg', imgAlt: 'Newly married couple — marriage registration',
       desc: 'Registers the marriage legally — required for citizenship recommendation of spouses and family records.',
       docs: [
         { en: 'Citizenship of both spouses', np: 'दुवै पतिपत्नीको नागरिकता' },
@@ -63,6 +66,7 @@
     {
       id: 'citizenship', cat: 'vital',
       en: 'Citizenship Recommendation', np: 'नागरिकता सिफारिस', emj: '🪪',
+      img: 'assets/photos/srv/citizen.jpg', imgAlt: 'Signing an application — citizenship recommendation',
       desc: 'The municipality\u0027s recommendation letter you carry to the District Administration Office for a citizenship card.',
       docs: [
         { en: 'Birth certificate', np: 'जन्मदर्ता' },
@@ -77,6 +81,7 @@
     {
       id: 'permit', cat: 'permit',
       en: 'Building Permit', np: 'भवन निर्माण अनुमति', emj: '🏗️',
+      img: 'assets/photos/srv/permit.jpg', imgAlt: 'Construction site — building permit',
       desc: 'Approval to construct or repair — drawings must meet the Nepal Building Codes (NBC 105/110).',
       docs: [
         { en: 'Lalpurja (land ownership certificate)', np: 'लालपुर्जा' },
@@ -92,6 +97,7 @@
     {
       id: 'business', cat: 'permit',
       en: 'Business Registration', np: 'फर्म दर्ता', emj: '🏪',
+      img: 'assets/photos/srv/business.jpg', imgAlt: 'Fresh vegetable market — business registration',
       desc: 'Licences a firm or shop operating in the municipality — keeps records clean for renewal and tax.',
       docs: [
         { en: 'Trade / firm name approval', np: 'फर्म नाम स्वीकृति' },
@@ -107,6 +113,7 @@
     {
       id: 'landtax', cat: 'revenue',
       en: 'House & Land Tax', np: 'घरजग्गा कर', emj: '🧾',
+      img: 'assets/photos/srv/tax.jpg', imgAlt: 'Model house with keys — house and land tax',
       desc: 'Annual municipal levy on property — the receipt is asked for by every permit and at sale time.',
       docs: [
         { en: 'Previous tax bill / receipt', np: 'अघिल्लो वर्षको कर बिल वा रसिद' },
@@ -160,6 +167,7 @@
 
     return h('div', { className: 'srv' },
       h('section', { className: 'srv-hero' },
+        h('img', { className: 'srv-hero-photo', src: 'assets/photos/srv/hero.jpg', alt: '', 'aria-hidden': 'true' }),
         h('div', { className: 'wrap' },
           h('div', { className: 'srv-seal' },
             h('img', { src: LOGO, alt: 'Baglung Municipality logo' }),
@@ -200,6 +208,7 @@
                 var got = s.docs.reduce(function (acc, d, i) { return acc + (done[s.id + ':' + i] ? 1 : 0); }, 0);
                 var pct = Math.round(got / total * 100);
                 return h('div', { className: 'srv-card', key: s.id },
+                  h('img', { className: 'srv-photo', src: s.img, alt: s.imgAlt, loading: 'lazy' }),
                   h('div', { className: 'srv-head' },
                     h('span', { className: 'ce', 'aria-hidden': 'true' }, s.emj),
                     h('h3', null, s.en, h('span', { className: 'np', lang: 'ne' }, s.np)),
