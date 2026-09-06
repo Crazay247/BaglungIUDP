@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aawaj · Women's Safety &amp; Empowerment Portal — Baglung IUDP 2026–2041</title>
+<meta name="description" content="Aawaj — an academic prototype portal for women's safety in Baglung: report abuse, inequality or assault anonymously, and reach real helplines (100, 1145). Part of the M.Sc. Urban Planning Studio II IUDP web atlas.">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/women-helpline.css">
+</head>
+<body>
+<div id="site-header"></div><script src="js/partials.js"></script><script>SitePartials.header(document.getElementById("site-header"));</script>
+
+<main class="wh">
+
+  <!-- ===== CRISIS BANNER — visible at top; dock repeats it on mobile ===== -->
+  <div class="wh-crisis" role="region" aria-label="Crisis helplines">
+    <div class="wrap">
+      <b>In danger right now? · अहिले नै खतरा?</b>
+      <a class="tel tel-main" href="tel:100">📞 100 · Police · 24/7</a>
+      <a class="tel" href="tel:1145">📞 1145 · Khabar Garaun · Free</a>
+      <a class="tel" href="tel:068520199">Baglung Police 068-520199</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="wh-hero" aria-labelledby="wh-hero-h">
+    <div class="wrap">
+      <span class="wh-eyebrow">🗣️ Aawaj · आवाज — women's safety &amp; empowerment portal</span>
+      <h1 id="wh-hero-h">Your voice. Your safety. <em>Your rights.</em><br><span lang="ne" class="np" style="color:var(--wh-gold)">तपाईंको आवाज, तपाईंको सुरक्षा।</span></h1>
+      <p class="wh-lead">Nobody should face violence, discrimination or abuse <b>alone — or in silence</b>. Report what happened to you (or someone you know), anonymously if you wish, and reach real, free helplines in one tap. Speaking up is not shameful — <b>it is the first step.</b></p>
+      <div class="wh-cta-row">
+        <a class="wh-btn wh-btn-gold" href="#report">Report an incident · उजुरी गर्नुहोस्</a>
+        <a class="wh-btn wh-btn-ghost" href="#rights">Know your rights · अधिकार जान्नुहोस्</a>
+        <a class="wh-btn wh-btn-ghost" href="tel:1145">📞 Call 1145 now</a>
+      </div>
+      <p class="wh-hero-note">This is an <b>academic prototype</b> built as part of the Baglung IUDP web atlas. Reports filed here stay in your own browser — nothing is sent to anyone. All helpline numbers listed on this page are real.</p>
+    </div>
+  </section>
+
+  <!-- ===== REACT APP: report wizard → my reports ===== -->
+  <div id="wh-root"></div>
+
+  <!-- ===== SAFETY & PRIVACY ===== -->
+  <section class="wh-sec alt" id="safety" aria-labelledby="safety-h">
+    <div class="wrap">
+      <div class="wh-kicker">Stay safe online · सुरक्षित रहनुहोस्</div>
+      <h2 id="safety-h">Protect your privacy <span class="np" lang="ne">· आफ्नो गोपनीयता जोगाउनुहोस्</span></h2>
+      <p class="wh-sub">If someone else may use this phone or computer, these small habits make a big difference.</p>
+      <div class="wh-min">
+        <div class="wh-min-grid">
+          <figure class="wh-fig">
+            <img src="assets/photos/stock/wh-privacy.jpg" alt="A smartphone secured with a chain and padlock" loading="lazy" decoding="async">
+            <figcaption>Your device, your privacy · तपाईंको फोन, तपाईंको गोपनीयता</figcaption>
+          </figure>
+          <ul class="wh-blist">
+            <li><b>Quick Exit · तुरुन्तै बाहिरिने —</b> the corner button (or press <b>Esc twice</b>) instantly replaces this page with a harmless one and removes it from your back-button history.</li>
+            <li><b>Leave fewer traces · पदचिन्ह घटाउनुहोस् —</b> open this page in an <b>Incognito / Private window</b>, or clear your browser history afterwards. If your device may be monitored, file your report without a name or phone number.</li>
+            <li><b>In danger now? · अहिले खतरा भए —</b> call <a href="tel:100">100</a> or <a href="tel:1145">1145</a> (free, 24/7). Move to a safe place, and if you were hurt, seek medical care as soon as possible — <a href="tel:068520288">Dhaulagiri Hospital: 068-520288</a>.</li>
+            <li><b>Helping someone else · अरूलाई सहयोग —</b> you may report on behalf of another person. Listen without judging, let her decide what comes next, and offer to call 1145 together or visit the police Women's Cell with her.</li>
+            <li><b>After a report · उजुरीपछि के हुन्छ —</b> here, reports stay in your browser only. In the full municipal service, a trained woman officer would review it confidentially and connect you with counselling, legal aid or protection — following the National Women Commission's "Khabar Garaun" confidentiality rules.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KNOW YOUR RIGHTS ===== -->
+  <section class="wh-sec" id="rights" aria-labelledby="rights-h">
+    <div class="wrap">
+      <div class="wh-kicker">Empowerment · महिला सशक्तीकरण</div>
+      <h2 id="rights-h">Know your rights <span class="np" lang="ne">· आफ्नो अधिकार जान्नुहोस्</span></h2>
+      <p class="wh-sub">These are general information, not legal advice. For your specific case, free legal aid is available — see the helplines below.</p>
+      <div class="wh-min">
+        <div class="wh-min-grid">
+          <figure class="wh-fig">
+            <img src="assets/photos/stock/wh-rights.jpg" alt="Scales of justice and a gavel beside law books" loading="lazy" decoding="async">
+            <figcaption>The law is on your side · कानुन तपाईंको पक्षमा छ</figcaption>
+          </figure>
+          <ul class="wh-blist">
+            <li><b>Constitution, Article 38 · संविधान —</b> every woman has the right to live with dignity, equal rights in ancestral property, safe motherhood, and freedom from all forms of violence, discrimination and untouchability — at home, in public, and at work.</li>
+            <li><b>Domestic Violence Act, 2066 · घरेलु हिंसा ऐन —</b> physical, mental, sexual and economic harm by a family or household member is a crime. Protection orders, compensation and safe accommodation are available through the police, ward office or court.</li>
+            <li><b>Muluki Criminal Code, 2074 · मुलुकी अपराध संहिता —</b> rape (including marital rape), sexual harassment, child marriage, dowry demands, witchcraft accusations, polygamy and acid attacks are all crimes — reported free, handled confidentially.</li>
+            <li><b>Free legal aid · निःशुल्क कानुनी सहायता —</b> the National Women Commission (<a href="tel:1145">1145</a>), police Women's Cells (महिला सहायता कक्ष), and the District Legal Aid Committee provide free lawyers and confidential counselling to those who cannot afford them.</li>
+            <li><b>Empowerment basics · सशक्तीकरण —</b> register citizenship and property in your own name; daughters and sons inherit equally under the Civil Code 2074; secondary education in community schools is free for girls and boys alike.</li>
+          </ul>
+        </div>
+        <p class="wh-legal-note">⚖️ General information only — not legal advice. Read more at <a href="https://nwchelpline.gov.np" target="_blank" rel="noopener">nwchelpline.gov.np</a> (Khabar Garaun) or <a href="https://baglungmun.gov.np" target="_blank" rel="noopener">baglungmun.gov.np</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="wh-sec alt" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="wh-kicker">Questions · प्रश्नहरू</div>
+      <h2 id="faq-h">Good to know <span class="np" lang="ne">· जान्नुपर्ने कुराहरू</span></h2>
+      <div class="wh-faq">
+        <details>
+          <summary>Is my report sent to anyone?</summary>
+          <div class="faq-body"><b>No.</b> This is a demonstration prototype: reports stay in <b>your own browser only</b> and are never transmitted to the municipality, police, or anyone else. If you need real help today, call <b>100</b> or <b>1145</b> — both are free.</div>
+        </details>
+        <details>
+          <summary>Will anyone know I visited this page?</summary>
+          <div class="faq-body">This page appears in your browser history like any website. Use the <b>Quick Exit</b> button to leave instantly, and open it in an <b>Incognito/Private window</b> (or clear your history afterwards) if your device is shared. The report itself is anonymous unless you choose to add your name.</div>
+        </details>
+        <details>
+          <summary>Can I report something that happened to someone else?</summary>
+          <div class="faq-body">Yes. Family members, neighbours and witnesses can report. If it is safe, talk to the survivor first and involve her in the decision — her consent and safety come first.</div>
+        </details>
+        <details>
+          <summary>What if I have no evidence or proof?</summary>
+          <div class="faq-body">You do not need proof to be heard, to call a helpline, or to seek advice. Real helplines and the police Women's Cell are trained to receive complaints without evidence and will guide you on what happens next. Do not delay medical care if you were hurt — treatment also preserves evidence.</div>
+        </details>
+        <details>
+          <summary>Why do real helplines exist alongside this demo?</summary>
+          <div class="faq-body">Because your safety matters more than any prototype. <b>1145 (Khabar Garaun)</b> is the National Women Commission's free 24/7 helpline, and <b>100</b> reaches the police from any phone, free of charge. In Baglung, the District Police Office (068-520199) has a Women's Cell, and Dhaulagiri Hospital (068-520288) treats injuries confidentially.</div>
+        </details>
+        <details>
+          <summary>Why does this page exist on an urban planning site?</summary>
+          <div class="faq-body">The Baglung IUDP treats women's safety as urban development: lighting, transport, health services, and public spaces all shape whether women can move, work and live freely. This portal is an <b>academic prototype</b> exploring how the municipality could one day receive such reports online — especially for women in far wards. It was designed with safety-first UX guidance (always-visible helplines, quick-exit, anonymity).</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HELPLINES — real, verified numbers ===== -->
+  <section class="wh-lines" id="helplines" aria-labelledby="lines-h">
+    <div class="wrap">
+      <div class="wh-kicker" style="color:var(--wh-gold)">Real help, free · निःशुल्क सहयोग</div>
+      <h2 id="lines-h">Every number here is real <span class="np" lang="ne" style="color:var(--wh-gold)">· यी नम्बरहरू साँचो हुन्</span></h2>
+      <p class="wh-sub">Calling is free and confidential. You do not need to be "sure" it was abuse to ask for help.</p>
+      <div class="wh-line-grid">
+        <a class="wh-line" href="tel:100">
+          <span class="ln-num">100</span>
+          <span class="ln-name">Police emergency</span>
+          <span class="ln-sub">Nepal Police · Free, all networks · 24/7</span>
+        </a>
+        <a class="wh-line" href="tel:1145">
+          <span class="ln-num">1145</span>
+          <span class="ln-name">Khabar Garaun — women's helpline</span>
+          <span class="ln-sub">National Women Commission · Free · 24/7 · Confidential</span>
+        </a>
+        <a class="wh-line" href="tel:068520199">
+          <span class="ln-num">068-520199</span>
+          <span class="ln-name">District Police Office, Baglung</span>
+          <span class="ln-sub">Women's Cell (महिला सहायता कक्ष) · Baglung bazaar</span>
+        </a>
+        <a class="wh-line" href="tel:068520288">
+          <span class="ln-num">068-520288</span>
+          <span class="ln-name">Dhaulagiri Hospital, Baglung</span>
+          <span class="ln-sub">Treatment &amp; medico-legal documentation</span>
+        </a>
+        <a class="wh-line" href="tel:014256701">
+          <span class="ln-num">01-4256701</span>
+          <span class="ln-name">National Women Commission</span>
+          <span class="ln-sub">Bhadrakali, Kathmandu · Legal counselling &amp; mediation</span>
+        </a>
+        <a class="wh-line" href="https://baglungmun.gov.np" target="_blank" rel="noopener">
+          <span class="ln-num" style="font-size:1rem;padding-top:6px">baglungmun.gov.np</span>
+          <span class="ln-name">Baglung Municipality</span>
+          <span class="ln-sub">Ward offices (1–14) · Complaint register · LGO 2073</span>
+        </a>
+      </div>
+      <div class="wh-proto-note">⚠️ <b>Prototype notice · प्रोटोटाइप सूचना:</b> This portal is a student prototype for the Baglung IUDP 2026–2041 web atlas. Reports filed here are stored in your browser only — no real complaint is registered, and no data leaves your device. If you need help today, use the real helplines above.</div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div><script>SitePartials.footer(document.getElementById("site-footer"));</script>
+
+<!-- Quick-Exit floating button -->
+<button type="button" class="wh-exit" id="quickExit" aria-label="Quick exit — leave this page immediately">
+  🚪 Quick Exit<span class="exit-hint">Esc ×2 · तुरुन्तै निस्कनुहोस्</span>
+</button>
+
+<!-- sticky mobile crisis dock -->
+<nav class="wh-dock" aria-label="Crisis quick call">
+  <a class="dock-main" href="tel:100"><span aria-hidden="true">📞</span><span class="dock-label">Call 100<small>प्रहरी · 24/7</small></span></a>
+  <a href="tel:1145"><span aria-hidden="true">📞</span><span class="dock-label">Call 1145<small>निःशुल्क · गोप्य</small></span></a>
+  <a href="#report"><span aria-hidden="true">📝</span><span class="dock-label">Report<small>उजुरी गर्नुहोस्</small></span></a>
+  <a class="dock-exit" href="#" id="quickExitM"><span aria-hidden="true">🚪</span><span class="dock-label">Quick Exit<small>तुरुन्तै बाहिरिने</small></span></a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="js/women-helpline.js"></script>
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
+<script src="js/nav.js"></script><script src="js/toc.js"></script><script src="js/glossary.js"></script>
+<script>
+/* Quick Exit: replace the page with a harmless site, leaving no back-entry.
+   Triggered by the buttons or by pressing Esc twice within 800ms. */
+(function () {
+  var SAFE_URL = 'https://www.google.com/search?q=baglung+weather+today';
+  var lastEsc = 0;
+  function exitNow() { window.location.replace(SAFE_URL); }
+  var b1 = document.getElementById('quickExit');
+  var b2 = document.getElementById('quickExitM');
+  if (b1) b1.addEventListener('click', exitNow);
+  if (b2) b2.addEventListener('click', function (e) { e.preventDefault(); exitNow(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var t = Date.now();
+    if (t - lastEsc < 800) { exitNow(); } else { lastEsc = t; }
+  });
+})();
+</script>
+</body>
+</html>

@@ -90,6 +90,7 @@
     helpline:   { en:'Helpline · Ward offices',     ne:'हेल्पलाइन · वडा कार्यालय' },
     brandsub:   { en:'IUDP 2026–2041 · Official Plan Portal', ne:'आयुडिपी २०२६–२०४१ · आधिकारिक योजना पोर्टल' },
     atlas:      { en:'The Atlas',                   ne:'योजना एटलस' },
+    consult:    { en:'Consult',                     ne:'परामर्श' },
     kisan:      { en:'Kisan Guide',                 ne:'किसान मार्गदर्शन' },
     complaints: { en:'Complaints',                  ne:'उजुरी' },
     services:   { en:'Services',                    ne:'सेवाहरू' },

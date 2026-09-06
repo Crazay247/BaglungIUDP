@@ -11,74 +11,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="topbar">
- <div class="top-util" aria-label="Official municipal services">
-  <div class="wrap">
-   <span class="util-left"><b>बागलुङ नगरपालिका · Baglung Municipality</b> — Official Portal</span>
-   <div class="util-right">
-    <label class="util-ward" for="navWardFind"><span data-i18n="findward">Find my ward</span>:
-     <select id="navWardFind" aria-label="Find my ward">
-      <option value="">Ward…</option>
-    <option value="1">Ward 1</option>
-    <option value="2">Ward 2</option>
-    <option value="3">Ward 3</option>
-    <option value="4">Ward 4</option>
-    <option value="5">Ward 5</option>
-    <option value="6">Ward 6</option>
-    <option value="7">Ward 7</option>
-    <option value="8">Ward 8</option>
-    <option value="9">Ward 9</option>
-    <option value="10">Ward 10</option>
-    <option value="11">Ward 11</option>
-    <option value="12">Ward 12</option>
-    <option value="13">Ward 13</option>
-    <option value="14">Ward 14</option>
-     </select>
-    </label>
-    <a class="util-link" href="complaints.html#official" data-i18n="helpline">Helpline · Ward offices</a>
-    <button type="button" class="lang-toggle" id="langToggle" data-i18n="langlabel" aria-label="Switch language">EN / नेपाली</button>
-   </div>
-  </div>
- </div>
- <div class="topbar-main">
-  <div class="wrap">
-  <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-  <nav class="navlinks" aria-label="Primary">
-  <div class="nav-item">
-  <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
-  <div class="dropdown">
-  <a href="overview.html"><span class="dd-title">Plan at a Glance</span><span class="dd-sub">Vision &amp; objectives · start here</span></a>
-  <a href="municipality.html"><span class="dd-title">Baglung Today</span><span class="dd-sub">Place, people, services</span></a>
-  <a href="analysis.html"><span class="dd-title">Analysis</span><span class="dd-sub">Gaps, SWOT, concept</span></a>
-  <a href="spatial.html"><span class="dd-title">Where We'll Grow</span><span class="dd-sub">Map &amp; spatial strategy</span></a>
-  <a href="sectors.html"><span class="dd-title">What We'll Build</span><span class="dd-sub">8 sector plans</span></a>
-  <a href="projects.html"><span class="dd-title">Projects</span><span class="dd-sub">Flagships &amp; local works</span></a>
-  <a href="wards.html"><span class="dd-title">Wards 1–14</span><span class="dd-sub">Find my ward</span></a>
-  </div>
-  </div>
-  <a href="agriculture.html" data-link="agriculture.html" data-i18n="kisan">Kisan Guide</a>
-  <a href="complaints.html" data-link="complaints.html" data-i18n="complaints">Complaints</a>
-  <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
-  <a href="gallery.html" data-i18n="gallery">Gallery</a>
-  </nav>
-  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
-  </div>
- </div>
-</header>
-<div class="progress" id="progress" aria-hidden="true"></div>
-<div class="search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="Search the plan" hidden>
- <div class="sm-shell">
-  <div class="sm-head">
-   <span class="sbi">⌕</span>
-   <input id="searchInput" type="search" placeholder="Search the plan… खोज्नुहोस्" autocomplete="off" aria-label="Search the plan">
-   <button type="button" class="sm-close" id="searchClose" aria-label="Close search">✕</button>
-  </div>
-  <div class="sm-hint"><b>⌕</b> type to search every page · <b>↑↓</b> move · <b>↵</b> open · <b>Esc</b> or <b>Ctrl K</b> to close</div>
-  <ul class="sm-results" id="searchResults"></ul>
-  <div class="sm-none" id="searchNone" hidden></div>
- </div>
-</div>
+<div id="site-header"></div><script src="js/partials.js"></script><script>SitePartials.header(document.getElementById("site-header"));</script>
 
 <section class="page-hero" style="background-image:linear-gradient(180deg,rgba(12,16,12,0.45) 0%,rgba(12,16,12,0.72) 100%),url('assets/photos/baglung_bazaar.jpg')">
  <div class="wrap">
@@ -118,84 +51,11 @@
 </script>
 
 
-<footer>
- <div class="footer-top">
- <div class="wrap">
- <span><b>Protect the core, grow the corridor, hold the hills</b> — Wards 1–4 · 13–14 · 5–12 &nbsp;·&nbsp; 2026–2041 · 98.01 km² · 56,102 · 14 wards</span>
- <span>Sources: Census 2021 · Municipal records · Field surveys 2025–26 — <a href="references.html">see References</a></span>
- </div>
- </div>
- <div class="wrap footer-main grid">
- <div class="footer-brand">
- <img class="foot-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo">
- <div class="foot-title">Baglung <span>IUDP 2026–2041</span></div>
- <p class="foot-desc">Digital Integrated Urban Development Plan — M.Sc. Urban Planning (2025–27), IOE Pulchowk Campus, Tribhuvan University, 3rd Semester Planning Studio II. Planning logic visible: Baglung today → evidence → vision → spatial strategy → sector plans → projects → MSIP → implementation → monitoring.</p>
- <div class="foot-meta">
- <span>IOE Pulchowk</span>
- <span>Planning Studio II</span>
- <span>14 wards</span>
- <span>98.01 km²</span>
- </div>
- </div>
- <div>
- <h3>Explore the Plan</h3>
- <ul>
- <li><a href="overview.html">Plan at a Glance</a></li>
- <li><a href="municipality.html">Municipality Profile</a></li>
- <li><a href="analysis.html">Analysis &amp; Diagnosis</a></li>
- <li><a href="spatial.html">Spatial Plan &amp; Explorer</a></li>
- <li><a href="demographics.html">Demographic Evidence</a></li>
- </ul>
- <h4>Sector Plans</h4>
- <ul>
- <li><a href="sectors.html">All 8 Thematic Plans</a></li>
- <li><a href="sector-physical.html">Physical</a> · <a href="sector-social.html">Social</a> · <a href="sector-economic.html">Economic</a></li>
- <li><a href="sector-tourism.html">Tourism &amp; Homestay</a></li>
- </ul>
- </div>
- <div>
- <h3>Implementation</h3>
- <ul>
- <li><a href="projects.html">Projects &amp; Programmes</a></li>
- <li><a href="investment.html">MSIP &amp; Phasing</a></li>
- <li><a href="wards.html">Wards 1–14 Profiles</a></li>
- <li><a href="monitoring.html">Monitoring &amp; Scorecard</a></li>
- <li><a href="bylaws.html">Planning &amp; Building Bylaws</a></li>
- </ul>
- <h4>Flagships</h4>
- <ul>
- <li><a href="flagship-rafting.html">Rafting Corridor</a></li>
- <li><a href="flagship-bungy.html">Gorge Bungy</a></li>
- <li><a href="flagship-cablecar.html">Panchakot Cable Car</a></li>
- <li><a href="annex-shaligram.html">Shaligram Museum</a> · <a href="homestay-ward10.html">Homestay</a></li>
- </ul>
- </div>
- <div>
- <h3>Evidence &amp; Method</h3>
- <ul>
- <li><a href="methodology.html">Methodology &amp; Data Lineage</a></li>
- <li><a href="fieldwork.html">Fieldwork (14 wards)</a></li>
- <li><a href="gallery.html">Charts &amp; Maps Gallery (171)</a></li>
- <li><a href="references.html">References &amp; Sources (Ch11)</a></li>
- <li><a href="spatial.html">Interactive GIS (Leaflet 1.9.4)</a></li>
- </ul>
- <h4>Citizen</h4>
- <ul>
- <li><a href="agriculture.html">Kisan Guide</a> · <a href="services.html">Services</a> · <a href="complaints.html">Complaints</a></li>
- <li><a href="gallery.html">Visual Gallery</a></li>
- </ul>
- <p class="footer-links-compact">Data: <a href="data/wards.json">wards</a> · <a href="data/projects.json">projects</a> · <a href="data/investment.json">investment</a> · <a href="data/indicators.json">indicators</a></p>
- </div>
- </div>
- <div class="wrap foot-bottom">
- <span>© 2026 <b>Baglung Planning Studio</b> · IOE Pulchowk · Tribhuvan University · 3rd Sem Planning Studio II · Last update: 2026-09-02</span>
- <span>Sources: Census, municipal &amp; field records · <a href="https://github.com/Crazay247/BaglungIUDP" target="_blank" rel="noopener">github.com/Crazay247/BaglungIUDP</a> · Static site</span>
- </div>
-</footer>
+<div id="site-footer"></div><script>SitePartials.footer(document.getElementById("site-footer"));</script>
 
 
 <script src="js/search-index.js"></script>
 <script src="js/search.js"></script>
-<script src="js/nav.js"></script>
+<script src="js/nav.js"></script><script src="js/toc.js"></script><script src="js/glossary.js"></script>
 </body>
 </html>

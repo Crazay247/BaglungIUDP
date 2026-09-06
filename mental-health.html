@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mental Health Support · Sahara — Baglung IUDP 2026–2041</title>
+<meta name="description" content="Sahara — an academic prototype portal for mental health support: free helplines, a gentle self-check, and simulated online consultations with counsellors. If you are in crisis, call 1166 (free, 24/7).">
+<link rel="icon" href="assets/logos/baglung-municipality-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/mental-health.css">
+</head>
+<body>
+<div id="site-header"></div><script src="js/partials.js"></script><script>SitePartials.header(document.getElementById("site-header"));</script>
+
+<main class="mh">
+
+  <!-- ===== CRISIS BANNER — visible at every scroll position on desktop; dock repeats it on mobile ===== -->
+  <div class="mh-crisis" role="region" aria-label="Crisis helplines">
+    <div class="wrap">
+      <b>In crisis right now? · तत्काल सहयोग चाहिए?</b>
+      <a class="tel tel-main" href="tel:1166">📞 1166 · Free · 24/7</a>
+      <a class="tel" href="tel:16600102005">TPO Nepal 1660-010-2005</a>
+      <a class="tel" href="tel:9840021600">TUTH 9840021600</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="mh-hero" aria-labelledby="mh-hero-h">
+    <img class="mh-hero-photo" src="assets/photos/mh/hero.jpg" alt="" aria-hidden="true">
+    <div class="wrap">
+      <span class="mh-eyebrow">🤝 Sahara · सहारा — mental health support portal</span>
+      <h1 id="mh-hero-h">You don't have to carry this <em>alone.</em><br><span lang="ne" class="np" style="color:var(--mh-gold)">तपाईं एक्लो हुनुहुन्न।</span></h1>
+      <p class="mh-lead">Feeling low, anxious, or hopeless is <b>common — and treatable</b>. Talk to a trained counsellor online, check in with yourself gently, or call a free helpline right now. Reaching out is a sign of strength, not weakness.</p>
+      <div class="mh-cta-row">
+        <a class="mh-btn mh-btn-gold" href="#checkin">Check in with yourself · आफ्नो अवस्था हेर्नुहोस्</a>
+        <a class="mh-btn mh-btn-ghost" href="#doctors">Talk to a counsellor · परामर्श लिनुहोस्</a>
+        <a class="mh-btn mh-btn-ghost" href="tel:1166">📞 Call 1166 now</a>
+      </div>
+      <p class="mh-hero-note">This is an <b>academic prototype</b> built as part of the Baglung IUDP web atlas. Counsellors shown are illustrative, consultations are simulated, and nothing here replaces professional care. All helpline numbers listed on this page are real.</p>
+    </div>
+  </section>
+
+  <!-- ===== REACT APP: self-check → doctors → booking → my appointments ===== -->
+  <div id="mh-root"></div>
+
+  <!-- ===== COPING & RESOURCES ===== -->
+  <section class="mh-sec alt" id="resources" aria-labelledby="res-h">
+    <div class="wrap">
+      <div class="mh-kicker">Cope &amp; learn · अहिले नै गर्न सकिने कुराहरू</div>
+      <h2 id="res-h">Small steps that help right now <span class="np" lang="ne">· साना कदम</span></h2>
+      <p class="mh-sub">These techniques don't replace professional care, but they can help you get through a difficult moment — and they work alongside any counselling you may seek.</p>
+      <div class="mh-res">
+
+        <div class="mh-card mh-card-photo">
+          <img loading="lazy" decoding="async" src="assets/photos/mh/grounding.jpg" alt="Morning sun over green hills">
+          <h3>5-4-3-2-1 Grounding <span class="np" lang="ne">· जमिनमा फर्कने</span></h3>
+          <p class="mh-card-lead">Spiralling thoughts? Anchor yourself in the present — count down with your senses.</p>
+          <div class="mh-count">
+            <div class="cnt"><b>5</b><span aria-hidden="true">👁</span><small>see · देख्नु</small></div>
+            <div class="cnt"><b>4</b><span aria-hidden="true">✋</span><small>touch · छुनु</small></div>
+            <div class="cnt"><b>3</b><span aria-hidden="true">👂</span><small>hear · सुन्नु</small></div>
+            <div class="cnt"><b>2</b><span aria-hidden="true">👃</span><small>smell · सुँघ्नु</small></div>
+            <div class="cnt"><b>1</b><span aria-hidden="true">🫁</span><small>slow breath · सास</small></div>
+          </div>
+          <p class="card-note">Say each one out loud if you can — it helps.</p>
+        </div>
+
+        <div class="mh-card mh-card-photo">
+          <img loading="lazy" decoding="async" src="assets/photos/mh/breathing.jpg" alt="Person meditating quietly by the water">
+          <h3>Breathe 4 · hold · 6 <span class="np" lang="ne">· सास</span></h3>
+          <p class="mh-card-lead">Longer breaths out calm the body's alarm system. Two minutes is enough.</p>
+          <div class="mh-breathe-wrap">
+            <div class="mh-breathe" aria-hidden="true">breathe</div>
+            <div class="mh-breathe-steps">
+              <span><b>4</b> in through the nose</span>
+              <span><b>4</b> hold gently</span>
+              <span><b>6</b> out through the mouth</span>
+            </div>
+          </div>
+          <p class="card-note">Mind wanders? Fine — just return to the count.</p>
+        </div>
+
+        <div class="mh-card mh-card-photo">
+          <img loading="lazy" decoding="async" src="assets/photos/mh/morning.jpg" alt="Sunrise over a misty field">
+          <h3>Four small wins today <span class="np" lang="ne">· चार साना जित</span></h3>
+          <div class="mh-tiles">
+            <div class="tile"><span aria-hidden="true">🛏</span><small>regular bedtime</small></div>
+            <div class="tile"><span aria-hidden="true">🚶</span><small>10-min walk</small></div>
+            <div class="tile"><span aria-hidden="true">🍲</span><small>eat something small</small></div>
+            <div class="tile"><span aria-hidden="true">💬</span><small>tell one person</small></div>
+          </div>
+          <p class="card-note">Depression makes everything feel heavier than it is. That feeling can change with support.</p>
+        </div>
+
+        <div class="mh-card">
+          <h3>Myth ✗ / Fact ✓ <span class="np" lang="ne">· भ्रम र तथ्य</span></h3>
+          <div class="mh-mf">
+            <div class="mf"><span class="mf-no">✗</span><div><b>Asking for help is weakness.</b><i>Fact: it takes courage — it is a strength.</i></div></div>
+            <div class="mf"><span class="mf-no">✗</span><div><b>Talking about it plants the idea.</b><i>Fact: talking openly reduces risk and brings relief.</i></div></div>
+            <div class="mf"><span class="mf-no">✗</span><div><b>Those who talk about it won't act.</b><i>Fact: any talk of self-harm deserves a caring, serious response.</i></div></div>
+          </div>
+        </div>
+
+        <div class="mh-card mh-card-photo">
+          <img loading="lazy" decoding="async" src="assets/photos/mh/friend.jpg" alt="Friends talking and studying together">
+          <h3>Help a friend in 3 steps <span class="np" lang="ne">· साथीलाई सहयोग</span></h3>
+          <div class="mh-steps-v">
+            <div class="sv"><b>1</b><div><span class="sv-t">Ask directly</span><small>“Are you thinking about harming yourself?” — asking does not plant the idea.</small></div></div>
+            <div class="sv"><b>2</b><div><span class="sv-t">Listen, don't fix</span><small>No judging, no rushing. Being heard is the medicine.</small></div></div>
+            <div class="sv"><b>3</b><div><span class="sv-t">Get help together</span><small>Call <b>1166</b> or go to the nearest health facility — and stay with them.</small></div></div>
+          </div>
+        </div>
+
+        <div class="mh-card mh-card-photo">
+          <img loading="lazy" decoding="async" src="assets/photos/mh/learn.jpg" alt="An open book in warm light">
+          <h3>Read more, from trusted sources <span class="np" lang="ne">· थप अध्ययन</span></h3>
+          <div class="mh-links">
+            <a href="https://www.who.int/health-topics/mental-health" target="_blank" rel="noopener">WHO — Mental health</a>
+            <a href="https://www.who.int/publications/i/item/WHO-MSD-MER-17.5" target="_blank" rel="noopener">WHO — Suicide prevention resource guide</a>
+            <a href="https://www.tponepal.org" target="_blank" rel="noopener">TPO Nepal — psychosocial support</a>
+          </div>
+          <p class="card-note">Stories of hope and recovery help — never stories of methods.</p>
+        </div>
+
+      </div>
+      <p class="mh-photo-credit">Photos: Unsplash (free licence)</p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="mh-sec" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="mh-kicker">Questions · प्रश्नहरू</div>
+      <h2 id="faq-h">What to expect <span class="np" lang="ne">· के हुन्छ?</span></h2>
+      <img class="mh-sec-photo" loading="lazy" decoding="async" src="assets/photos/mh/walk.jpg" alt="Feet on stone steps — taking the next step, one at a time">
+      <div class="mh-faq">
+        <details>
+          <summary>What actually happens in a first counselling session?</summary>
+          <div class="faq-body">Mostly <b>talking and listening</b>. The counsellor asks how you've been feeling, what your days look like, and what you want to change. You set the pace, and you can decline any question. Nothing is forced, and you can stop the session at any time. You will not be judged or labelled.</div>
+        </details>
+        <details>
+          <summary>Do I need to turn my camera on for a video session?</summary>
+          <div class="faq-body"><b>No.</b> Audio-only and chat sessions are just as valid. Choose whatever feels safest for you when booking — video, phone, or chat.</div>
+        </details>
+        <details>
+          <summary>Is what I say kept private?</summary>
+          <div class="faq-body">Yes — professional counsellors follow strict confidentiality rules. The usual exception is if there is an immediate risk to your life or someone else's, in which case the counsellor will tell you honestly and bring in help. In this prototype, nothing you type is sent anywhere: bookings stay in <b>your own browser only</b>.</div>
+        </details>
+        <details>
+          <summary>Does this self-check give a diagnosis?</summary>
+          <div class="faq-body"><b>No — and no website can.</b> The check-in is a gentle mirror to help you notice patterns, not a diagnosis. Only a qualified professional can assess your mental health. Whatever your score, support is available.</div>
+        </details>
+        <details>
+          <summary>I'm worried about cost and distance.</summary>
+          <div class="faq-body">The national helpline <b>1166</b> is completely free from all mobile networks, 24/7. TPO Nepal's line is free from Nepal Telecom (9am–5pm). This prototype's "booking" is simulated and stores nothing outside your device — it demonstrates how a future municipal tele-counselling service could work.</div>
+        </details>
+        <details>
+          <summary>Why does this page exist on an urban planning site?</summary>
+          <div class="faq-body">The Baglung IUDP treats wellbeing as part of the plan: health infrastructure, public spaces, and social services are all urban development. This portal is an <b>academic prototype</b> exploring how the municipality could extend mental-health access online, especially for wards far from Baglung bazaar. It was designed following WHO safe-messaging guidance.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HELPLINES — repeated, real numbers ===== -->
+  <section class="mh-lines" id="helplines" aria-labelledby="lines-h">
+    <img class="mh-lines-photo" loading="lazy" decoding="async" src="assets/photos/mh/lines.jpg" alt="" aria-hidden="true">
+    <div class="wrap">
+      <div class="mh-kicker" style="color:var(--mh-gold)">Real help, free · निःशुल्क सहयोग</div>
+      <h2 id="lines-h">Every number here is real <span class="np" lang="ne" style="color:var(--mh-gold)">· यी नम्बरहरू साँचो हुन्</span></h2>
+      <p class="mh-sub">Trained counsellors answer these lines. Calling is confidential, and you don't need to be "sick enough" to deserve support.</p>
+      <div class="mh-line-grid">
+        <a class="mh-line" href="tel:1166">
+          <span class="ln-num">1166</span>
+          <span class="ln-name">National Suicide Prevention Helpline</span>
+          <span class="ln-sub">Mental Hospital, Lagankhel · Free, all networks · 24/7</span>
+        </a>
+        <a class="mh-line" href="tel:16600102005">
+          <span class="ln-num">1660-010-2005</span>
+          <span class="ln-name">TPO Nepal — psychosocial support</span>
+          <span class="ln-sub">Free from Nepal Telecom · 9am–5pm, every day</span>
+        </a>
+        <a class="mh-line" href="tel:9840021600">
+          <span class="ln-num">9840021600</span>
+          <span class="ln-name">Tribhuvan University Teaching Hospital</span>
+          <span class="ln-sub">Suicide prevention hotline</span>
+        </a>
+        <a class="mh-line" href="tel:9813476123">
+          <span class="ln-num">9813476123</span>
+          <span class="ln-name">Patan Hospital crisis helpline</span>
+          <span class="ln-sub">Suicide prevention &amp; crisis response</span>
+        </a>
+      </div>
+      <div class="mh-proto-note">⚠️ <b>Prototype notice · प्रोटोटाइप सूचना:</b> This portal is a student prototype for the Baglung IUDP 2026–2041 web atlas. The counsellors, slots, and bookings shown are illustrative — no real appointments are made, and no data leaves your browser. If you need help today, use the real helplines above.</div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div><script>SitePartials.footer(document.getElementById("site-footer"));</script>
+
+<!-- sticky mobile crisis dock -->
+<nav class="mh-dock" aria-label="Crisis quick call">
+  <a class="dock-main" href="tel:1166"><span aria-hidden="true">📞</span><span class="dock-label">Call 1166<small>निःशुल्क · 24/7</small></span></a>
+  <a href="tel:16600102005"><span aria-hidden="true">💬</span><span class="dock-label">TPO Nepal<small>9am–5pm</small></span></a>
+  <a href="#checkin"><span aria-hidden="true">🪞</span><span class="dock-label">Self-check<small>आफैलाई सोध्नुहोस्</small></span></a>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="js/mental-health.js"></script>
+<script src="js/search-index.js"></script>
+<script src="js/search.js"></script>
+<script src="js/nav.js"></script><script src="js/toc.js"></script><script src="js/glossary.js"></script>
+</body>
+</html>
