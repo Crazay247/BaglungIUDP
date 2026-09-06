@@ -209,7 +209,7 @@
   border-radius:2px;z-index:0;
 }
 .step{
-  position:relative;z-index:1;
+  position:relative;z-index:1;min-width:0;
   background:#fff;border:1px solid var(--line);border-radius:20px;
   padding:22px 20px 18px;
   box-shadow:0 6px 22px rgba(27,30,36,0.06);

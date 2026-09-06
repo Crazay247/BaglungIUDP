@@ -180,6 +180,7 @@ body.nav-scrolled .topbar-main{box-shadow:0 6px 24px rgba(27,30,36,0.10)}
 /* ===== FULL-WIDTH CHART ROWS ===== */
 .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
 .chart-figure{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 6px 20px rgba(27,30,36,0.05)}
+.chart-figure li,.chart-figure a{overflow-wrap:anywhere}
 .chart-figure img{width:100%;border-radius:8px}
 .chart-figure figcaption{font-size:var(--fs-sm);opacity:0.78;margin-top:10px;line-height:1.5}
 .chart-figure .figtitle{font-family:var(--font-head);font-size:var(--fs-base);font-weight:700;margin-top:10px}
