@@ -13,7 +13,7 @@ ALL content pages ─┬─ css/style.css  (design system + nav/footer/grid + R1
                    │                      page lives at top of body via <div id="site-header"> placeholder)
                    ├─ js/search-index.js  (window.SITE_INDEX — REGENERATE with `node js/gen-search-index.js`)
                    ├─ js/search.js        (Ctrl-K overlay, reads SITE_INDEX)
-                   ├─ js/toc.js           ("On this page" bar + scrollspy (pages w/ ≥3 h2 + hero);
+                    ├─ js/toc.js           (floating "Sections" jump button + panel w/ scrollspy (pages w/ ≥3 h2 + hero);
                    │                      .note → collapsible details.acc; back-to-top. Skips tool apps)
                    ├─ js/glossary.js      (auto-links jargon → tooltip; data/glossary.json)
                    └─ js/nav.js           (dropdowns, mobile menu, scroll progress,
@@ -65,7 +65,7 @@ index.html       ── data/wards.json (hero ward-finder)
 1. Every page has `<div id="site-header"></div><script src="js/partials.js"></script><script>SitePartials.header(...)</script>` at the top of body, and `<div id="site-footer"></div><script>SitePartials.footer(...)</script>` where the footer goes — **the actual header/footer/search-modal markup lives ONLY in `js/partials.js`**. Edit chrome there, never in pages.
 2. `js/partials.js` also holds the page-order map: `FLOW` (Atlas/docs reading order), `SECTORS`, `PROJECT_PAGES`, `TOOLS` groups → drives the breadcrumb + prev/next bar injected after each `.page-hero`, and prev/next shortcuts. Register a new page in those arrays (and `SHORT` labels).
 3. Scripts at body end: `search-index.js → search.js → nav.js → toc.js → glossary.js` (+ page-specific React/Leaflet before those).
-4. `js/toc.js` auto-adds an "On this page" bar (pages with ≥3 content h2s + a hero), converts `.note` blocks into `<details class="note acc">` collapsibles, and appends a back-to-top button. Tool-app pages skip notes/TOC but keep back-to-top.
+4. `js/toc.js` auto-adds a floating "Sections" jump button + panel (pages with ≥3 content h2s + a hero), converts `.note` blocks into `<details class="note acc">` collapsibles, and appends a back-to-top button. Tool-app pages skip notes/TOC but keep back-to-top.
 5. `js/glossary.js` auto-links jargon (data/glossary.json, ~21 terms: MSIP, LFA, DUDBC, ROW, DPR, BOQ, PPP, IRR, tukra…) to a tooltip / mobile bottom-sheet. Add terms by editing the JSON — no code changes.
 6. Count-up numbers: wrap in `<span data-countup="56,102">56,102</span>` (partials.js animates on scroll-into-view, respects prefers-reduced-motion).
 7. English/Nepali: `data-i18n="key"` attributes resolve against the `I18N` dict hardcoded in nav.js:88–98 (nav/utility labels only).
@@ -98,7 +98,7 @@ index.html       ── data/wards.json (hero ward-finder)
 |---|---|---|
 | Injected shared chrome | all pages | `js/partials.js` templates + placeholders; single source of truth for header/footer/search modal |
 | Breadcrumbs + prev/next | pages with `.page-hero` | partials.js; flow maps; hidden path on ≤560px, keeps prev/next |
-| "On this page" bar | pages with ≥3 h2s (all 8 sectors, overview, …) | js/toc.js; details bar + IntersectionObserver scrollspy |
+| "Sections" jump button + panel | pages with ≥3 h2s (all 8 sectors, overview, …) | js/toc.js; floating button + dialog panel + IntersectionObserver scrollspy |
 | Collapsible provenance notes | every `.note` block (43 site-wide) | js/toc.js converts to `<details class="note acc">` |
 | Glossary tooltips | all pages, ~21 planning terms | js/glossary.js + data/glossary.json; dotted underline, mobile bottom sheet |
 | Back-to-top | all pages | js/toc.js; appears after 600px scroll |
@@ -107,7 +107,21 @@ index.html       ── data/wards.json (hero ward-finder)
 | Mobile search prominence | ≤768px | search button becomes solid moss-green tap target |
 | Search index generator | dev tool | `node js/gen-search-index.js` → regenerates js/search-index.js (80 KB, 36 pages) |
 
-QA status: 84 automated checks pass (headless Edge, desktop 1280px + mobile 375px) — header/footer injection, crumbs, TOC anchors, note accordions, glossary tooltips, search, count-up finals, no horizontal overflow, console clean on all pages except the pre-existing `/favicon.ico` probe.
+QA status: 84 automated checks pass (headless Edge, desktop 1280px + mobile 375px) — header/footer injection, crumbs, TOC anchors, note accordions, glossary tooltips, search, count-up finals, no horizontal overflow, console clean on all pages except the pre-existing `/favicon.ico` probe (404.html intentionally chrome-free, 4 expected fails).
+
+## Responsive + interaction audit (2026-09-06) — fixes shipped
+
+Swept all 37 pages at 375/768/1024/1440 (Edge headless, `qa/sweep.js`): **zero page-level horizontal overflow** at every viewport. Residual inner-overflow flags are benign by design — hidden dropdown menus (`a.brand`/`.nav-item`, absolute), Leaflet map panes, the `kr-chapters` scroll rail (`overflow-x:auto`), intentional `.step-arrow/.step-check` card connectors (`right:-13px`), the `.cal-d` calendar (clipped, `overflow:hidden`), and sub-pixel rounding (`.srv-head`, `.srv-cards` diff=0).
+
+| # | Fix | File |
+|---|---|---|
+| 1 | Long reference URLs (ADB link) broke `references.html` at 375px (+9px) → `.chart-figure li/a{overflow-wrap:anywhere}` | css/style.css:182 |
+| 2 | `.step-time` nowrap badge pushed `.steps` grid +13px at ≤900px → `white-space:normal` in the ≤900px query; `.step{min-width:0}` belt-and-braces | css/complaints.css |
+| 3 | Consult dropdown `dd-sub` ran inline after `dd-title` ("SupportTalk to someone") → both `display:block` | css/style.css:85-86 |
+| 4 | Project ward chip rendered "Ward Wards 8" → strip redundant prefix; non-ward labels (e.g. "Corridor wards", "Municipality-wide") render without the "Ward" prefix | projects.html (~line 335) |
+| 5 | Mobile glossary "bottom sheet" was `position:absolute;bottom:12px` (pinned to document end, off-screen) → `position:fixed` in the ≤640px query | css/style.css:467-469 |
+
+Interaction audit (`qa/interact.js`): **27/27 pass** — projects tabs/ward/phase filters, spatial Leaflet render + 10 layer chips, search open/type/results/keyboard-nav/Esc, glossary click popover + mobile sheet, TOC scroll + scrollspy (`.cur`), note accordions, gallery tabs, services chips + tick counter, complaints demo submit, mobile hamburger.
 
 ## Assets inventory
 

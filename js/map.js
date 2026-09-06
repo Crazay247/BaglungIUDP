@@ -58,10 +58,12 @@ function roadStyle(f){
 
 async function initMap(){
   const hasRail = !!document.getElementById('chapterRail');
-  // Spatial.html simple page: dragging enabled; chapter-rail page: lock map to scroll
-  const mapOpts = hasRail
-    ? {center:CENTER,zoom:13,zoomControl:false,attributionControl:true,dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,keyboard:false,tap:false,touchZoom:false}
-    : {center:CENTER,zoom:13,zoomControl:true,attributionControl:true};
+  // Fixed-view map: every gesture that moves the view is off, so the map can
+  // never be dragged or zoomed out of sight. Users switch the basemap + layers
+  // via the toolbar chips; programmatic moves (ward-click fitBounds) still work.
+  const mapOpts = {center:CENTER,zoom:13,zoomControl:false,attributionControl:true,
+    dragging:false,scrollWheelZoom:false,doubleClickZoom:false,boxZoom:false,
+    keyboard:false,tap:false,touchZoom:false};
   map = L.map('map', mapOpts);
   if(!hasRail) L.control.scale({position:'bottomleft',metric:true}).addTo(map);
   else L.control.scale({position:'bottomleft',metric:true,imperial:false}).addTo(map);

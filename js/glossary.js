@@ -7,7 +7,7 @@
 
   var MAX_PER_TERM = 3;
   var MAX_TOTAL = 60;
-  var SKIP = 'footer,header,.search-modal,.crumbs,.toc-bar,#gl-pop,.back-top,nav,script,style,button,a,h1,h2,h3,h4,code,kbd,select,option,label,[data-no-glossary]';
+  var SKIP = 'footer,header,.search-modal,.crumbs,.toc-fab,.toc-panel,#gl-pop,.back-top,nav,script,style,button,a,h1,h2,h3,h4,code,kbd,select,option,label,[data-no-glossary]';
 
   var TERMS = null;
   var pop = null;
