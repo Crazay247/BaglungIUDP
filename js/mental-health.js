@@ -172,8 +172,8 @@
     }
     /* ================= render helpers ================= */
     var SLIDER = function (q, i) {
-      return h('fieldset', { className: 'mh-q', key: i },
-        h('legend', { className: 'q-label' }, q.en, h('small', { lang: 'ne' }, q.np)),
+      return h('div', { className: 'mh-q', key: i, role: 'group', 'aria-label': q.en },
+        h('p', { className: 'q-label' }, q.en, h('small', { lang: 'ne' }, q.np)),
         h('input', {
           type: 'range', min: 0, max: 3, step: 1,
           value: answers[i] === null ? 1 : answers[i],

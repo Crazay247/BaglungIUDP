@@ -65,11 +65,14 @@
 
   /* ------------------------------------------------------------------ */
   var STEP_TITLES = [
-    { en: 'What happened', np: 'के भयो?' },
-    { en: 'Details', np: 'विवरण' },
-    { en: 'Contact', np: 'सम्पर्क' },
+    { en: 'Your report', np: 'तपाईंको उजुरी' },
     { en: 'Done', np: 'भयो' }
   ];
+
+  var ERR_IDS = {
+    cat: 'wh-err-cat', urgency: 'wh-err-urgency', ward: 'wh-err-ward',
+    desc: 'wh-err-desc', name: 'wh-err-name', phone: 'wh-err-phone'
+  };
 
   function StepChips(props) {
     return h('div', { className: 'wh-steps', role: 'list' },
@@ -83,7 +86,13 @@
 
   function Choice(props) {
     var cls = 'wh-choice' + (props.img ? ' has-img' : '') + (props.on ? ' on' : '');
-    var common = { type: 'button', className: cls, onClick: props.onClick, 'aria-pressed': props.on ? 'true' : 'false' };
+    var common = { type: 'button', className: cls, onClick: props.onClick };
+    if (props.radio) {
+      common.role = 'radio';
+      common['aria-checked'] = props.on ? 'true' : 'false';
+    } else {
+      common['aria-pressed'] = props.on ? 'true' : 'false';
+    }
     if (props.img) {
       return h('button', common,
         h('span', { className: 'ch-img' },
@@ -104,11 +113,34 @@
   }
 
   function Field(props) {
+    var child = React.Children.only(props.children);
+    var extra = {};
+    if (props.req) { extra.required = true; extra['aria-required'] = 'true'; }
+    if (props.err) {
+      extra['aria-invalid'] = 'true';
+      if (props.errId) extra['aria-describedby'] = props.errId;
+    }
     return h('div', { className: 'wh-field' },
-      h('label', { htmlFor: props.id }, props.label, props.hint ? h('small', null, ' — ', props.hint) : null),
-      props.children,
-      props.err ? h('span', { className: 'wh-frm-err' }, props.err) : null
+      h('label', { htmlFor: props.id },
+        props.label,
+        props.req ? h('span', { className: 'wh-reqd', 'aria-hidden': 'true' }, ' *') : null,
+        props.req ? h('span', { className: 'wh-vh' }, ' (required)') : null,
+        props.hint ? h('small', null, ' — ', props.hint) : null),
+      React.cloneElement(child, extra),
+      props.err ? h('span', { className: 'wh-frm-err', id: props.errId, role: 'alert', tabIndex: -1 }, props.err) : null
     );
+  }
+
+  function GroupHead(props) {
+    return h('h4', { className: 'wh-group-h' }, props.children,
+      props.req ? h('span', { className: 'wh-reqd', 'aria-hidden': 'true' }, ' *') : null,
+      props.req ? h('span', { className: 'wh-vh' }, ' (required)') : null);
+  }
+
+  function focusErr(id, ev) {
+    if (ev) ev.preventDefault();
+    var t = document.getElementById(id);
+    if (t) { t.setAttribute('tabindex', '-1'); t.scrollIntoView({ block: 'center' }); t.focus({ preventScroll: true }); }
   }
 
   /* ------------------------------------------------------------------ */
@@ -139,6 +171,10 @@
       }
       if (Object.keys(errs).length) {
         setState(function (s) { return Object.assign({}, s, { errs: errs }); });
+        setTimeout(function () {
+          var s = document.getElementById('wh-err-summary');
+          if (s) { s.scrollIntoView({ block: 'center' }); s.focus({ preventScroll: true }); }
+        }, 60);
         return;
       }
       var rec = {
@@ -149,7 +185,13 @@
       };
       var list = [rec].concat(myReports);
       saveStore(list); setMyReports(list);
-      setState(function (s) { return Object.assign({}, s, { step: 3, done: rec }); });
+      setState(function (s) { return Object.assign({}, s, { step: 1, done: rec }); });
+      setTimeout(function () {
+        var w = document.getElementById('file');
+        if (w) w.scrollIntoView();
+        var t = document.querySelector('#file .wh-done-h');
+        if (t) { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
+      }, 60);
     }
 
     function removeOne(id) {
@@ -162,14 +204,14 @@
 
     var f = state.form, errs = state.errs;
 
-    /* ---- step 3: done / confirmation ---- */
+    /* ---- step 1: done / confirmation ---- */
     var doneCard = null;
-    if (state.step === 3 && state.done) {
+    if (state.step === 1 && state.done) {
       var d = state.done;
       var uBadge = URGENCY.filter(function (u) { return u.k === d.urgency; })[0];
       doneCard = h('div', { className: 'wh-wizard', id: 'file' },
-        h(StepChips, { step: 3 }),
-        h('h3', null, 'Your report is saved · तपाईंको उजुरी सुरक्षित छ'),
+        h(StepChips, { step: 1 }),
+        h('h3', { className: 'wh-done-h' }, 'Your report is saved · तपाईंको उजुरी सुरक्षित छ'),
         h('p', { className: 'wz-sub' }, 'Kept only in this browser — nothing was sent anywhere. · यो जानकारी तपाईंकै ब्राउजरमा मात्र छ, कतै पठाइएको छैन।'),
         h('div', { className: 'wh-confirm' },
           h('dl', null,
@@ -187,7 +229,7 @@
           '• If you are worried someone may see this device, use ', h('b', null, 'Quick Exit'), ' (button or press Esc twice).'
         ),
         h('div', { className: 'wh-nav-row' },
-          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: function () { setState(function (s) { return Object.assign({}, s, { myOpen: true }); }); document.getElementById('myreports').scrollIntoView({ behavior: 'smooth' }); } }, 'View my reports · मेरो उजुरीहरू'),
+          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: function () { setState(function (s) { return Object.assign({}, s, { myOpen: true }); }); var m = document.getElementById('myreports-h'); if (m) { m.scrollIntoView({ behavior: 'smooth' }); m.setAttribute('tabindex', '-1'); m.focus({ preventScroll: true }); } } }, 'View my reports · मेरो उजुरीहरू'),
           h('button', {
             type: 'button', className: 'wh-btn wh-btn-ghost', style: { color: '#fff', border: '1.5px solid rgba(110,59,126,.4)' },
             onClick: function () {
@@ -200,39 +242,49 @@
       );
     }
 
-    /* ---- wizard steps 0–2 ---- */
+    /* ---- single-page form (step 0): everything visible, one submit ---- */
+    var errList = Object.keys(errs).map(function (k) {
+      return ERR_IDS[k] ? { k: k, id: ERR_IDS[k], msg: errs[k] } : null;
+    }).filter(Boolean);
+
+    var errSummary = errList.length ? h('div', { className: 'wh-err-summary', id: 'wh-err-summary', role: 'alert', tabIndex: -1 },
+      h('b', null, 'Please fix ' + errList.length + (errList.length > 1 ? ' things' : ' thing') + ' below · कृपया तल सच्याउनुहोस्'),
+      h('ul', null, errList.map(function (e) {
+        return h('li', { key: e.k }, h('a', { href: '#' + e.id, onClick: function (ev) { focusErr(e.id, ev); } }, e.msg));
+      }))
+    ) : null;
+
     var wizard = h('div', { className: 'wh-wizard', id: 'file' },
       h(StepChips, { step: state.step }),
 
       state.step === 0 && [
-        h('h3', { key: 't' }, 'What happened? · के भयो?'),
-        h('p', { key: 's', className: 'wz-sub' }, 'Choose the closest one — there are no wrong answers. · जे भएको हो सो नै छान्नुहोस्।'),
-        h('div', { className: 'wh-choices', key: 'c' },
+        errSummary ? React.cloneElement(errSummary, { key: 'es' }) : null,
+        h('h3', { key: 't' }, 'Your report · तपाईंको उजुरी'),
+        h('p', { key: 's', className: 'wz-sub' }, 'One short form — fill everything below, then press one button. Anonymous by default. · एउटै छोटो फारम — तल सबै भरेर एउटा बटन थिच्नुहोस्। गुमनाम रूपमा।'),
+
+        h(GroupHead, { key: 'gh1', req: true }, '1 · What happened? · के भयो?'),
+        h('p', { key: 's1', className: 'wz-sub' }, 'Choose the closest one — there are no wrong answers. · जे भएको हो सो नै छान्नुहोस्।'),
+        h('div', { key: 'c', className: 'wh-choices', role: 'radiogroup', 'aria-label': 'What happened? · के भयो?', 'aria-describedby': errs.cat ? ERR_IDS.cat : undefined },
           CATS.map(function (c) {
-            return h(Choice, { key: c.k, on: f.cat === c.k, onClick: function () { patch({ cat: c.k }); },
+            return h(Choice, { key: c.k, radio: true, on: f.cat === c.k, onClick: function () { patch({ cat: c.k }); },
               emoji: { domestic: '🏠', sexual: '🚫', discrim: '⚖️', emotional: '💭', economic: '💰', child: '👧', other: '✋' }[c.k],
               img: 'assets/photos/stock/wh-' + c.k + '.jpg',
               main: c.en + ' · ' + c.np, sub: c.sub + ' — ' + c.subnp });
           })
         ),
-        errs.cat ? h('span', { className: 'wh-frm-err', key: 'e' }, errs.cat) : null,
-        h('div', { className: 'wh-nav-row', key: 'n' },
-          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: function () { if (!f.cat) { setState(function (s) { return Object.assign({}, s, { errs: { cat: errs.cat || 'Choose one to continue · अगाडि बढ्न छान्नुहोस्' } }); }); return; } setState(function (s) { return Object.assign({}, s, { step: 1 }); }); } }, 'Next · अगाडि →'),
-          h('a', { className: 'wh-btn wh-btn-danger', href: 'tel:100' }, '📞 In danger? Call 100')
-        )
-      ],
+        errs.cat ? h('span', { key: 'e', className: 'wh-frm-err', id: ERR_IDS.cat, role: 'alert', tabIndex: -1 }, errs.cat) : null,
 
-      state.step === 1 && [
-        h('h3', { key: 't' }, 'Tell us a little more · थप विवरण'),
-        h('p', { key: 's', className: 'wz-sub' }, 'Write only what you are comfortable sharing. · तपाईं सहज हुने जति मात्र लेख्नुहोस्।'),
-        h('div', { className: 'wh-choices', key: 'u' },
+        h(GroupHead, { key: 'gh2', req: true }, '2 · How urgent is it? · कति तत्काल?'),
+        h('div', { key: 'u', className: 'wh-choices', role: 'radiogroup', 'aria-label': 'How urgent is it? · कति तत्काल?', 'aria-describedby': errs.urgency ? ERR_IDS.urgency : undefined },
           URGENCY.map(function (u) {
-            return h(Choice, { key: u.k, on: f.urgency === u.k, onClick: function () { patch({ urgency: u.k }); },
+            return h(Choice, { key: u.k, radio: true, on: f.urgency === u.k, onClick: function () { patch({ urgency: u.k }); },
               main: u.en + ' · ' + u.np, sub: '' });
           })
         ),
-        errs.urgency ? h('span', { className: 'wh-frm-err', key: 'eu' }, errs.urgency) : null,
-        h(Field, { key: 'w', id: 'wh-ward', label: 'Ward · वडा', err: errs.ward },
+        errs.urgency ? h('span', { key: 'eu', className: 'wh-frm-err', id: ERR_IDS.urgency, role: 'alert', tabIndex: -1 }, errs.urgency) : null,
+
+        h(GroupHead, { key: 'gh3' }, '3 · A few details · थप विवरण'),
+        h(Field, { key: 'w', id: 'wh-ward', label: 'Ward · वडा', req: true, err: errs.ward, errId: ERR_IDS.ward },
           h('select', { id: 'wh-ward', value: f.ward, onChange: function (e) { patch({ ward: e.target.value }); } },
             h('option', { value: '' }, 'Select ward · वडा छान्नुहोस्'),
             [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(function (n) {
@@ -246,46 +298,40 @@
             WHEN.map(function (w) { return h('option', { key: w.k, value: w.k }, w.en + ' · ' + w.np); })
           )
         ),
-        h(Field, { key: 'd', id: 'wh-desc', label: 'What happened? · के भयो?', hint: 'names are optional', err: errs.desc },
+        h(Field, { key: 'd', id: 'wh-desc', label: 'What happened? · के भयो?', hint: 'names are optional', req: true, err: errs.desc, errId: ERR_IDS.desc },
           h('textarea', { id: 'wh-desc', value: f.desc, onChange: function (e) { patch({ desc: e.target.value }); },
             placeholder: 'Describe what happened, where, and by whom — as much or as little as you want. · के, कहाँ र कसैले भयो, जति सहज छ त्यति लेख्नुहोस्।' })
         ),
-        h('div', { className: 'wh-nav-row', key: 'n' },
-          h('button', { type: 'button', className: 'wh-back', onClick: function () { setState(function (s) { return Object.assign({}, s, { step: 0 }); }); } }, '← Back · पछाडि'),
-          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: function () { setState(function (s) { return Object.assign({}, s, { step: 2 }); }); } }, 'Next · अगाडि →')
-        )
-      ],
 
-      state.step === 2 && [
-        h('h3', { key: 't' }, 'Contact & privacy · सम्पर्क र गोपनीयता'),
-        h('p', { key: 's', className: 'wz-sub' }, 'Reporting anonymously is completely fine. · गुमनाम उजुरी गर्न पनि पूर्ण रूपमा सही छ।'),
-        h('label', { className: 'wh-check', key: 'a' },
+        h(GroupHead, { key: 'gh4' }, '4 · Contact & privacy · सम्पर्क र गोपनीयता'),
+        h('p', { key: 's4', className: 'wz-sub' }, 'Anonymous is the default and is completely fine. Share contact details only if you want a callback. · गुमनाम नै पूर्वनिर्धारित हो। सम्पर्क चाहनुहुन्छ भने मात्र विवरण दिनुहोस्।'),
+        h('label', { key: 'a', className: 'wh-check' },
           h('input', { type: 'checkbox', checked: f.anon, onChange: function (e) { patch({ anon: e.target.checked }); } }),
           h('span', null,
-            h('b', null, 'File anonymously · गुमनाम उजुरी'), 
+            h('b', null, 'File anonymously · गुमनाम उजुरी'),
             h('div', { className: 'ck-sub' }, 'No name or phone is saved. Nobody can trace this report back to you from this page. · नाम वा फोन नम्बर सुरक्षित हुँदैन।')
           )
         ),
         !f.anon && [
-          h(Field, { key: 'n', id: 'wh-name', label: 'Your name · तपाईंको नाम', err: errs.name },
+          h(Field, { key: 'n', id: 'wh-name', label: 'Your name · तपाईंको नाम', req: true, err: errs.name, errId: ERR_IDS.name },
             h('input', { id: 'wh-name', value: f.name, onChange: function (e) { patch({ name: e.target.value }); }, autoComplete: 'off' })
           ),
-          h(Field, { key: 'p', id: 'wh-phone', label: 'Phone for callback · सम्पर्क नम्बर', hint: 'a trusted number, not one your abuser checks', err: errs.phone },
+          h(Field, { key: 'p', id: 'wh-phone', label: 'Phone for callback · सम्पर्क नम्बर', hint: 'a trusted number, not one your abuser checks', req: true, err: errs.phone, errId: ERR_IDS.phone },
             h('input', { id: 'wh-phone', type: 'tel', value: f.phone, onChange: function (e) { patch({ phone: e.target.value }); }, autoComplete: 'off', inputMode: 'tel' })
           )
         ],
-        h('div', { className: 'wh-privacy-note', key: 'pn' },
+        h('div', { key: 'pn', className: 'wh-privacy-note' },
           '🔒 ', h('b', null, 'Demo notice · डेमो सूचना: '), 'This portal is a demonstration prototype. Reports are stored only in this browser (localStorage) and are NOT sent to the municipality, police, or anyone else. For real help today, call ', h('b', null, '1145'), ' or ', h('b', null, '100'), '.'),
-        h('div', { className: 'wh-nav-row', key: 'n' },
-          h('button', { type: 'button', className: 'wh-back', onClick: function () { setState(function (s) { return Object.assign({}, s, { step: 1 }); }); } }, '← Back · पछाडि'),
-          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: submit }, 'Submit report · उजुरी दर्ता गर्नुहोस्')
+        h('div', { key: 'n', className: 'wh-nav-row' },
+          h('button', { type: 'button', className: 'wh-btn wh-btn-plum', onClick: submit }, 'Submit report · उजुरी दर्ता गर्नुहोस्'),
+          h('a', { className: 'wh-btn wh-btn-danger', href: 'tel:100' }, '📞 In danger? Call 100')
         )
       ]
     );
 
     /* ---- my reports ---- */
     var myReportsCard = h('div', { id: 'myreports' },
-      h('h3', { style: { fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '1.2rem', color: 'var(--wh-ink)', margin: '40px 0 6px' } },
+      h('h3', { id: 'myreports-h', style: { fontFamily: 'Poppins,sans-serif', fontWeight: 800, fontSize: '1.2rem', color: 'var(--wh-ink)', margin: '40px 0 6px' } },
         'My reports · मेरा उजुरीहरू'),
       h('p', { style: { color: 'var(--wh-soft)', fontSize: '.92rem', fontWeight: 600 } },
         'Only the reports filed from this browser are shown here — never anyone else\u2019s. · यहाँ यसै ब्राउजरबाट दर्ता भएका मात्र उजुरी देखिन्छन्।'),
@@ -319,7 +365,7 @@
       h('div', { className: 'wrap' },
         h('div', { className: 'wh-kicker' }, 'Report · उजुरी गर्नुहोस्'),
         h('h2', { id: 'rep-h' }, 'Tell us what happened ', h('span', { className: 'np', lang: 'ne' }, '· आफ्नो कुरा राख्नुहोस्')),
-        h('p', { className: 'wh-sub' }, 'Three short steps. Anonymous by default. Nothing leaves this browser. ', h('span', { lang: 'ne', style: { fontWeight: 700, color: 'var(--wh-purple)' } }, 'तीन साना चरण। गुमनाम रूपमा। कुनै पनि जानकारी यो ब्राउजरबाहिर जाँदैन।')),
+        h('p', { className: 'wh-sub' }, 'One short form. Anonymous by default. Nothing leaves this browser. ', h('span', { lang: 'ne', style: { fontWeight: 700, color: 'var(--wh-purple)' } }, 'एउटै छोटो फारम। गुमनाम रूपमा। कुनै पनि जानकारी यो ब्राउजरबाहिर जाँदैन।')),
         wizard,
         doneCard || h('div', null),
         myReportsCard

@@ -57,12 +57,13 @@
           <img loading="lazy" decoding="async" src="assets/photos/mh/grounding.jpg" alt="Morning sun over green hills">
           <h3>5-4-3-2-1 Grounding <span class="np" lang="ne">· जमिनमा फर्कने</span></h3>
           <p class="mh-card-lead">Spiralling thoughts? Anchor yourself in the present — count down with your senses.</p>
+          <p class="tap-hint">👆 Tap each sense as you do it · <span lang="ne">सकिएपछि थिच्नुहोस्</span></p>
           <div class="mh-count">
-            <div class="cnt"><b>5</b><span aria-hidden="true">👁</span><small>see · देख्नु</small></div>
-            <div class="cnt"><b>4</b><span aria-hidden="true">✋</span><small>touch · छुनु</small></div>
-            <div class="cnt"><b>3</b><span aria-hidden="true">👂</span><small>hear · सुन्नु</small></div>
-            <div class="cnt"><b>2</b><span aria-hidden="true">👃</span><small>smell · सुँघ्नु</small></div>
-            <div class="cnt"><b>1</b><span aria-hidden="true">🫁</span><small>slow breath · सास</small></div>
+            <button type="button" class="cnt" aria-pressed="false"><b>5</b><span aria-hidden="true">👁</span><small>see · देख्नु</small></button>
+            <button type="button" class="cnt" aria-pressed="false"><b>4</b><span aria-hidden="true">✋</span><small>touch · छुनु</small></button>
+            <button type="button" class="cnt" aria-pressed="false"><b>3</b><span aria-hidden="true">👂</span><small>hear · सुन्नु</small></button>
+            <button type="button" class="cnt" aria-pressed="false"><b>2</b><span aria-hidden="true">👃</span><small>smell · सुँघ्नु</small></button>
+            <button type="button" class="cnt" aria-pressed="false"><b>1</b><span aria-hidden="true">🫁</span><small>slow breath · सास</small></button>
           </div>
           <p class="card-note">Say each one out loud if you can — it helps.</p>
         </div>
@@ -85,11 +86,12 @@
         <div class="mh-card mh-card-photo">
           <img loading="lazy" decoding="async" src="assets/photos/mh/morning.jpg" alt="Sunrise over a misty field">
           <h3>Four small wins today <span class="np" lang="ne">· चार साना जित</span></h3>
+          <p class="tap-hint">👆 Tap each win as you do it · <span lang="ne">सकिएपछि थिच्नुहोस्</span></p>
           <div class="mh-tiles">
-            <div class="tile"><span aria-hidden="true">🛏</span><small>regular bedtime</small></div>
-            <div class="tile"><span aria-hidden="true">🚶</span><small>10-min walk</small></div>
-            <div class="tile"><span aria-hidden="true">🍲</span><small>eat something small</small></div>
-            <div class="tile"><span aria-hidden="true">💬</span><small>tell one person</small></div>
+            <button type="button" class="tile" aria-pressed="false"><span aria-hidden="true">🛏</span><small>regular bedtime</small></button>
+            <button type="button" class="tile" aria-pressed="false"><span aria-hidden="true">🚶</span><small>10-min walk</small></button>
+            <button type="button" class="tile" aria-pressed="false"><span aria-hidden="true">🍲</span><small>eat something small</small></button>
+            <button type="button" class="tile" aria-pressed="false"><span aria-hidden="true">💬</span><small>tell one person</small></button>
           </div>
           <p class="card-note">Depression makes everything feel heavier than it is. That feeling can change with support.</p>
         </div>
@@ -214,5 +216,16 @@
 <script src="js/search-index.js"></script>
 <script src="js/search.js"></script>
 <script src="js/nav.js"></script><script src="js/toc.js"></script><script src="js/glossary.js"></script>
+<script>
+/* tappable coping steps: tap a sense / small win to mark it done (page-only, never saved) */
+(function () {
+  document.querySelectorAll('.mh-count .cnt, .mh-tiles .tile').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.classList.toggle('done');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  });
+})();
+</script>
 </body>
 </html>
