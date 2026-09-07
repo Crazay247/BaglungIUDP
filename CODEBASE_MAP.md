@@ -123,6 +123,10 @@ Swept all 37 pages at 375/768/1024/1440 (Edge headless, `qa/sweep.js`): **zero p
 
 Interaction audit (`qa/interact.js`): **27/27 pass** — projects tabs/ward/phase filters, spatial Leaflet render + 10 layer chips, search open/type/results/keyboard-nav/Esc, glossary click popover + mobile sheet, TOC scroll + scrollspy (`.cur`), note accordions, gallery tabs, services chips + tick counter, complaints demo submit, mobile hamburger.
 
+## Mobile header fix (2026-09-06) — white-bar peek + ward strip
+
+Root cause: the closed mobile menu panel (`.navlinks`, white) is parked with `translateY(-100% - topbar-h)`; font-load variance left its bottom 0–35px on-screen, covering the dark ward-selection strip with a white bar on all pages. Fix: closed panel now `opacity:0;visibility:hidden` (delayed hide so the slide-up animation still plays). Same pass, per request: hamburger is now rightmost (`order:3`), the round topbar search button is hidden on ≤768px and lives as a full-width "Search — every page" row inside the menu (`data-search-open` binding in search.js closes the menu when opening the modal). The Ward `<select>` stays in the dark util strip on mobile and routes to `wards.html#ward-N`.
+
 ## Assets inventory
 
 - `assets/charts/demographic/` — 60 numbered PNGs (01–60), titles in `js/gallery.js` DEMO_TITLES

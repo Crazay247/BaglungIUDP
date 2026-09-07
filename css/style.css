@@ -71,6 +71,7 @@ body.nav-scrolled .topbar-main{box-shadow:0 6px 24px rgba(27,30,36,0.10)}
 .search-btn .sbi{color:var(--moss);font-size:1.05rem;line-height:1;font-weight:800}
 .search-btn kbd{font-family:ui-monospace,Consolas,monospace;font-size:0.66rem;background:var(--paper);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 5px;color:rgba(27,30,36,0.55)}
 .nav-toggle{display:none;background:none;border:0;font-size:1.4rem;cursor:pointer;color:var(--ink);padding:4px}
+.nav-search{display:none}
 
 /* ===== NAV DROPDOWN ===== */
 .nav-item{position:relative}
@@ -282,13 +283,22 @@ footer .foot-bottom code{background:rgba(255,255,255,0.1);color:rgba(255,255,255
 @media(max-width:768px){
   .wrap{padding:0 16px}
   .section{padding:42px 0}
-  .top-util .wrap{height:34px}
-  :root{--topbar-h:92px}
+  .top-util{background:linear-gradient(120deg,#143828 0%,var(--ink) 72%);border-bottom:1px solid rgba(242,169,0,0.38);box-shadow:inset 0 2px 0 rgba(242,169,0,0.85)}
+  .top-util .wrap{height:36px}
+  .util-right{gap:10px}
+  .util-ward select{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:100px;padding:3px 10px;min-height:28px;font-weight:700;letter-spacing:0.02em}
+  .util-link{font-weight:600;opacity:0.9}
+  .lang-toggle{border-radius:100px;background:rgba(242,169,0,0.14);border-color:rgba(242,169,0,0.5);color:var(--gold);padding:3px 11px;min-height:28px;letter-spacing:0.03em}
+  :root{--topbar-h:94px}
   .topbar-main .wrap{height:58px}
   .util-left{display:none}
-  .nav-toggle{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:100px;background:var(--line2);border:1px solid var(--line);flex-shrink:0}
-  .navlinks{position:fixed;top:var(--topbar-h,92px);left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;padding:10px 16px 18px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);transform:translateY(calc(-100% - var(--topbar-h,92px)));transition:transform .3s cubic-bezier(.22,1,.36,1);gap:2px;max-height:calc(100vh - 92px);max-height:calc(100dvh - 92px);overflow:auto;-webkit-overflow-scrolling:touch}
-  .navlinks.open{transform:translateY(0)}
+  .nav-toggle{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:100px;background:var(--line2);border:1px solid var(--line);flex-shrink:0;order:3}
+  .topbar-main .search-btn{display:none}
+  .nav-search{display:flex;align-items:center;gap:10px;width:100%;padding:12px;border-radius:10px;min-height:44px;background:var(--line2);border:1px solid var(--line);font:inherit;font-size:var(--fs-sm);font-weight:700;color:var(--ink);cursor:pointer;margin-bottom:6px}
+  .nav-search .sbi{color:var(--moss);font-size:1.05rem;line-height:1;font-weight:800}
+  .nav-search .ns-hint{font-weight:500;opacity:0.55;font-size:0.75rem}
+  .navlinks{position:fixed;top:var(--topbar-h,92px);left:0;right:0;background:var(--paper);flex-direction:column;align-items:stretch;padding:10px 16px 18px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);transform:translateY(calc(-100% - var(--topbar-h,92px)));opacity:0;visibility:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .25s ease,visibility 0s linear .35s;gap:2px;max-height:calc(100vh - 92px);max-height:calc(100dvh - 92px);overflow:auto;-webkit-overflow-scrolling:touch}
+  .navlinks.open{transform:translateY(0);opacity:1;visibility:visible;transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .25s ease,visibility 0s linear 0s}
   .navlinks a{padding:12px 12px;border-radius:10px;min-height:44px;display:flex;align-items:center}
   .navlinks .nav-item > .nav-trigger{width:100%;justify-content:space-between;padding:12px;min-height:44px}
   .dropdown{position:static;transform:none;width:100%;min-width:0;box-shadow:none;border:0;background:var(--cream);margin:2px 0 6px;visibility:visible;opacity:1;pointer-events:auto;display:none;border-radius:12px}
@@ -366,8 +376,8 @@ footer .foot-bottom code{background:rgba(255,255,255,0.1);color:rgba(255,255,255
   .util-ward select{padding:2px 5px;max-width:90px}
   .lang-toggle{padding:2px 7px}
   .topbar-main .wrap{height:54px}
-  :root{--topbar-h:88px}
-  .navlinks{top:88px;max-height:calc(100vh - 88px);max-height:calc(100dvh - 88px)}
+  :root{--topbar-h:90px}
+  .navlinks{top:90px;max-height:calc(100vh - 90px);max-height:calc(100dvh - 90px)}
   .page-hero{padding:104px 0 44px}
   .page-hero h1{font-size:clamp(1.65rem,8vw,2.2rem)}
   .page-hero .hero-actions{flex-direction:column;align-items:stretch}

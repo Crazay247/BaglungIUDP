@@ -39,7 +39,8 @@
   <div class="wrap">
   <a class="brand" href="index.html"><img class="brand-logo" src="assets/logos/baglung-municipality-logo.png" alt="Baglung Municipality logo"><span class="brand-name"><b>Baglung</b> Municipality</span><span class="brand-sub" data-i18n="brandsub">IUDP 2026–2041 · Official Plan Portal</span></a>
   <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-  <nav class="navlinks" aria-label="Primary">
+   <nav class="navlinks" aria-label="Primary">
+   <button type="button" class="nav-search" data-search-open aria-label="Search the plan"><span class="sbi">⌕</span><span data-i18n="search">Search</span><span class="ns-hint">— every page</span></button>
   <div class="nav-item">
   <button type="button" class="nav-trigger" data-link="" aria-expanded="false"><span data-i18n="atlas">The Atlas</span> <span class="caret">▼</span></button>
   <div class="dropdown">
@@ -64,7 +65,7 @@
   <a href="services.html" data-link="services.html" data-i18n="services">Services</a>
   <a href="gallery.html" data-i18n="gallery">Gallery</a>
   </nav>
-  <button type="button" class="search-btn" id="searchOpen" aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
+     <button type="button" class="search-btn" id="searchOpen" data-search-open aria-label="Search the plan"><span class="sbi">⌕</span><span class="sbl" data-i18n="search">Search</span><kbd>Ctrl K</kbd></button>
   </div>
  </div>
 </header>
